@@ -1,0 +1,816 @@
+
+/* =====================================================
+   GLAM BABY-01
+   UNIVERSO SAIYAJIN
+   Diseño Dragon Ball Z para Baby Shower
+   ===================================================== */
+
+:root {
+    --db-azul: #168bd0;
+    --db-azul-oscuro: #103b70;
+    --db-naranja: #f28c28;
+    --db-naranja-oscuro: #d96819;
+    --db-oro: #ffd447;
+    --db-rosa: #f3a6c8;
+    --db-rosa-claro: #ffe4ef;
+    --db-lila: #bca0e8;
+    --db-crema: #fff7e8;
+    --db-blanco: #ffffff;
+    --db-texto: #344b70;
+    --db-sombra: rgba(23, 52, 93, .18);
+}
+
+/* BASE */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #fff8ed;
+    color: var(--db-texto);
+    font-family: var(--fuente-texto);
+}
+
+main > section {
+    isolation: isolate;
+}
+
+.seccion {
+    position: relative;
+    overflow: hidden;
+}
+
+.seccion > * {
+    position: relative;
+    z-index: 1;
+}
+
+.titulo-caligrafico {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    color: var(--db-azul-oscuro);
+    text-shadow: 1px 2px 0 rgba(255,255,255,.8);
+}
+
+.etiqueta-seccion,
+.texto-superior {
+    color: var(--db-naranja-oscuro);
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* DETALLES DE ESTRELLAS */
+
+.presentacion::before,
+.galeria::before,
+.confirmacion::before,
+.itinerario::before {
+    content: "✦";
+    position: absolute;
+    top: 28px;
+    left: 7%;
+    color: var(--db-oro);
+    font-size: 45px;
+    opacity: .65;
+    z-index: 0;
+}
+
+.presentacion::after,
+.galeria::after,
+.confirmacion::after,
+.itinerario::after {
+    content: "★";
+    position: absolute;
+    bottom: 25px;
+    right: 7%;
+    color: var(--db-naranja);
+    font-size: 38px;
+    opacity: .55;
+    z-index: 0;
+}
+
+/* =====================================================
+   SOBRE DE BIENVENIDA
+   ===================================================== */
+
+.sobre-inicial {
+    background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,.95), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(255,212,71,.4), transparent 30%),
+        linear-gradient(145deg, #f7d8ed, #c7e9ff 55%, #fff0cf);
+}
+
+.sobre-contenido {
+    width: min(100%, 440px);
+    min-height: 570px;
+    background: linear-gradient(160deg, #fffdf8, #fff0f6);
+    border: 4px solid var(--db-oro);
+    border-radius: 30px;
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,.65),
+        0 20px 65px rgba(32,80,130,.2);
+}
+
+.sobre-contenido::before {
+    inset: 10px;
+    border: 2px dashed var(--db-naranja);
+    border-radius: 20px;
+}
+
+.sobre-etiqueta {
+    color: var(--db-azul-oscuro);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.sobre-monograma {
+    width: 135px;
+    height: 135px;
+    display: grid;
+    place-items: center;
+    margin: 35px 0 25px;
+    border: 8px solid var(--db-oro);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 30%, #ffcf70, #f28c28 75%);
+    color: white;
+    font-family: var(--fuente-titulo);
+    font-size: 80px;
+    font-weight: 700;
+    text-shadow: 2px 3px 0 rgba(150,75,15,.25);
+    box-shadow:
+        inset 0 0 0 4px rgba(255,255,255,.55),
+        0 8px 25px rgba(217,104,25,.25);
+}
+
+.sobre-monograma span {
+    color: white;
+    font-family: var(--fuente-titulo);
+    font-size: 80px;
+}
+
+.sobre-frase {
+    color: var(--db-azul-oscuro);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.sello {
+    border: 3px solid var(--db-oro);
+    background: var(--db-rosa-claro);
+    color: var(--db-naranja-oscuro);
+    box-shadow: 0 5px 15px rgba(242,140,40,.15);
+}
+
+.boton-abrir,
+.boton-principal {
+    background: linear-gradient(110deg, var(--db-naranja), #f5b43e);
+    border: 2px solid var(--db-oro);
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 18px rgba(217,104,25,.2);
+}
+
+.boton-abrir:hover,
+.boton-principal:hover {
+    background: linear-gradient(110deg, var(--db-azul), var(--db-azul-oscuro));
+    border-color: var(--db-oro);
+}
+
+.sobre-pie {
+    color: var(--db-azul-oscuro);
+}
+
+/* =====================================================
+   CONTROLES Y MENÚ
+   ===================================================== */
+
+.control-flotante {
+    background: linear-gradient(145deg, white, #fff0f5);
+    border: 2px solid var(--db-oro);
+    color: var(--db-azul-oscuro);
+    box-shadow: 0 5px 18px var(--db-sombra);
+}
+
+.control-flotante:hover {
+    background: var(--db-azul);
+    color: white;
+}
+
+.menu-lateral {
+    background:
+        radial-gradient(circle at 100% 0%, #dceeff, transparent 45%),
+        linear-gradient(160deg, #fffdf8, #fff0f6);
+    border-left: 5px solid var(--db-oro);
+}
+
+.menu-lateral a {
+    color: var(--db-azul-oscuro);
+    font-weight: 600;
+}
+
+.menu-lateral a:hover {
+    color: var(--db-naranja-oscuro);
+}
+
+.menu-etiqueta {
+    color: var(--db-naranja-oscuro);
+}
+
+.cerrar-menu {
+    color: var(--db-azul);
+}
+
+/* =====================================================
+   PORTADA
+   ===================================================== */
+
+.portada {
+    min-height: 100svh;
+    background:
+        linear-gradient(180deg, rgba(11,67,125,.15), rgba(13,44,91,.55)),
+        linear-gradient(140deg, #52b7ed 0%, #b9e9ff 45%, #f8d6e8 100%);
+    color: white;
+}
+
+.portada-imagen {
+    background-color: #58b9ed;
+    background-image:
+        url("recursos/portada.jpg"),
+        linear-gradient(180deg, #58b9ed, #d5efff 55%, #f5c9e0);
+    background-position: center;
+    background-size: cover;
+}
+
+.portada-velo {
+    background:
+        linear-gradient(180deg, rgba(11,48,94,.15), rgba(11,48,94,.58)),
+        radial-gradient(ellipse at center, transparent 15%, rgba(11,48,94,.25));
+}
+
+.portada-contenido {
+    text-shadow: 0 3px 15px rgba(0,30,75,.4);
+}
+
+.portada .texto-superior {
+    color: #fff0a9;
+    text-shadow: 0 2px 10px #174a79;
+}
+
+.nombres-portada {
+    font-weight: 700;
+    color: white;
+    text-shadow:
+        3px 3px 0 var(--db-azul-oscuro),
+        0 0 25px rgba(255,212,71,.8);
+}
+
+.ampersand {
+    color: var(--db-oro);
+    text-shadow: 0 0 18px var(--db-naranja);
+}
+
+.ornamento {
+    color: var(--db-oro);
+}
+
+.ornamento span {
+    background: var(--db-oro);
+}
+
+.portada-mensaje {
+    color: white;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.fecha-portada {
+    border-top: 2px solid var(--db-oro);
+    border-bottom: 2px solid var(--db-oro);
+    background: rgba(14,58,105,.3);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.flecha-bajar {
+    color: var(--db-oro);
+}
+
+/* =====================================================
+   PRESENTACIÓN
+   ===================================================== */
+
+.presentacion {
+    background:
+        radial-gradient(circle at 5% 15%, rgba(243,166,200,.35), transparent 30%),
+        radial-gradient(circle at 95% 80%, rgba(22,139,208,.14), transparent 30%),
+        #fff8ed;
+}
+
+.presentacion .titulo-caligrafico {
+    color: var(--db-azul-oscuro);
+}
+
+.separador-floral {
+    color: var(--db-naranja);
+    letter-spacing: 10px;
+}
+
+.texto-presentacion,
+.texto-intro {
+    color: #536780;
+    font-size: 13px;
+}
+
+.decoracion-esquina {
+    color: rgba(22,139,208,.2);
+}
+
+.fecha-detalle {
+    color: var(--db-azul-oscuro);
+}
+
+.fecha-dia {
+    color: var(--db-naranja);
+    font-weight: 700;
+}
+
+.fecha-detalle div {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+/* =====================================================
+   CUENTA REGRESIVA
+   ===================================================== */
+
+.cuenta-regresiva {
+    background:
+        radial-gradient(circle at 15% 50%, rgba(255,255,255,.6), transparent 30%),
+        radial-gradient(circle at 85% 50%, rgba(255,212,71,.35), transparent 30%),
+        linear-gradient(130deg, #168bd0, #174c91);
+    color: white;
+}
+
+.onda-superior path,
+.onda-inferior path {
+    fill: #fff8ed;
+}
+
+.cuenta-regresiva .etiqueta-seccion {
+    color: #ffe18b;
+}
+
+.cuenta-regresiva .titulo-caligrafico {
+    color: white;
+    text-shadow: 2px 3px 0 rgba(0,35,90,.35);
+}
+
+.contador-unidad strong {
+    color: #ffe18b;
+    text-shadow: 0 3px 12px rgba(0,0,0,.2);
+}
+
+.contador-unidad span {
+    color: white;
+    font-weight: 700;
+}
+
+.contador > i {
+    color: var(--db-naranja);
+}
+
+.contador-pie {
+    color: white;
+    font-weight: 700;
+}
+
+/* =====================================================
+   HISTORIA
+   ===================================================== */
+
+.historia {
+    background:
+        radial-gradient(circle at 10% 15%, rgba(255,212,71,.15), transparent 30%),
+        #fff8ed;
+}
+
+.historia-imagen img {
+    border: 7px solid white;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px var(--db-sombra);
+}
+
+.marco-foto {
+    border: 3px solid var(--db-oro);
+    border-radius: 25px;
+}
+
+.historia-texto .titulo-caligrafico {
+    color: var(--db-azul-oscuro);
+}
+
+.historia-texto p {
+    color: #536780;
+}
+
+.firma-historia {
+    color: var(--db-naranja-oscuro) !important;
+}
+
+/* =====================================================
+   GALERÍA
+   ===================================================== */
+
+.galeria {
+    background:
+        radial-gradient(circle at 90% 10%, rgba(243,166,200,.35), transparent 30%),
+        linear-gradient(135deg, #e7f5ff, #fff7ed);
+}
+
+.galeria-grid {
+    gap: 18px;
+}
+
+.foto-galeria {
+    border: 5px solid white;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px var(--db-sombra);
+}
+
+.foto-grande,
+.foto-alta,
+.foto-ancha {
+    border-radius: 18px;
+}
+
+/* =====================================================
+   VIDEO
+   ===================================================== */
+
+.video-seccion {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,212,71,.2), transparent 40%),
+        #fff8ed;
+}
+
+.video-contenedor {
+    background: linear-gradient(135deg, #d7efff, #f9ddeb);
+    border: 7px solid white;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px var(--db-sombra);
+}
+
+.video-placeholder span {
+    color: var(--db-naranja);
+}
+
+/* =====================================================
+   ITINERARIO
+   ===================================================== */
+
+.itinerario {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(255,212,71,.2), transparent 35%),
+        linear-gradient(135deg, #fff1e1, #fce7f2);
+}
+
+.itinerario-lista::before {
+    width: 3px;
+    background: linear-gradient(var(--db-azul), var(--db-naranja));
+}
+
+.evento-hora {
+    color: var(--db-naranja-oscuro);
+    font-weight: 700;
+}
+
+.evento-punto {
+    background: var(--db-oro);
+    outline-color: #fff1e1;
+    box-shadow: 0 0 0 2px var(--db-naranja);
+}
+
+.evento-descripcion h3 {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+.evento-descripcion p {
+    color: #536780;
+}
+
+/* =====================================================
+   UBICACIONES
+   ===================================================== */
+
+.ubicaciones {
+    background:
+        radial-gradient(circle at 90% 10%, rgba(22,139,208,.12), transparent 30%),
+        #fff8ed;
+}
+
+.ubicacion-tarjeta {
+    background: white;
+    border: 3px solid var(--db-oro);
+    border-radius: 25px;
+    box-shadow: 0 10px 25px var(--db-sombra);
+}
+
+.icono-ubicacion {
+    color: var(--db-naranja);
+}
+
+.ubicacion-tarjeta h3 {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+.boton-secundario {
+    background: #fff5e5;
+    border: 2px solid var(--db-naranja);
+    border-radius: 25px;
+    color: var(--db-naranja-oscuro);
+    font-weight: 700;
+}
+
+.boton-secundario:hover {
+    background: var(--db-azul);
+    border-color: var(--db-azul);
+}
+
+/* =====================================================
+   VESTIMENTA
+   ===================================================== */
+
+.vestimenta {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(243,166,200,.3), transparent 35%),
+        linear-gradient(135deg, #e4f3ff, #fff0d8);
+}
+
+.vestimenta-icono {
+    color: var(--db-naranja);
+}
+
+.vestimenta h3 {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+.color-muestra {
+    border: 3px solid white;
+    box-shadow: 0 3px 12px var(--db-sombra);
+}
+
+/* =====================================================
+   REGALOS
+   ===================================================== */
+
+.regalos {
+    background:
+        radial-gradient(circle at 85% 15%, rgba(255,212,71,.2), transparent 30%),
+        #fff8ed;
+}
+
+.regalo-item {
+    background: white;
+    border: 2px solid var(--db-oro);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px var(--db-sombra);
+}
+
+.regalo-item h3 {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+.regalo-item a {
+    color: var(--db-naranja-oscuro);
+    font-weight: 700;
+}
+
+/* =====================================================
+   CONFIRMACIÓN
+   ===================================================== */
+
+.confirmacion {
+    background:
+        radial-gradient(circle at 5% 10%, rgba(243,166,200,.3), transparent 35%),
+        radial-gradient(circle at 95% 90%, rgba(22,139,208,.15), transparent 35%),
+        #fff1e8;
+}
+
+.confirmacion-decoracion {
+    color: var(--db-naranja);
+    text-shadow: 0 0 20px rgba(255,212,71,.5);
+}
+
+#formularioRSVP input,
+#formularioRSVP select,
+#formularioRSVP textarea {
+    background: white;
+    border: 2px solid #e7c9d9;
+    border-radius: 12px;
+    color: var(--db-azul-oscuro);
+}
+
+#formularioRSVP input:focus,
+#formularioRSVP select:focus,
+#formularioRSVP textarea:focus {
+    border-color: var(--db-azul);
+    box-shadow: 0 0 0 3px rgba(22,139,208,.12);
+}
+
+#formularioRSVP label {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+/* =====================================================
+   PASE DIGITAL
+   ===================================================== */
+
+.pase-tarjeta {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,212,71,.25), transparent 45%),
+        white;
+    border: 4px solid var(--db-oro);
+    border-radius: 25px;
+    box-shadow: 0 15px 40px var(--db-sombra);
+}
+
+.pase-corazon {
+    color: var(--db-naranja);
+}
+
+.pase-tarjeta h3 {
+    color: var(--db-azul-oscuro);
+    font-weight: 700;
+}
+
+.pase-pie {
+    color: var(--db-naranja-oscuro);
+    font-weight: 700;
+}
+
+/* =====================================================
+   ÁLBUM
+   ===================================================== */
+
+.album {
+    background:
+        radial-gradient(circle at 90% 10%, rgba(243,166,200,.3), transparent 35%),
+        linear-gradient(135deg, #e7f5ff, #fff5e8);
+}
+
+/* =====================================================
+   PIE DE PÁGINA
+   ===================================================== */
+
+.pie-pagina {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,212,71,.25), transparent 45%),
+        linear-gradient(180deg, #fff8ed, #f9e1ed);
+}
+
+.pie-ornamento {
+    color: var(--db-naranja);
+}
+
+.pie-pagina > p {
+    color: var(--db-azul-oscuro);
+}
+
+.pie-pagina .titulo-caligrafico {
+    color: var(--db-naranja-oscuro);
+}
+
+.pie-pagina > span {
+    color: var(--db-azul-oscuro);
+}
+
+.pie-marca {
+    border-color: rgba(22,139,208,.2);
+}
+
+.pie-marca strong {
+    color: var(--db-naranja-oscuro);
+}
+
+/* =====================================================
+   VISOR DE FOTOGRAFÍAS
+   ===================================================== */
+
+.visor-fotos {
+    background: rgba(9,35,68,.96);
+}
+
+.visor-fotos button {
+    color: var(--db-oro);
+}
+
+/* =====================================================
+   DETALLES DE ENERGÍA Y DESTELLOS
+   ===================================================== */
+
+.portada::before,
+.portada::after {
+    content: "✦";
+    position: absolute;
+    z-index: 2;
+    color: var(--db-oro);
+    font-size: clamp(45px, 8vw, 95px);
+    text-shadow: 0 0 18px rgba(255,212,71,.9);
+    pointer-events: none;
+    animation: dbDestello 3s ease-in-out infinite alternate;
+}
+
+.portada::before {
+    top: 12%;
+    left: 7%;
+}
+
+.portada::after {
+    top: 20%;
+    right: 7%;
+    animation-delay: 1s;
+}
+
+@keyframes dbDestello {
+    from {
+        transform: scale(.8) rotate(-12deg);
+        opacity: .55;
+    }
+
+    to {
+        transform: scale(1.15) rotate(12deg);
+        opacity: 1;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .sobre-contenido {
+        min-height: 520px;
+        padding: 55px 25px;
+    }
+
+    .sobre-monograma {
+        width: 115px;
+        height: 115px;
+        font-size: 65px;
+    }
+
+    .sobre-monograma span {
+        font-size: 65px;
+    }
+
+    .portada::before,
+    .portada::after {
+        font-size: 48px;
+    }
+
+    .portada-mensaje {
+        font-size: 17px;
+    }
+
+    .historia-imagen img {
+        border-radius: 22px;
+    }
+
+    .ubicacion-tarjeta {
+        border-radius: 22px;
+    }
+
+    .pase-tarjeta {
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .sobre-frase {
+        font-size: 21px;
+    }
+
+    .sobre-etiqueta {
+        font-size: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portada::before,
+    .portada::after {
+        animation: none;
+    }
+}
