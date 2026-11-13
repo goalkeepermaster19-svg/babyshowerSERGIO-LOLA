@@ -814,3 +814,59 @@ main > section {
         animation: none;
     }
 }
+
+/* =====================================================
+   CORRECCIÓN: SOBRE NARANJA DRAGON BALL
+   ===================================================== */
+
+.sobre-inicial {
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.35), transparent 25%),
+        radial-gradient(circle at 85% 85%, rgba(255,212,71,.35), transparent 30%),
+        linear-gradient(145deg, #ffb347, #f28c28 55%, #dc6818) !important;
+}
+
+.sobre-contenido {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,212,71,.35), transparent 45%),
+        linear-gradient(145deg, #ffad38, #ed791e 65%, #d95c13) !important;
+
+    border: 5px solid #ffd447 !important;
+
+    box-shadow:
+        0 0 0 7px rgba(255,255,255,.45),
+        0 20px 65px rgba(120,55,10,.35) !important;
+}
+
+.sobre-contenido::before {
+    border: 2px dashed rgba(255,235,160,.9) !important;
+}
+
+.sobre-etiqueta,
+.sobre-frase,
+.sobre-pie {
+    color: white !important;
+    text-shadow: 0 2px 5px rgba(100,40,0,.3);
+}
+
+.sobre-monograma {
+    background: radial-gradient(circle at 35% 30%, #ffe98a, #f28c28 75%) !important;
+    border-color: #fff0a8 !important;
+    color: white !important;
+}
+
+.sello {
+    background: #ffd447 !important;
+    border: 3px solid white !important;
+    color: #d96819 !important;
+}
+
+.boton-abrir {
+    background: linear-gradient(110deg, #168bd0, #104b91) !important;
+    border: 2px solid #ffe17a !important;
+    color: white !important;
+}
+
+.boton-abrir:hover {
+    background: #103b70 !important;
+}
