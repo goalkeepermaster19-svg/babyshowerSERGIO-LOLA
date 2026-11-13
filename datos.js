@@ -1,75 +1,77 @@
+
 const DATOS_BODA = {
 
     nombres: {
-        primero: "Alejandro",
-        segundo: "Valentina"
+        primero: "Lola",
+        segundo: "Sergio"
     },
 
+    // PENDIENTE: confirmar fecha y hora del Baby Shower
     fecha: "2027-11-20T16:00:00",
 
-    historia: "Hay encuentros que cambian nuestra vida para siempre. Lo que comenzó como una casualidad se convirtió en una historia llena de momentos, sueños y amor. Hoy queremos celebrar el comienzo de una nueva etapa, rodeados de las personas que más queremos.",
+    historia: "Nuestro universo está a punto de recibir a alguien muy especial. Una pequeña guerrera viene en camino y, aunque todavía no conocemos su nombre, ya sabemos que ha conquistado nuestros corazones. Queremos celebrar su próxima llegada junto a las personas que más queremos. ¡Prepárate para conocer a nuestra pequeña Saiyajin!",
 
     ceremonia: {
-        nombre: "Iglesia principal",
-        direccion: "Dirección de la ceremonia",
+        nombre: "Lugar del Baby Shower",
+        direccion: "Próximamente compartiremos la dirección",
         mapa: ""
     },
 
     recepcion: {
-        nombre: "Salón de eventos",
-        direccion: "Dirección de la recepción",
+        nombre: "Celebración de nuestra pequeña",
+        direccion: "Te esperamos para compartir una tarde especial",
         mapa: ""
     },
 
     vestimenta: {
-        titulo: "Elegante",
-        descripcion: "Nos encantará verte lucir tu mejor estilo para esta ocasión.",
+        titulo: "Casual / Cómodo",
+        descripcion: "Ven con tu mejor energía y muchas ganas de celebrar. ¡El universo se llenará de rosa, alegría y poder Saiyajin!",
         colores: [
-            "#d8c6b2",
-            "#a99b88",
-            "#c4b5a5",
-            "#e8dcd0",
-            "#77745f"
+            "#F6B8D0",
+            "#F9DDE9",
+            "#E8C8F2",
+            "#F5B44C",
+            "#F4D76B"
         ]
     },
 
     itinerario: [
         {
             hora: "16:00",
-            titulo: "Ceremonia",
-            descripcion: "El momento en que comenzaremos nuestra historia."
+            titulo: "¡Bienvenida!",
+            descripcion: "Comienza nuestra aventura. Nos encantará recibirte."
+        },
+        {
+            hora: "16:30",
+            titulo: "Juegos Saiyajin",
+            descripcion: "Prepárate para demostrar tu energía y participar."
         },
         {
             hora: "17:30",
-            titulo: "Recepción",
-            descripcion: "Nos reuniremos para celebrar juntos."
+            titulo: "Sorpresas y regalos",
+            descripcion: "Compartiremos momentos especiales para nuestra pequeña guerrera."
         },
         {
-            hora: "18:30",
-            titulo: "Brindis",
-            descripcion: "Un brindis por el amor y los nuevos comienzos."
+            hora: "18:00",
+            titulo: "Brindis y merienda",
+            descripcion: "Celebremos juntos esta hermosa espera."
         },
         {
-            hora: "20:00",
-            titulo: "Cena",
-            descripcion: "Compartiremos una noche inolvidable."
-        },
-        {
-            hora: "21:00",
-            titulo: "Fiesta",
-            descripcion: "¡Es momento de celebrar!"
+            hora: "19:00",
+            titulo: "¡A celebrar!",
+            descripcion: "Una tarde llena de alegría, fotografías y recuerdos."
         }
     ],
 
     regalos: [
         {
-            titulo: "Lluvia de sobres",
-            descripcion: "Tu detalle será recibido con mucho cariño.",
+            titulo: "Un detalle para nuestra pequeña",
+            descripcion: "Si deseas regalarle algo, cualquier detalle será recibido con muchísimo cariño.",
             enlace: ""
         },
         {
-            titulo: "Cuenta bancaria",
-            descripcion: "Si prefieres realizar una transferencia, aquí encontrarás nuestros datos.",
+            titulo: "Lluvia de sobres",
+            descripcion: "Si prefieres contribuir a sus primeras aventuras, también será muy agradecido.",
             enlace: ""
         }
     ],
@@ -78,8 +80,17 @@ const DATOS_BODA = {
 
     albumUrl: "",
 
-    rsvpEndpoint: "",
+    // Conservar la conexión del sistema que ya funciona.
+    rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyCNw7z1eAWgfhUT-tpO7wNErQLXyZu9VvUVTBEWJLMwX2FuUYr3NbWaJUphT7yjkkXvg/exec",
 
+    // Mantener el código actual hasta configurar el nuevo evento
+    // en el sistema de invitados y álbum compartido.
     codigoInvitacion: "BODA-2027-AV"
 
 };
+
+
+// COMPROBACIÓN DE CONFIGURACIÓN
+console.log("BABY-01: DATOS cargados correctamente.");
+console.log("INVITACIÓN:", DATOS_BODA.nombres.primero, "&", DATOS_BODA.nombres.segundo);
+console.log("ENDPOINT GLAM CONFIGURADO:", DATOS_BODA.rsvpEndpoint);
