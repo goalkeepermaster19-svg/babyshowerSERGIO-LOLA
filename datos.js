@@ -6,8 +6,7 @@ const DATOS_BODA = {
         segundo: "Sergio"
     },
 
-    // PENDIENTE: confirmar fecha y hora del Baby Shower
-    fecha: "2027-11-20T16:00:00",
+    fecha: "2026-11-28T15:30:00",
 
     historia: "Nuestro universo está a punto de recibir a alguien muy especial. Una pequeña guerrera viene en camino y, aunque todavía no conocemos su nombre, ya sabemos que ha conquistado nuestros corazones. Queremos celebrar su próxima llegada junto a las personas que más queremos. ¡Prepárate para conocer a nuestra pequeña Saiyajin!",
 
@@ -37,27 +36,27 @@ const DATOS_BODA = {
 
     itinerario: [
         {
-            hora: "16:00",
+            hora: "15:30",
             titulo: "¡Bienvenida!",
             descripcion: "Comienza nuestra aventura. Nos encantará recibirte."
         },
         {
-            hora: "16:30",
+            hora: "16:00",
             titulo: "Juegos Saiyajin",
             descripcion: "Prepárate para demostrar tu energía y participar."
         },
         {
-            hora: "17:30",
+            hora: "17:00",
             titulo: "Sorpresas y regalos",
             descripcion: "Compartiremos momentos especiales para nuestra pequeña guerrera."
         },
         {
-            hora: "18:00",
+            hora: "17:30",
             titulo: "Brindis y merienda",
             descripcion: "Celebremos juntos esta hermosa espera."
         },
         {
-            hora: "19:00",
+            hora: "18:30",
             titulo: "¡A celebrar!",
             descripcion: "Una tarde llena de alegría, fotografías y recuerdos."
         }
@@ -80,11 +79,11 @@ const DATOS_BODA = {
 
     albumUrl: "",
 
-    // Conservar la conexión del sistema que ya funciona.
+    // Conexión original del sistema GLAM.
     rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyCNw7z1eAWgfhUT-tpO7wNErQLXyZu9VvUVTBEWJLMwX2FuUYr3NbWaJUphT7yjkkXvg/exec",
 
-    // Mantener el código actual hasta configurar el nuevo evento
-    // en el sistema de invitados y álbum compartido.
+    // Código temporal: todavía debe configurarse
+    // el nuevo evento en el sistema de invitados.
     codigoInvitacion: "BODA-2027-AV"
 
 };
@@ -93,4 +92,5 @@ const DATOS_BODA = {
 // COMPROBACIÓN DE CONFIGURACIÓN
 console.log("BABY-01: DATOS cargados correctamente.");
 console.log("INVITACIÓN:", DATOS_BODA.nombres.primero, "&", DATOS_BODA.nombres.segundo);
+console.log("FECHA:", DATOS_BODA.fecha);
 console.log("ENDPOINT GLAM CONFIGURADO:", DATOS_BODA.rsvpEndpoint);
