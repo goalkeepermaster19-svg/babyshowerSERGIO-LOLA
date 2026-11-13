@@ -16,24 +16,34 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-   <link rel="stylesheet" href="estilos.css">
-<link rel="stylesheet" href="tema-dragon.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="tema-dragon.css">
+
 </head>
 
 <body>
 
-    <!-- SOBRE DE BIENVENIDA -->
+    <!-- ==========================================
+         SOBRE DE BIENVENIDA
+    =========================================== -->
+
     <div class="sobre-inicial" id="sobreInicial">
 
         <div class="sobre-decoracion"></div>
 
         <div class="sobre-contenido">
 
-            <span class="sobre-etiqueta">UNA NUEVA GUERRERA ESTÁ POR LLEGAR</span>
+            <span class="sobre-etiqueta">
+                UNA NUEVA GUERRERA ESTÁ POR LLEGAR
+            </span>
 
-            <div class="sobre-monograma">✦ <span>7</span> ✦</div>
+            <div class="sobre-monograma">
+                ✦ <span>7</span> ✦
+            </div>
 
-            <p class="sobre-frase">¡Tenemos una sorpresa de otro universo!</p>
+            <p class="sobre-frase">
+                ¡Tenemos una sorpresa de otro universo!
+            </p>
 
             <div class="sello">
                 <span>★</span>
@@ -44,13 +54,19 @@
                 <span>↗</span>
             </button>
 
-            <p class="sobre-pie">Con mucho amor, esperamos compartirlo contigo</p>
+            <p class="sobre-pie">
+                Con mucho amor, esperamos compartirlo contigo
+            </p>
 
         </div>
+
     </div>
 
 
-    <!-- CONTROLES FLOTANTES -->
+    <!-- ==========================================
+         CONTROLES FLOTANTES
+    =========================================== -->
+
     <div class="controles-flotantes" id="controlesFlotantes">
 
         <button class="control-flotante" id="botonMusica" aria-label="Reproducir música">
@@ -64,12 +80,17 @@
     </div>
 
 
-    <!-- MENÚ -->
+    <!-- ==========================================
+         MENÚ LATERAL
+    =========================================== -->
+
     <nav class="menu-lateral" id="menuLateral">
 
         <button class="cerrar-menu" id="cerrarMenu">×</button>
 
-        <span class="menu-etiqueta">EL UNIVERSO DE NUESTRA PEQUEÑA</span>
+        <span class="menu-etiqueta">
+            EL UNIVERSO DE NUESTRA PEQUEÑA
+        </span>
 
         <a href="#inicio">Inicio</a>
         <a href="#historia">Nuestra pequeña guerrera</a>
@@ -77,6 +98,7 @@
         <a href="#itinerario">Programa</a>
         <a href="#ubicaciones">Ubicación</a>
         <a href="#regalos">Regalitos</a>
+        <a href="#albumSeccion">Álbum compartido</a>
         <a href="#confirmacion">Confirmar asistencia</a>
 
     </nav>
@@ -84,11 +106,17 @@
     <div class="fondo-menu" id="fondoMenu"></div>
 
 
-    <!-- INVITACIÓN -->
+    <!-- ==========================================
+         INVITACIÓN
+    =========================================== -->
+
     <main id="invitacion" class="invitacion oculto">
 
 
-        <!-- PORTADA -->
+        <!-- ======================================
+             PORTADA
+        ======================================= -->
+
         <section class="portada" id="inicio">
 
             <div class="portada-imagen"></div>
@@ -132,7 +160,10 @@
         </section>
 
 
-        <!-- PRESENTACIÓN -->
+        <!-- ======================================
+             PRESENTACIÓN
+        ======================================= -->
+
         <section class="seccion presentacion" id="presentacion">
 
             <div class="decoracion-esquina decoracion-izquierda">✧</div>
@@ -170,13 +201,18 @@
         </section>
 
 
-        <!-- CUENTA REGRESIVA -->
+        <!-- ======================================
+             CUENTA REGRESIVA
+        ======================================= -->
+
         <section class="cuenta-regresiva">
 
             <div class="onda-superior">
+
                 <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
                     <path d="M0,60 C300,130 600,0 900,60 C1150,110 1300,20 1440,55 L1440,0 L0,0 Z"></path>
                 </svg>
+
             </div>
 
             <span class="etiqueta-seccion">
@@ -222,20 +258,28 @@
             </p>
 
             <div class="onda-inferior">
+
                 <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
                     <path d="M0,60 C300,0 600,120 900,60 C1150,10 1300,100 1440,55 L1440,120 L0,120 Z"></path>
                 </svg>
+
             </div>
 
         </section>
 
 
-        <!-- HISTORIA -->
+        <!-- ======================================
+             HISTORIA
+        ======================================= -->
+
         <section class="seccion historia" id="historia">
 
             <div class="historia-imagen">
 
-                <img src="recursos/historia.jpg" alt="Nuestra pequeña Saiyajin">
+                <img
+                    src="recursos/historia.jpg"
+                    alt="Nuestra pequeña Saiyajin"
+                >
 
                 <span class="marco-foto"></span>
 
@@ -270,7 +314,10 @@
         </section>
 
 
-        <!-- GALERÍA -->
+        <!-- ======================================
+             GALERÍA PERSONAL
+        ======================================= -->
+
         <section class="seccion galeria" id="galeria">
 
             <span class="etiqueta-seccion">
@@ -287,15 +334,27 @@
 
             <div class="galeria-grid">
 
-                <button class="foto-galeria foto-grande" data-imagen="recursos/foto1.jpg">
+                <button
+                    type="button"
+                    class="foto-galeria foto-grande"
+                    data-imagen="recursos/foto1.jpg"
+                >
                     <img src="recursos/foto1.jpg" alt="Un recuerdo especial">
                 </button>
 
-                <button class="foto-galeria foto-alta" data-imagen="recursos/foto2.jpg">
+                <button
+                    type="button"
+                    class="foto-galeria foto-alta"
+                    data-imagen="recursos/foto2.jpg"
+                >
                     <img src="recursos/foto2.jpg" alt="Un momento especial">
                 </button>
 
-                <button class="foto-galeria foto-ancha" data-imagen="recursos/foto3.jpg">
+                <button
+                    type="button"
+                    class="foto-galeria foto-ancha"
+                    data-imagen="recursos/foto3.jpg"
+                >
                     <img src="recursos/foto3.jpg" alt="Un recuerdo de nuestra aventura">
                 </button>
 
@@ -304,7 +363,10 @@
         </section>
 
 
-        <!-- VIDEO -->
+        <!-- ======================================
+             VIDEO
+        ======================================= -->
+
         <section class="seccion video-seccion" id="videoSeccion">
 
             <span class="etiqueta-seccion">
@@ -327,7 +389,10 @@
         </section>
 
 
-        <!-- ITINERARIO -->
+        <!-- ======================================
+             ITINERARIO
+        ======================================= -->
+
         <section class="seccion itinerario" id="itinerario">
 
             <span class="etiqueta-seccion">
@@ -348,7 +413,10 @@
         </section>
 
 
-        <!-- UBICACIONES -->
+        <!-- ======================================
+             UBICACIONES
+        ======================================= -->
+
         <section class="seccion ubicaciones" id="ubicaciones">
 
             <span class="etiqueta-seccion">
@@ -367,11 +435,19 @@
 
                     <h3>Celebración</h3>
 
-                    <p id="nombreCeremonia">Lugar de celebración</p>
+                    <p id="nombreCeremonia">
+                        Lugar de celebración
+                    </p>
 
                     <span id="direccionCeremonia"></span>
 
-                    <a id="mapaCeremonia" href="#" target="_blank" class="boton-secundario">
+                    <a
+                        id="mapaCeremonia"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="boton-secundario"
+                    >
                         Ver ubicación
                     </a>
 
@@ -383,11 +459,19 @@
 
                     <h3>Recepción</h3>
 
-                    <p id="nombreRecepcion">Lugar de recepción</p>
+                    <p id="nombreRecepcion">
+                        Lugar de recepción
+                    </p>
 
                     <span id="direccionRecepcion"></span>
 
-                    <a id="mapaRecepcion" href="#" target="_blank" class="boton-secundario">
+                    <a
+                        id="mapaRecepcion"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="boton-secundario"
+                    >
                         Ver ubicación
                     </a>
 
@@ -398,7 +482,10 @@
         </section>
 
 
-        <!-- VESTIMENTA -->
+        <!-- ======================================
+             VESTIMENTA
+        ======================================= -->
+
         <section class="seccion vestimenta">
 
             <span class="etiqueta-seccion">
@@ -411,7 +498,9 @@
 
             <div class="vestimenta-icono">✧</div>
 
-            <h3 id="vestimentaTitulo">Casual</h3>
+            <h3 id="vestimentaTitulo">
+                Casual
+            </h3>
 
             <p id="vestimentaTexto">
                 Ven cómodo y con muchas ganas de compartir
@@ -423,7 +512,10 @@
         </section>
 
 
-        <!-- REGALOS -->
+        <!-- ======================================
+             REGALOS
+        ======================================= -->
+
         <section class="seccion regalos" id="regalos">
 
             <span class="etiqueta-seccion">
@@ -445,7 +537,10 @@
         </section>
 
 
-        <!-- CONFIRMACIÓN -->
+        <!-- ======================================
+             CONFIRMACIÓN RSVP
+        ======================================= -->
+
         <section class="seccion confirmacion" id="confirmacion">
 
             <div class="confirmacion-decoracion">✦</div>
@@ -465,16 +560,35 @@
 
             <form id="formularioRSVP">
 
-                <label for="nombreInvitado">Nombre completo</label>
+                <label for="nombreInvitado">
+                    Nombre completo
+                </label>
 
-                <input type="text" id="nombreInvitado" required placeholder="Escribe tu nombre">
+                <input
+                    type="text"
+                    id="nombreInvitado"
+                    required
+                    placeholder="Escribe tu nombre"
+                >
 
-                <label for="asistencia">¿Podrás acompañarnos?</label>
+                <label for="asistencia">
+                    ¿Podrás acompañarnos?
+                </label>
 
                 <select id="asistencia" required>
-                    <option value="">Selecciona una opción</option>
-                    <option value="Sí asistiré">¡Sí, ahí estaré!</option>
-                    <option value="No podré asistir">Lo siento, no podré asistir</option>
+
+                    <option value="">
+                        Selecciona una opción
+                    </option>
+
+                    <option value="Sí asistiré">
+                        ¡Sí, ahí estaré!
+                    </option>
+
+                    <option value="No podré asistir">
+                        Lo siento, no podré asistir
+                    </option>
+
                 </select>
 
                 <label for="cantidadAcompanantes">
@@ -482,17 +596,23 @@
                 </label>
 
                 <select id="cantidadAcompanantes">
+
                     <option value="0">Solo yo</option>
                     <option value="1">1 acompañante</option>
                     <option value="2">2 acompañantes</option>
                     <option value="3">3 acompañantes</option>
+
                 </select>
 
                 <label for="mensajeInvitado">
                     Un mensaje para nuestra pequeña (opcional)
                 </label>
 
-                <textarea id="mensajeInvitado" rows="3" placeholder="Déjale unas palabras de cariño..."></textarea>
+                <textarea
+                    id="mensajeInvitado"
+                    rows="3"
+                    placeholder="Déjale unas palabras de cariño..."
+                ></textarea>
 
                 <button type="submit" class="boton-principal">
                     Confirmar asistencia
@@ -506,7 +626,10 @@
         </section>
 
 
-        <!-- PASE DIGITAL -->
+        <!-- ======================================
+             PASE DIGITAL
+        ======================================= -->
+
         <section class="seccion pase-digital" id="paseDigital">
 
             <span class="etiqueta-seccion">
@@ -525,9 +648,13 @@
 
                 <div class="pase-corazon">★</div>
 
-                <h3 id="paseNombres">Baby Shower · Nuestra pequeña Saiyajin</h3>
+                <h3 id="paseNombres">
+                    Baby Shower · Nuestra pequeña Saiyajin
+                </h3>
 
-                <p id="paseFecha">Fecha de celebración</p>
+                <p id="paseFecha">
+                    Fecha de celebración
+                </p>
 
                 <div id="codigoQR" class="codigo-qr"></div>
 
@@ -540,46 +667,137 @@
         </section>
 
 
-        <!-- ÁLBUM -->
-        <section class="seccion album" id="albumSeccion">
+        <!-- ======================================
+             ÁLBUM COMPARTIDO GLAM
+             ESTRUCTURA REUTILIZADA DE BODA-01
+        ======================================= -->
+
+        <section class="seccion album album-dragon" id="albumSeccion">
 
             <span class="etiqueta-seccion">
-                GUARDEMOS ESTA AVENTURA
+                RECUERDOS DE NUESTRA AVENTURA
             </span>
 
             <h2 class="titulo-caligrafico">
-                Nuestro álbum compartido
+                ¡Comparte tu energía Saiyajin!
             </h2>
 
+            <div class="separador-floral">
+                ✦ ★ ✦
+            </div>
+
             <p class="texto-intro">
-                Comparte tus fotografías y ayúdanos a reunir
-                los recuerdos de este día tan especial.
+                Sube tus fotografías de esta celebración.
+                Cada recuerdo será parte de la historia de nuestra
+                pequeña guerrera.
             </p>
 
-            <a href="#" id="enlaceAlbum" target="_blank" class="boton-principal">
-                Compartir fotografías
-                <span>↗</span>
-            </a>
+            <!-- CARGA DE FOTOGRAFÍAS -->
+
+            <div class="carga-fotografias">
+
+                <label
+                    for="seleccionarFotos"
+                    class="boton-principal"
+                >
+                    📸 Seleccionar fotografías
+                </label>
+
+                <input
+                    type="file"
+                    id="seleccionarFotos"
+                    accept="image/jpeg,image/png,image/webp"
+                    multiple
+                    hidden
+                >
+
+                <!-- VISTA PREVIA -->
+
+                <div
+                    id="vistaPreviaFotos"
+                    class="vista-previa-fotos"
+                ></div>
+
+                <!-- ENVÍO -->
+
+                <button
+                    type="button"
+                    id="botonEnviarFotos"
+                    class="boton-principal"
+                    disabled
+                >
+                    Enviar fotografías ⚡
+                </button>
+
+                <!-- MENSAJES -->
+
+                <p
+                    id="mensajeFotos"
+                    class="mensaje-fotos"
+                    aria-live="polite"
+                ></p>
+
+            </div>
+
+
+            <!-- GALERÍA PÚBLICA -->
+
+            <div class="galeria-publica-glam">
+
+                <div class="separador-floral">
+                    ✦ ★ ✦
+                </div>
+
+                <h2 class="titulo-caligrafico">
+                    Recuerdos de nuestra pequeña Saiyajin
+                </h2>
+
+                <p class="texto-intro">
+                    Las fotografías compartidas y publicadas
+                    aparecerán aquí para que todos puedan
+                    revivir esta aventura.
+                </p>
+
+                <div id="galeriaPublicaGLAM">
+
+                    <p>
+                        ¡Pronto aparecerán aquí nuestros recuerdos!
+                    </p>
+
+                </div>
+
+            </div>
 
         </section>
 
 
-        <!-- DESPEDIDA -->
+        <!-- ======================================
+             DESPEDIDA
+        ======================================= -->
+
         <footer class="pie-pagina">
 
-            <div class="pie-ornamento">✦ ★ ✦</div>
+            <div class="pie-ornamento">
+                ✦ ★ ✦
+            </div>
 
-            <p>Con todo el amor de nuestro universo</p>
+            <p>
+                Con todo el amor de nuestro universo
+            </p>
 
             <h2 class="titulo-caligrafico" id="nombresFinales">
                 Nuestra pequeña Saiyajin
             </h2>
 
-            <span id="fechaFinal">PRÓXIMAMENTE</span>
+            <span id="fechaFinal">
+                PRÓXIMAMENTE
+            </span>
 
             <div class="pie-marca">
+
                 Una experiencia creada por
                 <strong>GLAM</strong>
+
             </div>
 
         </footer>
@@ -587,23 +805,51 @@
     </main>
 
 
-    <!-- VISOR DE FOTOGRAFÍAS -->
+    <!-- ==========================================
+         VISOR DE FOTOGRAFÍAS
+    =========================================== -->
+
     <div class="visor-fotos" id="visorFotos">
 
-        <button id="cerrarVisor">×</button>
+        <button
+            id="cerrarVisor"
+            type="button"
+            aria-label="Cerrar fotografía"
+        >
+            ×
+        </button>
 
-        <img id="imagenAmpliada" src="" alt="Fotografía ampliada">
+        <img
+            id="imagenAmpliada"
+            src=""
+            alt="Fotografía ampliada"
+        >
 
     </div>
 
 
+    <!-- ==========================================
+         MÚSICA
+    =========================================== -->
+
     <audio id="musica" loop preload="none">
-        <source src="recursos/musica.mp3" type="audio/mpeg">
+
+        <source
+            src="recursos/musica.mp3"
+            type="audio/mpeg"
+        >
+
     </audio>
 
 
+    <!-- ==========================================
+         SCRIPTS
+    =========================================== -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <script src="datos.js"></script>
+
     <script src="funciones.js"></script>
 
 </body>
