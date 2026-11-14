@@ -1728,3 +1728,35 @@ a:hover {
     background: linear-gradient(135deg, #f5bd4b, #e77a35);
     color: #fff;
 }
+
+/* UBICACIÓN CENTRADA */
+
+.ubicaciones {
+    text-align: center;
+}
+
+.ubicaciones-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.ubicacion-tarjeta {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.ubicacion-tarjeta h3,
+.ubicacion-tarjeta p,
+.ubicacion-tarjeta span {
+    text-align: center;
+}
+
+.ubicacion-tarjeta .boton-secundario {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 18px auto 0;
+}
