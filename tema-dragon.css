@@ -1436,3 +1436,242 @@ a:hover {
 .modal-shenlong {
     z-index: 99999;
 }
+
+/* =========================================
+   MEJORAS VISUALES - BABY SAIYAJIN
+========================================= */
+
+/* PRESENTACIÓN DE LOLA Y SERGIO */
+
+.presentacion-padres {
+    max-width: 680px;
+    margin: 25px auto 30px;
+    padding: 28px 25px;
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 246, 231, 0.96),
+        rgba(255, 229, 213, 0.94)
+    );
+    border: 1px solid rgba(214, 139, 67, 0.35);
+    border-radius: 22px;
+    box-shadow: 0 12px 35px rgba(125, 72, 35, 0.10);
+}
+
+.padres-emblema {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #ffe7a3, #f5a34b);
+    border: 4px double #c9792d;
+    box-shadow: 0 0 0 7px rgba(242, 173, 83, 0.13);
+}
+
+.padres-emblema span {
+    color: #a84732;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.padres-emblema small {
+    margin-top: 7px;
+    color: #713e28;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.presentacion-padres .texto-presentacion {
+    margin: 0 auto 17px;
+    max-width: 560px;
+    line-height: 1.9;
+}
+
+.presentacion-invitacion {
+    max-width: 520px;
+    margin: 0 auto;
+    color: #96552f;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.presentacion-firma {
+    margin-top: 25px;
+    color: #9b6745;
+    font-family: 'Great Vibes', cursive;
+    font-size: 23px;
+}
+
+.presentacion-firma strong {
+    display: block;
+    margin-top: 4px;
+    color: #bd632e;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+
+/* HISTORIA: MENSAJE MÁS LIMPIO */
+
+.historia-texto p {
+    line-height: 1.9;
+}
+
+
+/* ITINERARIO DRAGON BALL */
+
+.itinerario-dragon {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        180deg,
+        #fff7e9 0%,
+        #ffead7 50%,
+        #fff5e9 100%
+    );
+}
+
+.itinerario-decoracion-superior {
+    margin-bottom: 18px;
+    color: #dc8b36;
+    font-size: 23px;
+    letter-spacing: 5px;
+}
+
+.itinerario-dragon .etiqueta-seccion {
+    color: #bd682f;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.itinerario-dragon .titulo-caligrafico {
+    color: #a84f2c;
+    margin-bottom: 15px;
+}
+
+.itinerario-dragon .texto-intro {
+    max-width: 570px;
+    margin: 0 auto 28px;
+    color: #76513d;
+    line-height: 1.85;
+}
+
+.itinerario-mensaje {
+    max-width: 580px;
+    margin: 0 auto 32px;
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(211, 139, 62, 0.35);
+    border-left: 5px solid #e58b35;
+    border-radius: 13px;
+}
+
+.itinerario-mensaje-icono {
+    flex-shrink: 0;
+    font-size: 30px;
+}
+
+.itinerario-mensaje strong {
+    color: #a84f2c;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.itinerario-mensaje p {
+    margin: 5px 0 0;
+    color: #79543d;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Tarjetas generadas desde datos.js */
+
+.itinerario-dragon .evento-itinerario {
+    position: relative;
+    margin: 18px auto;
+    padding: 22px 24px;
+    max-width: 580px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(219, 147, 68, 0.30);
+    border-radius: 17px;
+    box-shadow: 0 8px 22px rgba(133, 79, 36, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.itinerario-dragon .evento-itinerario:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 27px rgba(133, 79, 36, 0.14);
+}
+
+.itinerario-dragon .evento-itinerario h3 {
+    color: #a84f2c;
+}
+
+.itinerario-dragon .evento-itinerario p {
+    color: #79543d;
+    line-height: 1.7;
+}
+
+.itinerario-despedida {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    color: #bd682f;
+}
+
+.itinerario-despedida span {
+    color: #e7a33d;
+    font-size: 20px;
+}
+
+.itinerario-despedida p {
+    margin: 0;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+}
+
+
+/* ADAPTACIÓN A CELULARES */
+
+@media (max-width: 600px) {
+
+    .presentacion-padres {
+        padding: 23px 18px;
+        margin: 22px 12px;
+    }
+
+    .padres-emblema {
+        width: 90px;
+        height: 90px;
+    }
+
+    .presentacion-invitacion {
+        font-size: 14px;
+    }
+
+    .itinerario-mensaje {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 15px;
+    }
+
+    .itinerario-dragon .evento-itinerario {
+        margin: 15px 8px;
+        padding: 18px;
+    }
+
+    .itinerario-despedida p {
+        font-size: 25px;
+    }
+}
