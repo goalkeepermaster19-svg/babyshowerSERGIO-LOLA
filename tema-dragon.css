@@ -955,3 +955,33 @@ main > section {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+/* =========================================
+   CENTRAR TARJETA DEL LUGAR DEL BABY SHOWER
+========================================= */
+
+#ubicaciones {
+    text-align: center;
+}
+
+#ubicaciones .ubicacion-tarjeta {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ubicaciones .ubicacion-tarjeta h3,
+#ubicaciones .ubicacion-tarjeta p {
+    text-align: center;
+    width: 100%;
+}
+
+#ubicaciones .ubicacion-tarjeta a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
