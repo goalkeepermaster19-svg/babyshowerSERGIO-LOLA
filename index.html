@@ -1,392 +1,127 @@
-<!DOCTYPE html>
-<html lang="es">
+<section class="aventura-saiyajin" id="aventuraSaiyajin">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fce8f1">
+    <div class="dragon-estrellas">✦　★　✧　★　✦</div>
 
-    <meta name="description" content="Una pequeña guerrera está por llegar. Acompáñanos a celebrar su Baby Shower.">
-
-    <title>Nuestra pequeña Saiyajin | Baby Shower</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="tema-dragon.css">
-
-</head>
-
-<body>
-
-    <!-- ==========================================
-         SOBRE DE BIENVENIDA
-    =========================================== -->
-
-    <div class="sobre-inicial" id="sobreInicial">
-
-        <div class="sobre-decoracion"></div>
-
-        <div class="sobre-contenido">
-
-            <span class="sobre-etiqueta">
-                UNA NUEVA GUERRERA ESTÁ POR LLEGAR
-            </span>
-
-            <div class="sobre-monograma">
-                ✦ <span>7</span> ✦
-            </div>
-
-            <p class="sobre-frase">
-                ¡Tenemos una sorpresa de otro universo!
-            </p>
-
-            <div class="sello">
-                <span>★</span>
-            </div>
-
-            <button class="boton-abrir" id="botonAbrir">
-                Descubrir invitación
-                <span>↗</span>
-            </button>
-
-            <p class="sobre-pie">
-                Con mucho amor, esperamos compartirlo contigo
-            </p>
-
-        </div>
-
+    <div class="aventura-encabezado">
+        <span class="aventura-icono">🐉</span>
+        <span class="aventura-etiqueta">UNA AVENTURA EN EL UNIVERSO</span>
+        <h2>¡COMIENZA LA MISIÓN!</h2>
+        <p>Demuestra tu espíritu Saiyajin y descubre el poder de las siete esferas.</p>
     </div>
 
-
-    <!-- ==========================================
-         CONTROLES FLOTANTES
-    =========================================== -->
-
-    <div class="controles-flotantes" id="controlesFlotantes">
-
-        <button class="control-flotante" id="botonMusica" aria-label="Reproducir música">
-            ♫
-        </button>
-
-        <button class="control-flotante" id="botonMenu" aria-label="Abrir menú">
-            ☰
-        </button>
-
-    </div>
-
-
-    <!-- ==========================================
-         MENÚ LATERAL
-    =========================================== -->
-
-    <nav class="menu-lateral" id="menuLateral">
-
-        <button class="cerrar-menu" id="cerrarMenu">×</button>
-
-        <span class="menu-etiqueta">
-            EL UNIVERSO DE NUESTRA PEQUEÑA
-        </span>
-
-        <a href="#inicio">Inicio</a>
-        <a href="#historia">Nuestra pequeña guerrera</a>
-        <a href="#itinerario">Programa</a>
-        <a href="#ubicaciones">Ubicación</a>
-        <a href="#regalos">Regalitos</a>
-        <a href="#albumSeccion">Álbum compartido</a>
-        <a href="#confirmacion">Confirmar asistencia</a>
-
-    </nav>
-
-    <div class="fondo-menu" id="fondoMenu"></div>
-
-
-    <!-- ==========================================
-         INVITACIÓN
-    =========================================== -->
-
-    <main id="invitacion" class="invitacion oculto">
-
-
-        <!-- ======================================
-             PORTADA
-        ======================================= -->
-
-        <section class="portada" id="inicio">
-
-            <div class="portada-imagen"></div>
-            <div class="portada-velo"></div>
-
-            <div class="portada-contenido">
-
-                <span class="texto-superior">
-                    ¡UN NUEVO PODER ESTÁ POR LLEGAR!
-                </span>
-
-                <div class="nombres-portada">
-
-                    <span id="nombrePortada1">NUESTRA</span>
-
-                    <span class="ampersand">✦</span>
-
-                    <span id="nombrePortada2">PEQUEÑA SAIYAJIN</span>
-
-                </div>
-
-                <div class="ornamento">
-                    <span></span>
-                    <i>★</i>
-                    <span></span>
-                </div>
-
-                <p class="portada-mensaje">
-                    Una pequeña guerrera está preparando<br>
-                    su llegada a nuestro universo.
-                </p>
-
-                <div class="fecha-portada">
-                    <span id="fechaPortada">PRÓXIMAMENTE</span>
-                </div>
-
-                <a href="#presentacion" class="flecha-bajar">↓</a>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             PRESENTACIÓN
-        ======================================= -->
-
-        <section class="seccion presentacion" id="presentacion">
-
-            <div class="decoracion-esquina decoracion-izquierda">✧</div>
-            <div class="decoracion-esquina decoracion-derecha">✧</div>
-
-            <span class="etiqueta-seccion">
-                UNA NUEVA AVENTURA COMIENZA
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                ¡Nuestra pequeña Saiyajin!
-            </h2>
-
-            <div class="separador-floral">✦ ★ ✦</div>
-
-            <p class="texto-presentacion">
-                El universo nos prepara el regalo más maravilloso.
-                Una pequeña guerrera viene en camino y queremos
-                celebrar su próxima llegada rodeados de las personas
-                que llenan nuestras vidas de amor y alegría.
-                ¡Nos encantaría que formaras parte de esta aventura!
-            </p>
-
-            <div class="fecha-detalle">
-
-                <span class="fecha-dia" id="diaEvento">00</span>
-
-                <div>
-                    <span id="mesEvento">PRÓXIMAMENTE</span>
-                    <span id="anioEvento">2026</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             CUENTA REGRESIVA
-        ======================================= -->
-
-        <section class="cuenta-regresiva">
-
-            <div class="onda-superior">
-
-                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                    <path d="M0,60 C300,130 600,0 900,60 C1150,110 1300,20 1440,55 L1440,0 L0,0 Z"></path>
-                </svg>
-
-            </div>
-
-            <span class="etiqueta-seccion">
-                ¡EL PODER ESTÁ POR DESPERTAR!
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Cada vez falta menos
-            </h2>
-
-            <div class="contador" id="contador">
-
-                <div class="contador-unidad">
-                    <strong id="dias">00</strong>
-                    <span>DÍAS</span>
-                </div>
-
-                <i>:</i>
-
-                <div class="contador-unidad">
-                    <strong id="horas">00</strong>
-                    <span>HORAS</span>
-                </div>
-
-                <i>:</i>
-
-                <div class="contador-unidad">
-                    <strong id="minutos">00</strong>
-                    <span>MINUTOS</span>
-                </div>
-
-                <i>:</i>
-
-                <div class="contador-unidad">
-                    <strong id="segundos">00</strong>
-                    <span>SEGUNDOS</span>
-                </div>
-
-            </div>
-
-            <p class="contador-pie">
-                ¡Nivel de emoción: más de 9000!
-            </p>
-
-            <div class="onda-inferior">
-
-                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                    <path d="M0,60 C300,0 600,120 900,60 C1150,10 1300,100 1440,55 L1440,120 L0,120 Z"></path>
-                </svg>
-
-            </div>
-
-        </section>
-
-<!-- ======================================
-     AVENTURA DRAGON BALL Z
-======================================= -->
-
-<section class="seccion aventura-saiyajin" id="aventuraSaiyajin">
-
-    <span class="etiqueta-seccion">
-        ¡UNA MISIÓN PARA LOS GUERREROS Z!
-    </span>
-
-    <h2 class="titulo-caligrafico">
-        El desafío de las 7 esferas
-    </h2>
-
-    <p class="texto-intro">
-        El universo necesita tu ayuda. Encuentra las siete
-        esferas del dragón y desbloquea una sorpresa especial.
-    </p>
-
+    <!-- RADAR DEL DRAGÓN -->
     <div class="radar-contenedor">
 
+        <div class="radar-titulo">
+            <span>✦</span>
+            <h3>RADAR DEL DRAGÓN</h3>
+            <span>✦</span>
+        </div>
+
+        <p class="radar-subtitulo">¡Busca las siete esferas del Dragón!</p>
+
         <div class="radar-visual">
-            <span class="radar-centro">🐉</span>
-            <span class="radar-punto punto-1"></span>
-            <span class="radar-punto punto-2"></span>
-            <span class="radar-punto punto-3"></span>
+            <div class="radar-anillo radar-anillo-1"></div>
+            <div class="radar-anillo radar-anillo-2"></div>
+            <div class="radar-anillo radar-anillo-3"></div>
+            <div class="radar-centro">🐉</div>
+            <div class="radar-destello">✦</div>
         </div>
 
-        <h3>RADAR DEL DRAGÓN</h3>
-
-        <p id="mensajeRadar">
-            ¡Busca las siete esferas!
-        </p>
-
-        <div class="esferas-progreso" id="esferasProgreso">
-
-            <span class="esfera-mini">1</span>
-            <span class="esfera-mini">2</span>
-            <span class="esfera-mini">3</span>
-            <span class="esfera-mini">4</span>
-            <span class="esfera-mini">5</span>
-            <span class="esfera-mini">6</span>
-            <span class="esfera-mini">7</span>
-
+        <div class="esferas-juego">
+            <button class="esfera-dragon" data-esfera="1">★</button>
+            <button class="esfera-dragon" data-esfera="2">★★</button>
+            <button class="esfera-dragon" data-esfera="3">★★★</button>
+            <button class="esfera-dragon" data-esfera="4">★★★★</button>
+            <button class="esfera-dragon" data-esfera="5">★★★★★</button>
+            <button class="esfera-dragon" data-esfera="6">★★★★★★</button>
+            <button class="esfera-dragon" data-esfera="7">★★★★★★★</button>
         </div>
 
-        <p class="contador-esferas">
-            Esferas encontradas:
-            <strong id="contadorEsferas">0 / 7</strong>
-        </p>
+        <div class="progreso-esferas">
+            <div class="progreso-texto">
+                <span>ESFERAS ENCONTRADAS</span>
+                <strong id="contadorEsferas">0 / 7</strong>
+            </div>
 
-        <div class="esferas-juego" id="esferasJuego">
-
-            <button class="esfera-dragon" data-esfera="1" aria-label="Buscar esfera 1">★</button>
-            <button class="esfera-dragon" data-esfera="2" aria-label="Buscar esfera 2">★★</button>
-            <button class="esfera-dragon" data-esfera="3" aria-label="Buscar esfera 3">★★★</button>
-            <button class="esfera-dragon" data-esfera="4" aria-label="Buscar esfera 4">★★★★</button>
-            <button class="esfera-dragon" data-esfera="5" aria-label="Buscar esfera 5">★★★★★</button>
-            <button class="esfera-dragon" data-esfera="6" aria-label="Buscar esfera 6">★★★★★★</button>
-            <button class="esfera-dragon" data-esfera="7" aria-label="Buscar esfera 7">★★★★★★★</button>
-
+            <div class="progreso-mini">
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+                <span class="esfera-mini"></span>
+            </div>
         </div>
 
-        <p class="instruccion-juego">
-            Toca cada esfera para recogerla.
+        <p class="mensaje-radar" id="mensajeRadar">
+            ✨ Toca cada esfera para recogerla y completar tu misión.
         </p>
 
     </div>
 
 
     <!-- ENTRENAMIENTO SAIYAJIN -->
-
     <div class="entrenamiento-saiyajin">
 
-        <span class="etiqueta-seccion">
-            ¡SUPERA TUS LÍMITES!
-        </span>
+        <div class="entrenamiento-destello">⚡</div>
 
-        <h2>Entrenamiento Saiyajin</h2>
+        <span class="entrenamiento-etiqueta">¡SUPERA TUS LÍMITES!</span>
+
+        <h2>ENTRENAMIENTO<br>SAIYAJIN</h2>
 
         <p>
-            Acumula energía para alcanzar los 9.000 puntos
-            de poder.
+            ¡Libera tu energía! Acumula poder hasta alcanzar
+            los <strong>9.000 puntos</strong>.
         </p>
 
-        <div class="nivel-poder">
-
-            <div class="nivel-poder-superior">
-                <span>NIVEL DE PODER</span>
-                <strong id="nivelPoder">0</strong>
-            </div>
-
-            <div class="barra-poder">
-                <div id="barraEnergia"></div>
-            </div>
-
+        <div class="nivel-poder-superior">
+            <span>NIVEL DE PODER</span>
+            <strong id="nivelPoder">0</strong>
         </div>
 
-        <button type="button" id="botonKi" class="boton-ki">
+        <div class="barra-poder">
+            <div id="barraEnergia"></div>
+        </div>
+
+        <button class="boton-ki" id="botonKi">
             ⚡ ¡CARGAR KI!
         </button>
 
-        <p id="mensajeKi">
-            ¡Vamos, guerrero! Puedes hacerlo.
+        <p id="mensajeKi" class="mensaje-ki">
+            ¡Vamos, guerrero! ¡Tú puedes hacerlo!
         </p>
 
+        <div class="energia-decorativa">✦　⚡　✦</div>
+
+    </div>
+
+    <div class="aventura-pie">
+        <span>🐉</span>
+        <p>UNA NUEVA GUERRERA ESTÁ POR LLEGAR</p>
+        <span>✦</span>
     </div>
 
 </section>
 
 
-<!-- INVOCACIÓN DE SHENLONG -->
-
+<!-- MODAL SHENLONG -->
 <div class="modal-shenlong" id="modalShenlong">
 
     <div class="shenlong-contenido">
 
-        <div class="shenlong-icono">🐉</div>
+        <div class="shenlong-decoracion">✦ ✧ ★ ✧ ✦</div>
 
-        <span>LAS SIETE ESFERAS HAN SIDO REUNIDAS</span>
+        <span class="shenlong-icono">🐉</span>
+
+        <span class="shenlong-etiqueta">
+            LAS SIETE ESFERAS HAN SIDO REUNIDAS
+        </span>
 
         <h2>¡SHENLONG HA DESPERTADO!</h2>
+
+        <div class="shenlong-linea"></div>
 
         <p>
             Tu energía ha permitido invocar al dragón.
@@ -394,613 +129,21 @@
             celebrar la llegada de nuestra pequeña guerrera.
         </p>
 
-        <strong>
-            ¡TU DESEO ES QUE ESTA PEQUEÑA LLEGUE RODEADA DE AMOR!
-        </strong>
+        <div class="shenlong-deseo">
+            <span>✨</span>
+            <strong>
+                ¡TU DESEO ES QUE ESTA PEQUEÑA LLEGUE
+                RODEADA DE AMOR!
+            </strong>
+            <span>✨</span>
+        </div>
 
-        <button type="button" id="cerrarShenlong">
-            ¡ASÍ SERÁ!
+        <h3>¡ASÍ SERÁ!</h3>
+
+        <button id="cerrarShenlong">
+            ¡CONTINUAR LA AVENTURA!
         </button>
 
     </div>
 
 </div>
-        <!-- ======================================
-             HISTORIA
-        ======================================= -->
-
-        <section class="seccion historia" id="historia">
-
-            <div class="historia-imagen">
-
-                <img
-                    src="recursos/historia.jpg"
-                    alt="Nuestra pequeña Saiyajin"
-                >
-
-                <span class="marco-foto"></span>
-
-            </div>
-
-            <div class="historia-texto">
-
-                <span class="etiqueta-seccion">
-                    UNA NUEVA VIDA, UN NUEVO UNIVERSO
-                </span>
-
-                <h2 class="titulo-caligrafico">
-                    Nuestra pequeña guerrera
-                </h2>
-
-                <div class="separador-floral">✦ ★ ✦</div>
-
-                <p id="textoHistoria">
-                    ¡Atención, guerreros Z! 🌟 El universo ha preparado
-                    una nueva aventura y sus protagonistas son Lola,
-                    Sergio y una pequeña guerrera que muy pronto llegará
-                    para cambiarlo todo.
-
-                    Todavía no sabemos cuál será su nombre, pero ya
-                    sabemos que viene con un poder especial: llenar
-                    nuestros días de amor, nuestras noches de desvelo
-                    y nuestros corazones de una felicidad inmensa.
-
-                    💗 Dicen que los grandes guerreros nacen con un
-                    poder extraordinario… ¡y esta pequeña ya tiene
-                    el poder de conquistar a toda una familia antes
-                    de llegar!
-
-                    Por eso, queremos reunir a nuestros seres queridos
-                    para celebrar su próxima llegada.
-
-                    Tu presencia será parte de esta aventura.
-                    ¡Prepara tu energía! ¡La misión Baby Saiyajin
-                    está por comenzar! 🐉✨
-                </p>
-
-                <p class="firma-historia" id="firmaHistoria">
-                    Con mucho cariño, Lola y Sergio
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             GALERÍA PERSONAL
-             OCULTA POR DISEÑO
-        ======================================= -->
-
-        <section class="seccion galeria" id="galeria">
-
-            <span class="etiqueta-seccion">
-                PEQUEÑOS GRANDES RECUERDOS
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Nuestro pequeño universo
-            </h2>
-
-            <p class="texto-intro">
-                Cada momento de esta aventura merece ser recordado.
-            </p>
-
-            <div class="galeria-grid">
-
-                <button
-                    type="button"
-                    class="foto-galeria foto-grande"
-                    data-imagen="recursos/foto1.jpg"
-                >
-                    <img src="recursos/foto1.jpg" alt="Un recuerdo especial">
-                </button>
-
-                <button
-                    type="button"
-                    class="foto-galeria foto-alta"
-                    data-imagen="recursos/foto2.jpg"
-                >
-                    <img src="recursos/foto2.jpg" alt="Un momento especial">
-                </button>
-
-                <button
-                    type="button"
-                    class="foto-galeria foto-ancha"
-                    data-imagen="recursos/foto3.jpg"
-                >
-                    <img src="recursos/foto3.jpg" alt="Un recuerdo de nuestra aventura">
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             VIDEO
-        ======================================= -->
-
-        <section class="seccion video-seccion" id="videoSeccion">
-
-            <span class="etiqueta-seccion">
-                UNA SORPRESA ESPECIAL
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Un mensaje desde nuestro universo
-            </h2>
-
-            <div class="video-contenedor" id="videoContenedor">
-
-                <div class="video-placeholder">
-                    <span>★</span>
-                    <p>Una pequeña guerrera está por llegar</p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             ITINERARIO
-        ======================================= -->
-
-        <section class="seccion itinerario" id="itinerario">
-
-            <span class="etiqueta-seccion">
-                ¡PREPÁRATE PARA LA AVENTURA!
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Un día lleno de alegría
-            </h2>
-
-            <p class="texto-intro">
-                Hemos preparado momentos muy especiales
-                para celebrar la llegada de nuestra pequeña.
-            </p>
-
-            <div class="itinerario-lista" id="listaItinerario"></div>
-
-        </section>
-
-
-        <!-- ======================================
-             UBICACIÓN
-        ======================================= -->
-
-        <section class="seccion ubicaciones" id="ubicaciones">
-
-            <span class="etiqueta-seccion">
-                ¡NOS ENCONTRAMOS EN NUESTRO UNIVERSO!
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                ¿Dónde será la celebración?
-            </h2>
-
-            <div class="ubicaciones-grid">
-
-                <article class="ubicacion-tarjeta">
-
-                    <span class="icono-ubicacion">★</span>
-
-                    <h3>Baby Shower</h3>
-
-                    <p id="nombreCeremonia">
-                        Lugar del Baby Shower
-                    </p>
-
-                    <span id="direccionCeremonia"></span>
-
-                    <a
-                        id="mapaCeremonia"
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="boton-secundario"
-                    >
-                        Ver ubicación
-                    </a>
-
-                </article>
-
-                <!-- Se conserva el segundo bloque para compatibilidad
-                     con el JavaScript anterior. Se ocultará visualmente. -->
-
-                <article class="ubicacion-tarjeta">
-
-                    <span class="icono-ubicacion">✦</span>
-
-                    <h3>Recepción</h3>
-
-                    <p id="nombreRecepcion">
-                        Lugar de recepción
-                    </p>
-
-                    <span id="direccionRecepcion"></span>
-
-                    <a
-                        id="mapaRecepcion"
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="boton-secundario"
-                    >
-                        Ver ubicación
-                    </a>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             VESTIMENTA
-             OCULTA POR DISEÑO
-        ======================================= -->
-
-        <section class="seccion vestimenta">
-
-            <span class="etiqueta-seccion">
-                UN DETALLE PARA NUESTRA CELEBRACIÓN
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Código de vestimenta
-            </h2>
-
-            <div class="vestimenta-icono">✧</div>
-
-            <h3 id="vestimentaTitulo">
-                Casual
-            </h3>
-
-            <p id="vestimentaTexto">
-                Ven cómodo y con muchas ganas de compartir
-                una tarde llena de alegría.
-            </p>
-
-            <div class="paleta-colores" id="paletaColores"></div>
-
-        </section>
-
-
-        <!-- ======================================
-             REGALOS
-        ======================================= -->
-
-        <section class="seccion regalos" id="regalos">
-
-            <span class="etiqueta-seccion">
-                UN REGALITO PARA NUESTRA PEQUEÑA
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Detalles con mucho amor
-            </h2>
-
-            <p class="texto-intro" id="textoRegalos">
-                Tu cariño y compañía son nuestro mayor regalo.
-                Si deseas tener un detalle con nuestra pequeña,
-                aquí encontrarás algunas sugerencias.
-            </p>
-
-            <div class="regalos-lista" id="listaRegalos"></div>
-
-        </section>
-
-
-        <!-- ======================================
-             CONFIRMACIÓN RSVP
-        ======================================= -->
-
-        <section class="seccion confirmacion" id="confirmacion">
-
-            <div class="confirmacion-decoracion">✦</div>
-
-            <span class="etiqueta-seccion">
-                ¡QUEREMOS CELEBRAR CONTIGO!
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                ¿Nos acompañas?
-            </h2>
-
-            <p class="texto-intro">
-                Tu presencia hará que este día sea todavía
-                más especial. Ayúdanos confirmando tu asistencia.
-            </p>
-
-            <form id="formularioRSVP">
-
-                <label for="nombreInvitado">
-                    Nombre completo
-                </label>
-
-                <input
-                    type="text"
-                    id="nombreInvitado"
-                    required
-                    placeholder="Escribe tu nombre"
-                >
-
-                <label for="asistencia">
-                    ¿Podrás acompañarnos?
-                </label>
-
-                <select id="asistencia" required>
-
-                    <option value="">
-                        Selecciona una opción
-                    </option>
-
-                    <option value="Sí asistiré">
-                        ¡Sí, ahí estaré!
-                    </option>
-
-                    <option value="No podré asistir">
-                        Lo siento, no podré asistir
-                    </option>
-
-                </select>
-
-                <label for="cantidadAcompanantes">
-                    Número de acompañantes
-                </label>
-
-                <select id="cantidadAcompanantes">
-
-                    <option value="0">Solo yo</option>
-                    <option value="1">1 acompañante</option>
-                    <option value="2">2 acompañantes</option>
-                    <option value="3">3 acompañantes</option>
-
-                </select>
-
-                <label for="mensajeInvitado">
-                    Un mensaje para nuestra pequeña (opcional)
-                </label>
-
-                <textarea
-                    id="mensajeInvitado"
-                    rows="3"
-                    placeholder="Déjale unas palabras de cariño..."
-                ></textarea>
-
-                <button type="submit" class="boton-principal">
-                    Confirmar asistencia
-                    <span>★</span>
-                </button>
-
-                <p id="mensajeRSVP" class="mensaje-rsvp"></p>
-
-            </form>
-
-        </section>
-
-
-        <!-- ======================================
-             PASE DIGITAL
-             OCULTO POR DISEÑO
-        ======================================= -->
-
-        <section class="seccion pase-digital" id="paseDigital">
-
-            <span class="etiqueta-seccion">
-                TU INVITACIÓN PERSONAL
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                Pase de acceso
-            </h2>
-
-            <p class="texto-intro">
-                Presenta este código al llegar a nuestra celebración.
-            </p>
-
-            <div class="pase-tarjeta">
-
-                <div class="pase-corazon">★</div>
-
-                <h3 id="paseNombres">
-                    Baby Shower · Nuestra pequeña Saiyajin
-                </h3>
-
-                <p id="paseFecha">
-                    Fecha de celebración
-                </p>
-
-                <div id="codigoQR" class="codigo-qr"></div>
-
-                <span class="pase-pie">
-                    ¡NIVEL DE TERNURA: MÁS DE 9000!
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             ÁLBUM COMPARTIDO
-        ======================================= -->
-
-        <section class="seccion album album-dragon" id="albumSeccion">
-
-            <span class="etiqueta-seccion">
-                RECUERDOS DE NUESTRA AVENTURA
-            </span>
-
-            <h2 class="titulo-caligrafico">
-                ¡Comparte tu energía Saiyajin!
-            </h2>
-
-            <div class="separador-floral">
-                ✦ ★ ✦
-            </div>
-
-            <p class="texto-intro">
-                Sube tus fotografías de esta celebración.
-                Cada recuerdo será parte de la historia de nuestra
-                pequeña guerrera.
-            </p>
-
-            <div class="carga-fotografias">
-
-                <label
-                    for="seleccionarFotos"
-                    class="boton-principal"
-                >
-                    📸 Seleccionar fotografías
-                </label>
-
-                <input
-                    type="file"
-                    id="seleccionarFotos"
-                    accept="image/jpeg,image/png,image/webp"
-                    multiple
-                    hidden
-                >
-
-                <div
-                    id="vistaPreviaFotos"
-                    class="vista-previa-fotos"
-                ></div>
-
-                <button
-                    type="button"
-                    id="botonEnviarFotos"
-                    class="boton-principal"
-                    disabled
-                >
-                    Enviar fotografías ⚡
-                </button>
-
-                <p
-                    id="mensajeFotos"
-                    class="mensaje-fotos"
-                    aria-live="polite"
-                ></p>
-
-            </div>
-
-
-            <!-- GALERÍA PÚBLICA -->
-
-            <div class="galeria-publica-glam">
-
-                <div class="separador-floral">
-                    ✦ ★ ✦
-                </div>
-
-                <h2 class="titulo-caligrafico">
-                    Recuerdos de nuestra pequeña Saiyajin
-                </h2>
-
-                <p class="texto-intro">
-                    Las fotografías compartidas y publicadas
-                    aparecerán aquí para que todos puedan
-                    revivir esta aventura.
-                </p>
-
-                <div id="galeriaPublicaGLAM">
-
-                    <p>
-                        ¡Pronto aparecerán aquí nuestros recuerdos!
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             DESPEDIDA
-        ======================================= -->
-
-        <footer class="pie-pagina">
-
-            <div class="pie-ornamento">
-                ✦ ★ ✦
-            </div>
-
-            <p>
-                Con todo el amor de nuestro universo
-            </p>
-
-            <h2 class="titulo-caligrafico" id="nombresFinales">
-                Nuestra pequeña Saiyajin
-            </h2>
-
-            <span id="fechaFinal">
-                PRÓXIMAMENTE
-            </span>
-
-            <div class="pie-marca">
-
-                Una experiencia creada por
-                <strong>GLAM</strong>
-
-            </div>
-
-        </footer>
-
-    </main>
-
-
-    <!-- ==========================================
-         VISOR DE FOTOGRAFÍAS
-    =========================================== -->
-
-    <div class="visor-fotos" id="visorFotos">
-
-        <button
-            id="cerrarVisor"
-            type="button"
-            aria-label="Cerrar fotografía"
-        >
-            ×
-        </button>
-
-        <img
-            id="imagenAmpliada"
-            src=""
-            alt="Fotografía ampliada"
-        >
-
-    </div>
-
-
-    <!-- ==========================================
-         MÚSICA
-    =========================================== -->
-
-    <audio id="musica" loop preload="none">
-
-        <source
-            src="recursos/musica.mp3"
-            type="audio/mpeg"
-        >
-
-    </audio>
-
-
-    <!-- ==========================================
-         SCRIPTS
-    =========================================== -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-    <script src="datos.js"></script>
-
-    <script src="funciones.js"></script>
-
-</body>
-</html>
