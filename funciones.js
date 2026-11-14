@@ -1,10 +1,27 @@
+
 /* ==========================================
    BABY-01 | FUNCIONES GENERALES
+   DRAGON BALL Z + INTEGRACIÓN GLAM
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const $ = (id) => document.getElementById(id);
+
+
+    /* ==========================================
+       VARIABLES GENERALES GLAM
+    ========================================== */
+
+    window.glamInvitadoActual = null;
+
+    let tokenInvitacionGLAM = null;
+
+    let fotografiasSeleccionadas = [];
+
+    let fotografiasVisorGLAM = [];
+
+    let indiceVisorGLAM = 0;
 
 
     /* ======================================
@@ -51,14 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function cargarDatos() {
 
-        const nombres = DATOS_BODA.nombres;
+        const nombres = DATOS_BODA.nombres || {};
 
         const nombreCompleto =
-            `${nombres.primero} y ${nombres.segundo}`;
+            `${nombres.primero || ""} y ${nombres.segundo || ""}`;
 
-           if ($("nombrePortada1")) {
-             $("nombrePortada1").textContent = "NUESTRA";
-         }
+        if ($("nombrePortada1")) {
+            $("nombrePortada1").textContent = "NUESTRA";
+        }
+
         if ($("nombrePortada2")) {
             $("nombrePortada2").textContent = "PEQUEÑA SAIYAJIN";
         }
@@ -67,66 +85,108 @@ document.addEventListener("DOMContentLoaded", () => {
             $("nombresFinales").textContent = nombreCompleto;
         }
 
-        if ($("nombreCeremonia")) {
-            $("nombreCeremonia").textContent =
-                DATOS_BODA.ceremonia.nombre;
-        }
 
-        if ($("direccionCeremonia")) {
-            $("direccionCeremonia").textContent =
-                DATOS_BODA.ceremonia.direccion;
-        }
+        /* UBICACIÓN PRINCIPAL */
 
-        if ($("mapaCeremonia")) {
+        if (DATOS_BODA.ceremonia) {
 
-            if (DATOS_BODA.ceremonia.mapa) {
-                $("mapaCeremonia").href =
-                    DATOS_BODA.ceremonia.mapa;
-            } else {
-                $("mapaCeremonia").style.display = "none";
+            if ($("nombreCeremonia")) {
+                $("nombreCeremonia").textContent =
+                    DATOS_BODA.ceremonia.nombre || "";
+            }
+
+            if ($("direccionCeremonia")) {
+                $("direccionCeremonia").textContent =
+                    DATOS_BODA.ceremonia.direccion || "";
+            }
+
+            if ($("mapaCeremonia")) {
+
+                if (DATOS_BODA.ceremonia.mapa) {
+
+                    $("mapaCeremonia").href =
+                        DATOS_BODA.ceremonia.mapa;
+
+                    $("mapaCeremonia").style.display = "";
+
+                } else {
+
+                    $("mapaCeremonia").style.display = "none";
+
+                }
+
             }
 
         }
 
-        if ($("nombreRecepcion")) {
-            $("nombreRecepcion").textContent =
-                DATOS_BODA.recepcion.nombre;
-        }
 
-        if ($("direccionRecepcion")) {
-            $("direccionRecepcion").textContent =
-                DATOS_BODA.recepcion.direccion;
-        }
+        /* UBICACIÓN SECUNDARIA */
 
-        if ($("mapaRecepcion")) {
+        if (DATOS_BODA.recepcion) {
 
-            if (DATOS_BODA.recepcion.mapa) {
-                $("mapaRecepcion").href =
-                    DATOS_BODA.recepcion.mapa;
-            } else {
-                $("mapaRecepcion").style.display = "none";
+            if ($("nombreRecepcion")) {
+                $("nombreRecepcion").textContent =
+                    DATOS_BODA.recepcion.nombre || "";
+            }
+
+            if ($("direccionRecepcion")) {
+                $("direccionRecepcion").textContent =
+                    DATOS_BODA.recepcion.direccion || "";
+            }
+
+            if ($("mapaRecepcion")) {
+
+                if (DATOS_BODA.recepcion.mapa) {
+
+                    $("mapaRecepcion").href =
+                        DATOS_BODA.recepcion.mapa;
+
+                    $("mapaRecepcion").style.display = "";
+
+                } else {
+
+                    $("mapaRecepcion").style.display = "none";
+
+                }
+
             }
 
         }
 
-        if ($("vestimentaTitulo")) {
-            $("vestimentaTitulo").textContent =
-                DATOS_BODA.vestimenta.titulo;
+
+        /* VESTIMENTA */
+
+        if (DATOS_BODA.vestimenta) {
+
+            if ($("vestimentaTitulo")) {
+                $("vestimentaTitulo").textContent =
+                    DATOS_BODA.vestimenta.titulo || "";
+            }
+
+            if ($("vestimentaTexto")) {
+                $("vestimentaTexto").textContent =
+                    DATOS_BODA.vestimenta.descripcion || "";
+            }
+
         }
 
-        if ($("vestimentaTexto")) {
-            $("vestimentaTexto").textContent =
-                DATOS_BODA.vestimenta.descripcion;
-        }
+
+        /* REGALOS */
 
         if ($("textoRegalos")) {
+
             $("textoRegalos").textContent =
-                "Tu cariño y compañía son nuestro mayor regalo. Si deseas tener un detalle con nuestra pequeña, cualquier gesto será recibido con muchísimo amor.";
+                "Tu cariño y compañía son nuestro mayor regalo. " +
+                "Si deseas tener un detalle con nuestra pequeña, " +
+                "cualquier gesto será recibido con muchísimo amor.";
+
         }
+
 
         cargarFecha();
         cargarItinerario();
         cargarRegalos();
+        cargarPaletaColores();
 
     }
 
@@ -138,6 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function cargarFecha() {
 
         const fecha = new Date(DATOS_BODA.fecha);
+
+        if (isNaN(fecha.getTime())) {
+            console.error("La fecha del evento no es válida.");
+            return;
+        }
 
         const opciones = {
             day: "2-digit",
@@ -210,17 +275,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     function actualizarContador() {
 
-        const fechaEvento = new Date(DATOS_BODA.fecha).getTime();
+        const fechaEvento =
+            new Date(DATOS_BODA.fecha).getTime();
+
         const ahora = new Date().getTime();
 
         const diferencia = fechaEvento - ahora;
 
-        if (diferencia <= 0) {
+        if (isNaN(fechaEvento) || diferencia <= 0) {
 
             ["dias", "horas", "minutos", "segundos"].forEach(id => {
-                if ($(id)) $(id).textContent = "00";
+
+                if ($(id)) {
+                    $(id).textContent = "00";
+                }
+
             });
 
             return;
@@ -242,17 +314,25 @@ document.addEventListener("DOMContentLoaded", () => {
             (diferencia / 1000) % 60
         );
 
-        if ($("dias")) $("dias").textContent =
-            String(dias).padStart(2, "0");
+        if ($("dias")) {
+            $("dias").textContent =
+                String(dias).padStart(2, "0");
+        }
 
-        if ($("horas")) $("horas").textContent =
-            String(horas).padStart(2, "0");
+        if ($("horas")) {
+            $("horas").textContent =
+                String(horas).padStart(2, "0");
+        }
 
-        if ($("minutos")) $("minutos").textContent =
-            String(minutos).padStart(2, "0");
+        if ($("minutos")) {
+            $("minutos").textContent =
+                String(minutos).padStart(2, "0");
+        }
 
-        if ($("segundos")) $("segundos").textContent =
-            String(segundos).padStart(2, "0");
+        if ($("segundos")) {
+            $("segundos").textContent =
+                String(segundos).padStart(2, "0");
+        }
 
     }
 
@@ -269,7 +349,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         contenedor.innerHTML = "";
 
-        DATOS_BODA.itinerario.forEach((item, indice) => {
+        const itinerario = DATOS_BODA.itinerario || [];
+
+        itinerario.forEach((item, indice) => {
 
             const tarjeta = document.createElement("article");
 
@@ -277,17 +359,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             tarjeta.innerHTML = `
                 <div class="itinerario-hora">
-                    ${item.hora}
+                    ${item.hora || ""}
                 </div>
 
                 <div class="itinerario-contenido">
+
                     <span class="itinerario-numero">
                         ${String(indice + 1).padStart(2, "0")}
                     </span>
 
-                    <h3>${item.titulo}</h3>
+                    <h3>${item.titulo || ""}</h3>
 
-                    <p>${item.descripcion}</p>
+                    <p>${item.descripcion || ""}</p>
+
                 </div>
 
                 <div class="itinerario-estrella">
@@ -314,7 +398,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         contenedor.innerHTML = "";
 
-        DATOS_BODA.regalos.forEach(regalo => {
+        const regalos = DATOS_BODA.regalos || [];
+
+        regalos.forEach(regalo => {
 
             const tarjeta = document.createElement("article");
 
@@ -323,9 +409,9 @@ document.addEventListener("DOMContentLoaded", () => {
             tarjeta.innerHTML = `
                 <div class="regalo-icono">★</div>
 
-                <h3>${regalo.titulo}</h3>
+                <h3>${regalo.titulo || ""}</h3>
 
-                <p>${regalo.descripcion}</p>
+                <p>${regalo.descripcion || ""}</p>
 
                 ${
                     regalo.enlace
@@ -350,6 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuLateral = $("menuLateral");
     const fondoMenu = $("fondoMenu");
 
+
     function abrirMenu() {
 
         if (menuLateral) {
@@ -362,6 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     function cerrarMenuFuncion() {
 
         if (menuLateral) {
@@ -373,6 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
+
 
     if (botonMenu) {
         botonMenu.addEventListener("click", abrirMenu);
@@ -422,7 +511,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
 
-                console.error("No se pudo reproducir la música:", error);
+                console.error(
+                    "No se pudo reproducir la música:",
+                    error
+                );
 
             }
 
@@ -431,107 +523,253 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ======================================
-       CONFIRMACIÓN DE ASISTENCIA
-    ====================================== */
+    /* ==========================================
+       GLAM - INVITACIÓN PERSONALIZADA
+    ========================================== */
 
-    const formulario = $("formularioRSVP");
+    function cargarInvitadoGLAM() {
 
-    if (formulario) {
+        const parametros = new URLSearchParams(
+            window.location.search
+        );
 
-        formulario.addEventListener("submit", async (evento) => {
+        tokenInvitacionGLAM = parametros.get("token");
 
-            evento.preventDefault();
+        const formulario = $("formularioRSVP");
+        const mensaje = $("mensajeRSVP");
 
-            const boton = formulario.querySelector(
-                'button[type="submit"]'
-            );
+        if (!formulario || !mensaje) return;
 
-            const nombre = $("nombreInvitado").value.trim();
-            const asistencia = $("asistencia").value;
-            const acompanantes = $("cantidadAcompanantes").value;
-            const mensaje = $("mensajeInvitado").value.trim();
+        formulario.style.display = "none";
 
-            if (!nombre || !asistencia) {
+        if (!tokenInvitacionGLAM) {
 
-                mostrarMensajeRSVP(
-                    "Por favor, completa los campos obligatorios.",
-                    false
-                );
+            mensaje.textContent =
+                "No se encontró el código de tu invitación. Verifica el enlace que recibiste.";
+
+            return;
+
+        }
+
+        if (!DATOS_BODA.rsvpEndpoint) {
+
+            mensaje.textContent =
+                "No se encuentra configurada la conexión GLAM.";
+
+            return;
+
+        }
+
+        mensaje.textContent =
+            "Identificando tu invitación...";
+
+
+        window.glamInvitacionCallback = function(respuesta) {
+
+            if (
+                !respuesta ||
+                !respuesta.correcto ||
+                !respuesta.invitado
+            ) {
+
+                mensaje.textContent =
+                    respuesta?.mensaje ||
+                    "No se pudo identificar tu invitación.";
 
                 return;
 
             }
 
-            const datos = {
+            window.glamInvitadoActual = respuesta;
 
-                nombre: nombre,
+            const invitado = respuesta.invitado;
 
-                asistencia: asistencia,
+            const pases = Number(
+                invitado.pasesAsignados || 0
+            );
 
-                acompanantes: acompanantes,
 
-                mensaje: mensaje,
+            /* NOMBRE DEL INVITADO */
 
-                codigoInvitacion: DATOS_BODA.codigoInvitacion,
+            if ($("nombreInvitado")) {
 
-                fechaEvento: DATOS_BODA.fecha,
+                $("nombreInvitado").value =
+                    invitado.nombre || "";
 
-                fechaRegistro: new Date().toISOString()
+                $("nombreInvitado").readOnly = true;
 
-            };
-
-            if (boton) {
-                boton.disabled = true;
-                boton.textContent = "Enviando confirmación...";
             }
 
-            try {
 
-                await fetch(DATOS_BODA.rsvpEndpoint, {
+            /* PASES ASIGNADOS */
 
-                    method: "POST",
+            if ($("pasesAsignadosTexto")) {
 
-                    mode: "no-cors",
+                $("pasesAsignadosTexto").textContent =
+                    "Tienes " +
+                    pases +
+                    (pases === 1
+                        ? " pase asignado."
+                        : " pases asignados.");
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+            }
 
-                    body: JSON.stringify(datos)
 
-                });
+            /* SELECTOR DE PASES */
 
-                mostrarMensajeRSVP(
-                    "¡Gracias por confirmar! Tu respuesta ha sido registrada. 💗",
-                    true
-                );
+            const selector = $("cantidadPases");
 
-                formulario.reset();
+            if (selector) {
 
-            } catch (error) {
+                selector.innerHTML =
+                    '<option value="">Selecciona la cantidad</option>';
 
-                console.error("Error al enviar RSVP:", error);
+                for (let i = 1; i <= pases; i++) {
 
-                mostrarMensajeRSVP(
-                    "No pudimos enviar tu respuesta. Por favor, intenta nuevamente.",
-                    false
-                );
+                    const opcion =
+                        document.createElement("option");
 
-            } finally {
+                    opcion.value = i;
 
-                if (boton) {
-                    boton.disabled = false;
-                    boton.innerHTML =
-                        'Confirmar asistencia <span>★</span>';
+                    opcion.textContent =
+                        i === 1
+                            ? "1 persona"
+                            : i + " personas";
+
+                    selector.appendChild(opcion);
+
                 }
 
             }
 
-        });
+
+            if (pases < 1) {
+
+                mensaje.textContent =
+                    "Esta invitación no tiene pases disponibles.";
+
+                return;
+
+            }
+
+
+            /* MOSTRAR FORMULARIO */
+
+            formulario.style.display = "";
+
+
+            /* ESTADO DE CONFIRMACIÓN */
+
+            if (invitado.estadoRSVP === "CONFIRMADO") {
+
+                mensaje.textContent =
+                    "Tu asistencia ya fue registrada. Si necesitas modificarla, puedes actualizar tu respuesta aquí.";
+
+            } else if (invitado.estadoRSVP === "NO ASISTIRÁ") {
+
+                mensaje.textContent =
+                    "Tu respuesta anterior fue registrada. Puedes actualizarla aquí.";
+
+            } else {
+
+                mensaje.textContent =
+                    "¡Invitación identificada! Confirma tu asistencia.";
+
+            }
+
+
+            /* RESPUESTA ANTERIOR */
+
+            if (
+                selector &&
+                invitado.pasesConfirmados
+            ) {
+
+                selector.value =
+                    String(invitado.pasesConfirmados);
+
+            }
+
+            if ($("acompanantes")) {
+
+                $("acompanantes").value =
+                    invitado.acompanantes || "";
+
+            }
+
+
+            /* CARGAR ÁLBUM */
+
+            cargarGaleriaPublicaGLAM();
+
+        };
+
+
+        /* SOLICITUD JSONP */
+
+        const script = document.createElement("script");
+
+        const separador =
+            DATOS_BODA.rsvpEndpoint.includes("?")
+                ? "&"
+                : "?";
+
+        script.src =
+            DATOS_BODA.rsvpEndpoint +
+            separador +
+            "token=" +
+            encodeURIComponent(tokenInvitacionGLAM) +
+            "&callback=glamInvitacionCallback";
+
+        script.onerror = function() {
+
+            mensaje.textContent =
+                "No pudimos conectar con GLAM. Inténtalo nuevamente más tarde.";
+
+        };
+
+        document.body.appendChild(script);
 
     }
 
+
+    /* ==========================================
+       GLAM - MOSTRAR CAMPOS SEGÚN ASISTENCIA
+    ========================================== */
+
+    const selectorAsistencia = $("asistencia");
+
+    function actualizarCamposAsistencia() {
+
+        const datosAsistencia = $("datosAsistencia");
+
+        if (!selectorAsistencia || !datosAsistencia) return;
+
+        if (selectorAsistencia.value === "NO") {
+
+            datosAsistencia.style.display = "none";
+
+        } else {
+
+            datosAsistencia.style.display = "";
+
+        }
+
+    }
+
+    if (selectorAsistencia) {
+
+        selectorAsistencia.addEventListener(
+            "change",
+            actualizarCamposAsistencia
+        );
+
+    }
+
+
+    /* ==========================================
+       GLAM - MENSAJES RSVP
+    ========================================== */
 
     function mostrarMensajeRSVP(texto, correcto) {
 
@@ -553,18 +791,197 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ======================================
-       ÁLBUM: VISTA PREVIA DE FOTOGRAFÍAS
-    ====================================== */
+    /* ==========================================
+       GLAM - ENVÍO DE CONFIRMACIÓN
+    ========================================== */
+
+    const formulario = $("formularioRSVP");
+
+    if (formulario) {
+
+        formulario.addEventListener("submit", async evento => {
+
+            evento.preventDefault();
+
+            const boton = formulario.querySelector(
+                'button[type="submit"]'
+            );
+
+            const invitado = window.glamInvitadoActual;
+
+            if (!invitado || !tokenInvitacionGLAM) {
+
+                mostrarMensajeRSVP(
+                    "No se pudo identificar tu invitación.",
+                    false
+                );
+
+                return;
+
+            }
+
+
+            const asistencia = $("asistencia").value;
+
+            if (!asistencia) {
+
+                mostrarMensajeRSVP(
+                    "Selecciona si podrás acompañarnos.",
+                    false
+                );
+
+                return;
+
+            }
+
+
+            const cantidadPases =
+                asistencia === "SI"
+                    ? Number($("cantidadPases").value)
+                    : 0;
+
+            const acompanantes =
+                asistencia === "SI" && $("acompanantes")
+                    ? $("acompanantes").value.trim()
+                    : "";
+
+            const mensajePersonal =
+                $("mensajeInvitado")
+                    ? $("mensajeInvitado").value.trim()
+                    : "";
+
+
+            const pasesAsignados = Number(
+                invitado.invitado.pasesAsignados || 0
+            );
+
+
+            if (
+                asistencia === "SI" &&
+                (
+                    !cantidadPases ||
+                    cantidadPases > pasesAsignados
+                )
+            ) {
+
+                mostrarMensajeRSVP(
+                    "La cantidad de personas supera los pases asignados.",
+                    false
+                );
+
+                return;
+
+            }
+
+
+            /* DATOS QUE RECIBE GLAM */
+
+            const datos = {
+
+                token: tokenInvitacionGLAM,
+
+                asistencia: asistencia,
+
+                cantidadPases: cantidadPases,
+
+                acompanantes: acompanantes,
+
+                mensaje: mensajePersonal
+
+            };
+
+
+            if (boton) {
+
+                boton.disabled = true;
+
+                boton.textContent =
+                    "Enviando confirmación...";
+
+            }
+
+
+            try {
+
+                await fetch(DATOS_BODA.rsvpEndpoint, {
+
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+
+                    body: JSON.stringify(datos)
+
+                });
+
+
+                mostrarMensajeRSVP(
+                    "¡Gracias! Tu respuesta fue enviada a GLAM. 💗",
+                    true
+                );
+
+
+                /* ACTUALIZAR ESTADO LOCAL */
+
+                invitado.invitado.estadoRSVP =
+                    asistencia === "SI"
+                        ? "CONFIRMADO"
+                        : "NO ASISTIRÁ";
+
+                invitado.invitado.pasesConfirmados =
+                    cantidadPases;
+
+                invitado.invitado.acompanantes =
+                    acompanantes;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error al enviar RSVP:",
+                    error
+                );
+
+                mostrarMensajeRSVP(
+                    "No pudimos enviar tu respuesta. Inténtalo nuevamente.",
+                    false
+                );
+
+            } finally {
+
+                if (boton) {
+
+                    boton.disabled = false;
+
+                    boton.innerHTML =
+                        'Confirmar asistencia <span>★</span>';
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* ==========================================
+       GLAM - VISTA PREVIA DE FOTOGRAFÍAS
+    ========================================== */
 
     const selectorFotos = $("seleccionarFotos");
+
     const vistaPrevia = $("vistaPreviaFotos");
+
     const botonEnviarFotos = $("botonEnviarFotos");
+
     const mensajeFotos = $("mensajeFotos");
 
-    let fotografiasSeleccionadas = [];
 
-    if (selectorFotos) {
+    if (selectorFotos && botonEnviarFotos) {
 
         selectorFotos.addEventListener("change", () => {
 
@@ -576,75 +993,618 @@ document.addEventListener("DOMContentLoaded", () => {
                 vistaPrevia.innerHTML = "";
             }
 
+
+            /* MÁXIMO 5 FOTOGRAFÍAS */
+
+            if (fotografiasSeleccionadas.length > 5) {
+
+                if (mensajeFotos) {
+
+                    mensajeFotos.textContent =
+                        "Puedes seleccionar hasta 5 fotografías por envío.";
+
+                }
+
+                fotografiasSeleccionadas = [];
+
+                selectorFotos.value = "";
+
+                botonEnviarFotos.disabled = true;
+
+                return;
+
+            }
+
+
+            /* CREAR VISTA PREVIA */
+
             fotografiasSeleccionadas.forEach(archivo => {
 
                 if (!archivo.type.startsWith("image/")) return;
 
-                const lector = new FileReader();
+                const imagen = document.createElement("img");
 
-                lector.onload = (evento) => {
+                imagen.src = URL.createObjectURL(archivo);
 
-                    const imagen = document.createElement("img");
+                imagen.alt = "Fotografía seleccionada";
 
-                    imagen.src = evento.target.result;
-
-                    imagen.alt = "Fotografía seleccionada";
-
-                    if (vistaPrevia) {
-                        vistaPrevia.appendChild(imagen);
-                    }
-
-                };
-
-                lector.readAsDataURL(archivo);
+                if (vistaPrevia) {
+                    vistaPrevia.appendChild(imagen);
+                }
 
             });
 
-            if (botonEnviarFotos) {
-                botonEnviarFotos.disabled =
-                    fotografiasSeleccionadas.length === 0;
-            }
+
+            botonEnviarFotos.disabled =
+                fotografiasSeleccionadas.length === 0;
+
 
             if (mensajeFotos) {
+
                 mensajeFotos.textContent =
                     fotografiasSeleccionadas.length
-                    ? `${fotografiasSeleccionadas.length} fotografía(s) seleccionada(s).`
-                    : "";
+                        ? fotografiasSeleccionadas.length +
+                          " fotografía(s) seleccionada(s)."
+                        : "";
+
             }
+
+        });
+
+
+        /* ======================================
+           ENVÍO DE FOTOGRAFÍAS
+        ====================================== */
+
+        botonEnviarFotos.addEventListener(
+            "click",
+            async () => {
+
+                if (!fotografiasSeleccionadas.length) return;
+
+                if (
+                    !tokenInvitacionGLAM ||
+                    !DATOS_BODA.rsvpEndpoint
+                ) {
+
+                    if (mensajeFotos) {
+
+                        mensajeFotos.textContent =
+                            "No se pudo identificar tu invitación.";
+
+                    }
+
+                    return;
+
+                }
+
+
+                botonEnviarFotos.disabled = true;
+
+                selectorFotos.disabled = true;
+
+
+                try {
+
+                    for (
+                        let i = 0;
+                        i < fotografiasSeleccionadas.length;
+                        i++
+                    ) {
+
+                        if (mensajeFotos) {
+
+                            mensajeFotos.textContent =
+                                "Enviando fotografía " +
+                                (i + 1) +
+                                " de " +
+                                fotografiasSeleccionadas.length +
+                                "...";
+
+                        }
+
+
+                        const foto =
+                            fotografiasSeleccionadas[i];
+
+
+                        /* REDUCIR IMAGEN */
+
+                        const imagenReducida =
+                            await reducirFotoGLAM(foto);
+
+                        const base64 =
+                            imagenReducida.split(",")[1];
+
+
+                        /* DATOS PARA EL SISTEMA GLAM */
+
+                        const datos = {
+
+                            tipo: "subir_foto",
+
+                            token: tokenInvitacionGLAM,
+
+                            nombreArchivo: foto.name,
+
+                            tipoMime: "image/jpeg",
+
+                            base64: base64
+
+                        };
+
+
+                        await fetch(DATOS_BODA.rsvpEndpoint, {
+
+                            method: "POST",
+
+                            mode: "no-cors",
+
+                            headers: {
+                                "Content-Type": "text/plain;charset=utf-8"
+                            },
+
+                            body: JSON.stringify(datos)
+
+                        });
+
+                    }
+
+
+                    if (mensajeFotos) {
+
+                        mensajeFotos.textContent =
+                            "¡Gracias por compartir tus recuerdos! 💗";
+
+                    }
+
+
+                    /* LIMPIAR SELECCIÓN */
+
+                    fotografiasSeleccionadas = [];
+
+                    selectorFotos.value = "";
+
+                    if (vistaPrevia) {
+                        vistaPrevia.innerHTML = "";
+                    }
+
+
+                    /* ACTUALIZAR GALERÍA */
+
+                    cargarGaleriaPublicaGLAM();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error al enviar fotografías:",
+                        error
+                    );
+
+                    if (mensajeFotos) {
+
+                        mensajeFotos.textContent =
+                            "No se pudieron enviar las fotografías. Inténtalo nuevamente.";
+
+                    }
+
+                } finally {
+
+                    selectorFotos.disabled = false;
+
+                    botonEnviarFotos.disabled = true;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       GLAM - REDUCIR TAMAÑO DE FOTOGRAFÍAS
+    ========================================== */
+
+    function reducirFotoGLAM(archivo) {
+
+        return new Promise((resolve, reject) => {
+
+            const imagen = new Image();
+
+            const lector = new FileReader();
+
+
+            lector.onload = evento => {
+
+                imagen.onload = () => {
+
+                    const maximo = 1600;
+
+                    let ancho = imagen.width;
+
+                    let alto = imagen.height;
+
+
+                    if (ancho > alto && ancho > maximo) {
+
+                        alto = Math.round(
+                            alto * maximo / ancho
+                        );
+
+                        ancho = maximo;
+
+                    } else if (alto > maximo) {
+
+                        ancho = Math.round(
+                            ancho * maximo / alto
+                        );
+
+                        alto = maximo;
+
+                    }
+
+
+                    const lienzo =
+                        document.createElement("canvas");
+
+                    lienzo.width = ancho;
+
+                    lienzo.height = alto;
+
+
+                    const contexto =
+                        lienzo.getContext("2d");
+
+                    if (!contexto) {
+
+                        reject(
+                            new Error("No se pudo procesar la fotografía.")
+                        );
+
+                        return;
+
+                    }
+
+
+                    contexto.drawImage(
+                        imagen,
+                        0,
+                        0,
+                        ancho,
+                        alto
+                    );
+
+
+                    resolve(
+                        lienzo.toDataURL("image/jpeg", 0.75)
+                    );
+
+                };
+
+
+                imagen.onerror = () => {
+
+                    reject(
+                        new Error("No se pudo cargar la imagen.")
+                    );
+
+                };
+
+                imagen.src = evento.target.result;
+
+            };
+
+
+            lector.onerror = () => {
+
+                reject(
+                    new Error("No se pudo leer el archivo.")
+                );
+
+            };
+
+            lector.readAsDataURL(archivo);
 
         });
 
     }
 
-    if (botonEnviarFotos) {
 
-        botonEnviarFotos.addEventListener("click", () => {
+    /* ==========================================
+       GLAM - CARGAR GALERÍA PÚBLICA
+    ========================================== */
 
-            if (!fotografiasSeleccionadas.length) return;
+    function cargarGaleriaPublicaGLAM() {
 
-            if (DATOS_BODA.albumUrl) {
+        const contenedor = $("galeriaPublicaGLAM");
 
-                window.open(
-                    DATOS_BODA.albumUrl,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
+        if (
+            !contenedor ||
+            !tokenInvitacionGLAM ||
+            !DATOS_BODA.rsvpEndpoint
+        ) return;
 
-                if (mensajeFotos) {
-                    mensajeFotos.textContent =
-                        "Se abrió el álbum compartido. Allí podrás completar la carga de tus fotografías.";
-                }
 
-            } else {
+        contenedor.innerHTML =
+            "<p>Cargando recuerdos...</p>";
 
-                if (mensajeFotos) {
-                    mensajeFotos.textContent =
-                        "Las fotografías están seleccionadas. El enlace de subida del álbum todavía no está disponible.";
-                }
+
+        const callback = "glamGaleriaCallback";
+
+
+        window[callback] = function(respuesta) {
+
+            delete window[callback];
+
+
+            if (!respuesta || !respuesta.correcto) {
+
+                contenedor.innerHTML =
+                    "<p>No se pudieron cargar los recuerdos.</p>";
+
+                return;
 
             }
 
-        });
+
+            const fotografias =
+                respuesta.fotografias || [];
+
+
+            if (!fotografias.length) {
+
+                contenedor.innerHTML =
+                    "<p>¡Pronto aparecerán aquí nuestros recuerdos!</p>";
+
+                return;
+
+            }
+
+
+            contenedor.innerHTML = "";
+
+
+            fotografias.forEach((foto, indice) => {
+
+                const imagen =
+                    document.createElement("img");
+
+
+                imagen.src =
+                    "data:" +
+                    foto.tipoMime +
+                    ";base64," +
+                    foto.base64;
+
+                imagen.alt =
+                    foto.nombre || "Recuerdo compartido";
+
+                imagen.className =
+                    "foto-publica-glam";
+
+
+                imagen.addEventListener("click", () => {
+
+                    abrirVisorVintageGLAM(
+                        fotografias,
+                        indice
+                    );
+
+                });
+
+
+                contenedor.appendChild(imagen);
+
+            });
+
+        };
+
+
+        const script =
+            document.createElement("script");
+
+
+        const separador =
+            DATOS_BODA.rsvpEndpoint.includes("?")
+                ? "&"
+                : "?";
+
+
+        script.src =
+            DATOS_BODA.rsvpEndpoint +
+            separador +
+            "galeria=1" +
+            "&token=" +
+            encodeURIComponent(tokenInvitacionGLAM) +
+            "&callback=" +
+            callback;
+
+
+        script.onerror = function() {
+
+            contenedor.innerHTML =
+                "<p>No se pudo conectar con el álbum.</p>";
+
+            delete window[callback];
+
+        };
+
+
+        document.body.appendChild(script);
+
+    }
+
+
+    /* ==========================================
+       GLAM - ABRIR VISOR DE FOTOGRAFÍAS
+    ========================================== */
+
+    function abrirVisorVintageGLAM(fotografias, indice) {
+
+        fotografiasVisorGLAM = fotografias;
+
+        indiceVisorGLAM = indice;
+
+
+        const visor = $("visorFotos");
+
+        const ampliada = $("imagenAmpliada");
+
+
+        if (!visor || !ampliada) return;
+
+
+        let navegacion =
+            visor.querySelector(".navegacion-vintage");
+
+
+        if (!navegacion) {
+
+            navegacion =
+                document.createElement("div");
+
+            navegacion.className =
+                "navegacion-vintage";
+
+
+            navegacion.innerHTML = `
+                <button type="button" class="anterior-vintage">‹</button>
+                <button type="button" class="siguiente-vintage">›</button>
+            `;
+
+
+            visor.appendChild(navegacion);
+
+
+            navegacion
+                .querySelector(".anterior-vintage")
+                .addEventListener("click", evento => {
+
+                    evento.stopPropagation();
+
+                    cambiarFotoVintageGLAM(-1);
+
+                });
+
+
+            navegacion
+                .querySelector(".siguiente-vintage")
+                .addEventListener("click", evento => {
+
+                    evento.stopPropagation();
+
+                    cambiarFotoVintageGLAM(1);
+
+                });
+
+        }
+
+
+        let contador =
+            visor.querySelector(".contador-vintage");
+
+
+        if (!contador) {
+
+            contador =
+                document.createElement("div");
+
+            contador.className =
+                "contador-vintage";
+
+            visor.appendChild(contador);
+
+        }
+
+
+        mostrarFotoVintageGLAM();
+
+        visor.classList.add("visor-activo");
+
+    }
+
+
+    /* ==========================================
+       GLAM - MOSTRAR FOTOGRAFÍA AMPLIADA
+    ========================================== */
+
+    function mostrarFotoVintageGLAM() {
+
+        const ampliada = $("imagenAmpliada");
+
+        const visor = $("visorFotos");
+
+
+        if (
+            !ampliada ||
+            !visor ||
+            !fotografiasVisorGLAM.length
+        ) return;
+
+
+        const foto =
+            fotografiasVisorGLAM[indiceVisorGLAM];
+
+
+        ampliada.src =
+            "data:" +
+            foto.tipoMime +
+            ";base64," +
+            foto.base64;
+
+        ampliada.alt =
+            foto.nombre || "Recuerdo compartido";
+
+
+        const contador =
+            visor.querySelector(".contador-vintage");
+
+
+        if (contador) {
+
+            contador.textContent =
+                (indiceVisorGLAM + 1) +
+                " / " +
+                fotografiasVisorGLAM.length;
+
+        }
+
+    }
+
+
+    /* ==========================================
+       GLAM - CAMBIAR FOTOGRAFÍA
+    ========================================== */
+
+    function cambiarFotoVintageGLAM(direccion) {
+
+        if (!fotografiasVisorGLAM.length) return;
+
+
+        indiceVisorGLAM += direccion;
+
+
+        if (indiceVisorGLAM < 0) {
+
+            indiceVisorGLAM =
+                fotografiasVisorGLAM.length - 1;
+
+        }
+
+
+        if (
+            indiceVisorGLAM >=
+            fotografiasVisorGLAM.length
+        ) {
+
+            indiceVisorGLAM = 0;
+
+        }
+
+
+        mostrarFotoVintageGLAM();
 
     }
 
@@ -654,8 +1614,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ====================================== */
 
     const visor = $("visorFotos");
+
     const imagenAmpliada = $("imagenAmpliada");
+
     const cerrarVisor = $("cerrarVisor");
+
 
     document.querySelectorAll(".foto-galeria").forEach(foto => {
 
@@ -675,6 +1638,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+
     if (cerrarVisor) {
 
         cerrarVisor.addEventListener("click", () => {
@@ -687,12 +1651,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     if (visor) {
 
         visor.addEventListener("click", evento => {
 
             if (evento.target === visor) {
+
                 visor.classList.remove("visor-activo");
+
             }
 
         });
@@ -720,17 +1687,26 @@ document.addEventListener("DOMContentLoaded", () => {
        PALETA DE COLORES
     ====================================== */
 
-    if ($("paletaColores")) {
+    function cargarPaletaColores() {
 
-        $("paletaColores").innerHTML = "";
+        const paleta = $("paletaColores");
 
-        DATOS_BODA.vestimenta.colores.forEach(color => {
+        if (!paleta) return;
 
-            const muestra = document.createElement("span");
+        paleta.innerHTML = "";
+
+        const colores =
+            DATOS_BODA.vestimenta?.colores || [];
+
+
+        colores.forEach(color => {
+
+            const muestra =
+                document.createElement("span");
 
             muestra.style.backgroundColor = color;
 
-            $("paletaColores").appendChild(muestra);
+            paleta.appendChild(muestra);
 
         });
 
@@ -741,7 +1717,11 @@ document.addEventListener("DOMContentLoaded", () => {
        CÓDIGO QR
     ====================================== */
 
-    if ($("codigoQR") && typeof QRCode !== "undefined") {
+    if (
+        $("codigoQR") &&
+        typeof QRCode !== "undefined" &&
+        DATOS_BODA.codigoInvitacion
+    ) {
 
         $("codigoQR").innerHTML = "";
 
@@ -757,155 +1737,232 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-   
-/* ======================================
-   ENTRENAMIENTO SAIYAJIN
-====================================== */
-
-const botonKi = $("botonKi");
-const nivelPoder = $("nivelPoder");
-const barraEnergia = $("barraEnergia");
-const mensajeKi = $("mensajeKi");
-
-let poderAcumulado = 0;
-const poderMaximo = 9000;
-const energiaPorClick = 1000;
-
-if (botonKi) {
-
-    botonKi.addEventListener("click", () => {
-
-        if (poderAcumulado >= poderMaximo) return;
-
-        poderAcumulado = Math.min(
-            poderAcumulado + energiaPorClick,
-            poderMaximo
-        );
-
-        if (nivelPoder) {
-            nivelPoder.textContent =
-                poderAcumulado.toLocaleString("es-BO");
-        }
-
-        if (barraEnergia) {
-            barraEnergia.style.width =
-                (poderAcumulado / poderMaximo * 100) + "%";
-        }
-
-        if (poderAcumulado < poderMaximo) {
-
-            if (mensajeKi) {
-                mensajeKi.textContent =
-                    poderAcumulado >= 5000
-                    ? "🔥 ¡Tu energía está aumentando! ¡Sigue adelante!"
-                    : "⚡ ¡Excelente! ¡Estás liberando tu poder Saiyajin!";
-            }
-
-        } else {
-
-            if (mensajeKi) {
-                mensajeKi.textContent =
-                    "🐉 ¡PODER MÁXIMO ALCANZADO! ¡MISIÓN CUMPLIDA!";
-            }
-
-            botonKi.textContent = "★ ¡PODER MÁXIMO!";
-            botonKi.disabled = true;
-            botonKi.classList.add("ki-completado");
-
-        }
-
-    });
-
-}
-
 
     /* ======================================
-       INICIALIZACIÓN
+       ENTRENAMIENTO SAIYAJIN
     ====================================== */
 
-    cargarDatos();
+    const botonKi = $("botonKi");
 
-});
+    const nivelPoder = $("nivelPoder");
 
-/* ==========================================
-   JUEGO DE LAS SIETE ESFERAS DEL DRAGÓN
-   CORRECCIÓN DE INTERACTIVIDAD
-========================================== */
+    const barraEnergia = $("barraEnergia");
 
-document.addEventListener("DOMContentLoaded", function () {
+    const mensajeKi = $("mensajeKi");
+
+
+    let poderAcumulado = 0;
+
+    const poderMaximo = 9000;
+
+    const energiaPorClick = 1000;
+
+
+    if (botonKi) {
+
+        botonKi.addEventListener("click", () => {
+
+            if (poderAcumulado >= poderMaximo) return;
+
+
+            poderAcumulado = Math.min(
+                poderAcumulado + energiaPorClick,
+                poderMaximo
+            );
+
+
+            if (nivelPoder) {
+
+                nivelPoder.textContent =
+                    poderAcumulado.toLocaleString("es-BO");
+
+            }
+
+
+            if (barraEnergia) {
+
+                barraEnergia.style.width =
+                    (poderAcumulado / poderMaximo * 100) + "%";
+
+            }
+
+
+            if (poderAcumulado < poderMaximo) {
+
+                if (mensajeKi) {
+
+                    mensajeKi.textContent =
+                        poderAcumulado >= 5000
+                            ? "🔥 ¡Tu energía está aumentando! ¡Sigue adelante!"
+                            : "⚡ ¡Excelente! ¡Estás liberando tu poder Saiyajin!";
+
+                }
+
+            } else {
+
+                if (mensajeKi) {
+
+                    mensajeKi.textContent =
+                        "🐉 ¡PODER MÁXIMO ALCANZADO! ¡MISIÓN CUMPLIDA!";
+
+                }
+
+                botonKi.textContent =
+                    "★ ¡PODER MÁXIMO!";
+
+                botonKi.disabled = true;
+
+                botonKi.classList.add("ki-completado");
+
+            }
+
+        });
+
+    }
+
+
+    /* ==========================================
+       JUEGO DE LAS SIETE ESFERAS DEL DRAGÓN
+    ========================================== */
 
     const esferas = document.querySelectorAll(
         "#aventuraSaiyajin .esfera-dragon"
     );
 
-    const contador = document.getElementById("contadorEsferas");
-    const mensaje = document.getElementById("mensajeRadar");
+    const contadorEsferas = $("contadorEsferas");
+
+    const mensajeRadar = $("mensajeRadar");
+
     const indicadores = document.querySelectorAll(
         "#aventuraSaiyajin .esfera-mini"
     );
-    const modal = document.getElementById("modalShenlong");
-    const botonCerrar = document.getElementById("cerrarShenlong");
 
-    let encontradas = new Set();
+    const modalShenlong = $("modalShenlong");
 
-    if (!esferas.length) {
-        console.error("No se encontraron las esferas del Dragón.");
-        return;
-    }
+    const botonCerrarShenlong = $("cerrarShenlong");
 
-    esferas.forEach(function (esfera) {
 
-        esfera.addEventListener("click", function (evento) {
+    let esferasEncontradas = new Set();
 
-            evento.preventDefault();
 
-            const numero = esfera.dataset.esfera;
+    if (esferas.length) {
 
-            if (encontradas.has(numero)) {
-                mensaje.textContent = "✨ ¡Ya encontraste esta esfera! Busca otra.";
-                return;
-            }
+        esferas.forEach(esfera => {
 
-            encontradas.add(numero);
+            esfera.addEventListener("click", evento => {
 
-            esfera.classList.add("encontrada");
-            esfera.disabled = true;
-            esfera.setAttribute("aria-label", "Esfera " + numero + " encontrada");
+                evento.preventDefault();
 
-            if (contador) {
-                contador.textContent = encontradas.size + " / 7";
-            }
+                const numero = esfera.dataset.esfera;
 
-            if (indicadores[numero - 1]) {
-                indicadores[numero - 1].classList.add("encontrada");
-            }
 
-            if (encontradas.size < 7) {
-                mensaje.textContent =
-                    "🌟 ¡Esfera encontrada! Ya tienes " +
-                    encontradas.size +
-                    " de 7. ¡Sigue buscando!";
-            } else {
-                mensaje.textContent =
-                    "🐉 ¡MISIÓN CUMPLIDA! Has encontrado las siete esferas.";
+                if (esferasEncontradas.has(numero)) {
 
-                if (modal) {
-                    modal.classList.add("activo");
-                    modal.style.display = "flex";
+                    if (mensajeRadar) {
+
+                        mensajeRadar.textContent =
+                            "✨ ¡Ya encontraste esta esfera! Busca otra.";
+
+                    }
+
+                    return;
+
                 }
-            }
+
+
+                esferasEncontradas.add(numero);
+
+
+                esfera.classList.add("encontrada");
+
+                esfera.disabled = true;
+
+                esfera.setAttribute(
+                    "aria-label",
+                    "Esfera " + numero + " encontrada"
+                );
+
+
+                if (contadorEsferas) {
+
+                    contadorEsferas.textContent =
+                        esferasEncontradas.size + " / 7";
+
+                }
+
+
+                if (indicadores[numero - 1]) {
+
+                    indicadores[numero - 1].classList.add(
+                        "encontrada"
+                    );
+
+                }
+
+
+                if (esferasEncontradas.size < 7) {
+
+                    if (mensajeRadar) {
+
+                        mensajeRadar.textContent =
+                            "🌟 ¡Esfera encontrada! Ya tienes " +
+                            esferasEncontradas.size +
+                            " de 7. ¡Sigue buscando!";
+
+                    }
+
+                } else {
+
+                    if (mensajeRadar) {
+
+                        mensajeRadar.textContent =
+                            "🐉 ¡MISIÓN CUMPLIDA! Has encontrado las siete esferas.";
+
+                    }
+
+
+                    if (modalShenlong) {
+
+                        modalShenlong.classList.add("activo");
+
+                        modalShenlong.style.display = "flex";
+
+                    }
+
+                }
+
+            });
 
         });
 
-    });
-
-    if (botonCerrar) {
-        botonCerrar.addEventListener("click", function () {
-            if (modal) {
-                modal.classList.remove("activo");
-                modal.style.display = "none";
-            }
-        });
     }
+
+
+    /* CERRAR MODAL SHENLONG */
+
+    if (botonCerrarShenlong) {
+
+        botonCerrarShenlong.addEventListener("click", () => {
+
+            if (modalShenlong) {
+
+                modalShenlong.classList.remove("activo");
+
+                modalShenlong.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* ======================================
+       INICIALIZACIÓN GENERAL
+    ====================================== */
+
+    cargarDatos();
+
+    cargarInvitadoGLAM();
 
 });
