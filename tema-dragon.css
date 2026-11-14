@@ -6,22 +6,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Rajdhani:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
 :root {
-    --db-naranja: #ff7900;
-    --db-naranja-claro: #ffae00;
-    --db-amarillo: #ffdc35;
-    --db-azul: #0878d1;
-    --db-azul-oscuro: #062d59;
-    --db-azul-claro: #49c8ff;
+    --db-naranja: #f28c28;
+    --db-naranja-claro: #ffb347;
+    --db-amarillo: #ffd447;
+    --db-azul: #168bd0;
+    --db-azul-oscuro: #103b70;
+    --db-azul-claro: #75d5f5;
     --db-rojo: #e52b25;
     --db-negro: #101522;
-    --db-blanco: #fffdf5;
-    --db-crema: #fff4dc;
-    --db-dorado: #f5b900;
+    --db-blanco: #ffffff;
+    --db-crema: #fff7e8;
+    --db-dorado: #ffd447;
 }
 
-/* =========================================================
-   BASE GENERAL
-   ========================================================= */
+/* BASE GENERAL */
 
 * {
     box-sizing: border-box;
@@ -33,7 +31,7 @@ html {
 
 body {
     margin: 0;
-    background: #fff4dc;
+    background: #fff8ed;
     color: var(--db-negro);
     font-family: 'Rajdhani', sans-serif;
     overflow-x: hidden;
@@ -68,9 +66,7 @@ main {
     color: white;
 }
 
-/* =========================================================
-   PORTADA
-   ========================================================= */
+/* PORTADA */
 
 .portada {
     position: relative;
@@ -222,9 +218,7 @@ main {
     animation: dbSalto 1.5s infinite;
 }
 
-/* =========================================================
-   ENCABEZADOS Y TEXTOS
-   ========================================================= */
+/* ENCABEZADOS Y TEXTOS */
 
 .seccion {
     padding: 105px 25px;
@@ -271,9 +265,7 @@ main {
     text-align: center;
 }
 
-/* =========================================================
-   PRESENTACIÓN
-   ========================================================= */
+/* PRESENTACIÓN */
 
 .presentacion {
     padding: 120px 25px;
@@ -359,9 +351,7 @@ main {
     text-align: left;
 }
 
-/* =========================================================
-   CUENTA REGRESIVA
-   ========================================================= */
+/* CUENTA REGRESIVA */
 
 .cuenta-regresiva {
     position: relative;
@@ -464,9 +454,7 @@ main {
     letter-spacing: 2px;
 }
 
-/* =========================================================
-   HISTORIA
-   ========================================================= */
+/* HISTORIA */
 
 .historia {
     display: grid;
@@ -475,7 +463,7 @@ main {
     gap: 75px;
     max-width: 1250px;
     margin: auto;
-    background: #fff4dc;
+    background: #fff8ed;
 }
 
 .historia-imagen {
@@ -519,9 +507,7 @@ main {
     font-size: 20px !important;
 }
 
-/* =========================================================
-   MENSAJE DESDE EL UNIVERSO / VIDEO
-   ========================================================= */
+/* VIDEO Y MENSAJE DEL UNIVERSO */
 
 .video-seccion {
     background:
@@ -577,9 +563,7 @@ main {
     font-size: 22px;
 }
 
-/* =========================================================
-   ITINERARIO
-   ========================================================= */
+/* ITINERARIO */
 
 .itinerario {
     background:
@@ -632,9 +616,7 @@ main {
     line-height: 1.6;
 }
 
-/* =========================================================
-   UBICACIÓN
-   ========================================================= */
+/* UBICACIÓN */
 
 .ubicaciones {
     background:
@@ -719,9 +701,7 @@ main {
     background: var(--db-azul-oscuro);
 }
 
-/* =========================================================
-   VESTIMENTA
-   ========================================================= */
+/* VESTIMENTA */
 
 .vestimenta {
     background: #fff;
@@ -757,9 +737,7 @@ main {
     line-height: 1.7;
 }
 
-/* =========================================================
-   REGALOS
-   ========================================================= */
+/* REGALOS */
 
 .regalos {
     background:
@@ -803,9 +781,7 @@ main {
     line-height: 1.6;
 }
 
-/* =========================================================
-   CONFIRMACIÓN DE ASISTENCIA
-   ========================================================= */
+/* CONFIRMACIÓN DE ASISTENCIA */
 
 .confirmacion {
     background:
@@ -917,9 +893,7 @@ main {
     text-align: center;
 }
 
-/* =========================================================
-   PASE DIGITAL
-   ========================================================= */
+/* PASE DIGITAL */
 
 .pase-digital {
     background: #fff4dc;
@@ -973,9 +947,7 @@ main {
     letter-spacing: 1px;
 }
 
-/* =========================================================
-   ÁLBUM COMPARTIDO
-   ========================================================= */
+/* ÁLBUM COMPARTIDO */
 
 .album {
     background:
@@ -1042,9 +1014,7 @@ main {
     box-shadow: 0 8px 20px rgba(6, 45, 89, .15);
 }
 
-/* =========================================================
-   CONTROLES FLOTANTES
-   ========================================================= */
+/* CONTROLES FLOTANTES */
 
 .controles-flotantes {
     position: fixed;
@@ -1077,9 +1047,7 @@ main {
     background: var(--db-naranja);
 }
 
-/* =========================================================
-   MENÚ LATERAL
-   ========================================================= */
+/* MENÚ LATERAL */
 
 .menu-lateral {
     background: linear-gradient(160deg, #07356d, #031b3a);
@@ -1119,9 +1087,7 @@ main {
     background: rgba(0, 10, 30, .75);
 }
 
-/* =========================================================
-   VISOR DE FOTOGRAFÍAS
-   ========================================================= */
+/* VISOR DE FOTOGRAFÍAS */
 
 .visor-fotos {
     background: rgba(2, 15, 35, .96);
@@ -1136,9 +1102,7 @@ main {
     border-radius: 10px;
 }
 
-/* =========================================================
-   PIE DE PÁGINA
-   ========================================================= */
+/* PIE DE PÁGINA */
 
 .pie-pagina {
     position: relative;
@@ -1195,9 +1159,7 @@ main {
     font-family: 'Russo One', sans-serif;
 }
 
-/* =========================================================
-   ANIMACIONES
-   ========================================================= */
+/* ANIMACIONES */
 
 @keyframes dbEntrada {
     from {
@@ -1221,9 +1183,7 @@ main {
     }
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* RESPONSIVE */
 
 @media (max-width: 800px) {
 
@@ -1346,4 +1306,207 @@ main {
         width: 46px;
         height: 46px;
     }
+}
+
+/* =========================================================
+   RESTAURACIÓN DEL PRIMER DISEÑO — DRAGON BALL Z NARANJA
+   ========================================================= */
+
+body {
+    background: #fff8ed;
+}
+
+/* Portada: cielo azul anime con energía cálida */
+
+.portada {
+    background:
+        radial-gradient(ellipse at 50% 85%, rgba(255, 190, 75, .28), transparent 42%),
+        linear-gradient(145deg, rgba(16, 59, 112, .48), rgba(22, 139, 208, .28) 48%, rgba(243, 166, 200, .24)),
+        url("recursos/portada.jpg") center / cover no-repeat;
+}
+
+.portada::before {
+    border: 3px solid rgba(255, 212, 71, .88);
+    box-shadow: inset 0 0 25px rgba(255, 212, 71, .12), 0 0 22px rgba(255, 212, 71, .2);
+}
+
+.texto-superior {
+    border-color: #ffd447;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(16, 59, 112, .88), rgba(22, 139, 208, .82));
+    color: #fff7e8;
+}
+
+.nombres-portada {
+    text-shadow: 3px 4px 0 #103b70, 6px 7px 0 rgba(8, 45, 88, .72), 0 0 25px rgba(255, 212, 71, .65);
+}
+
+.nombres-portada .ampersand {
+    color: #ffd447;
+}
+
+.fecha-portada {
+    border: 2px solid #ffd447;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffb347, #f28c28 60%, #d96819);
+    box-shadow: 0 6px 0 #a94e16, 0 0 20px rgba(255, 174, 55, .35);
+}
+
+/* Encabezados */
+
+.titulo-caligrafico {
+    color: #103b70;
+    text-shadow: 2px 3px 0 rgba(242, 140, 40, .22);
+}
+
+.etiqueta-seccion {
+    color: #168bd0;
+}
+
+.separador-floral {
+    color: #f28c28;
+}
+
+/* Fondos de secciones */
+
+.presentacion,
+.itinerario,
+.pase-digital {
+    background-color: #fff7e8;
+}
+
+.video-seccion,
+.ubicaciones,
+.regalos,
+.album {
+    background: linear-gradient(145deg, #fff7e8 0%, #eaf7ff 55%, #ffeaf2 100%);
+}
+
+/* Cuenta regresiva azul */
+
+.cuenta-regresiva {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(117, 213, 245, .25), transparent 48%),
+        linear-gradient(135deg, #103b70, #168bd0 58%, #75d5f5);
+}
+
+.cuenta-regresiva .etiqueta-seccion {
+    color: #ffd447;
+}
+
+.contador-unidad {
+    border: 2px solid #ffd447;
+    background: linear-gradient(145deg, #ffb347, #f28c28 65%, #d96819);
+    box-shadow: 0 7px 0 #a94e16, 0 0 20px rgba(255, 212, 71, .25);
+}
+
+.contador > i {
+    color: #ffd447;
+}
+
+/* Botones naranja */
+
+.boton-principal {
+    border-color: #ffd447;
+    background: linear-gradient(135deg, #ffb347, #f28c28 65%, #d96819);
+    box-shadow: 0 6px 0 #a94e16;
+}
+
+.boton-principal:hover {
+    background: linear-gradient(135deg, #ffc56c, #f28c28 65%, #d96819);
+    box-shadow: 0 9px 0 #a94e16;
+}
+
+.boton-principal:active {
+    box-shadow: 0 2px 0 #a94e16;
+}
+
+.boton-secundario {
+    background: linear-gradient(135deg, #168bd0, #103b70);
+    box-shadow: 0 5px 0 #0b2b52;
+}
+
+/* Tarjetas */
+
+.ubicacion-tarjeta,
+.regalo-tarjeta,
+.regalos-lista > div,
+.regalo-item,
+.itinerario-item,
+.evento-itinerario,
+.itinerario-lista > div {
+    border-color: rgba(22, 139, 208, .28);
+}
+
+.ubicacion-tarjeta {
+    border-top: 5px solid #f28c28;
+}
+
+.ubicacion-tarjeta h3,
+.itinerario-lista h3,
+.itinerario-lista h4,
+.regalos-lista h3,
+.regalos-lista h4 {
+    color: #168bd0;
+}
+
+.itinerario-item,
+.evento-itinerario,
+.itinerario-lista > div {
+    border-left-color: #f28c28;
+}
+
+/* Confirmación */
+
+.confirmacion {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(117, 213, 245, .22), transparent 48%),
+        linear-gradient(145deg, #103b70, #168bd0);
+}
+
+.confirmacion form {
+    border-color: rgba(255, 212, 71, .8);
+    background: rgba(16, 59, 112, .58);
+}
+
+/* Controles flotantes */
+
+.control-flotante {
+    border-color: #ffd447;
+    background: linear-gradient(145deg, #168bd0, #103b70);
+}
+
+.control-flotante:hover {
+    background: linear-gradient(145deg, #ffb347, #f28c28);
+}
+
+/* Pie de página */
+
+.pie-pagina {
+    background: linear-gradient(145deg, #103b70, #168bd0);
+}
+
+.pie-pagina .titulo-caligrafico {
+    color: #ffd447;
+}
+
+/* Detalles decorativos */
+
+.presentacion::before,
+.presentacion::after {
+    color: rgba(242, 140, 40, .16);
+}
+
+.marco-foto {
+    border-color: #f28c28;
+}
+
+.fecha-detalle {
+    border-color: #f28c28;
+}
+
+.fecha-dia,
+.firma-historia,
+.vestimenta h3 {
+    color: #f28c28 !important;
 }
