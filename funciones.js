@@ -56,10 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreCompleto =
             `${nombres.primero} y ${nombres.segundo}`;
 
-        if ($("nombrePortada1")) {
-            $("nombrePortada1").textContent = nombres.primero;
-        }
-
+           if ($("nombrePortada1")) {
+             $("nombrePortada1").textContent = "NUESTRA";
+         }
         if ($("nombrePortada2")) {
             $("nombrePortada2").textContent = "PEQUEÑA SAIYAJIN";
         }
@@ -766,6 +765,67 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+
+   
+/* ======================================
+   ENTRENAMIENTO SAIYAJIN
+====================================== */
+
+const botonKi = $("botonKi");
+const nivelPoder = $("nivelPoder");
+const barraEnergia = $("barraEnergia");
+const mensajeKi = $("mensajeKi");
+
+let poderAcumulado = 0;
+const poderMaximo = 9000;
+const energiaPorClick = 1000;
+
+if (botonKi) {
+
+    botonKi.addEventListener("click", () => {
+
+        if (poderAcumulado >= poderMaximo) return;
+
+        poderAcumulado = Math.min(
+            poderAcumulado + energiaPorClick,
+            poderMaximo
+        );
+
+        if (nivelPoder) {
+            nivelPoder.textContent =
+                poderAcumulado.toLocaleString("es-BO");
+        }
+
+        if (barraEnergia) {
+            barraEnergia.style.width =
+                (poderAcumulado / poderMaximo * 100) + "%";
+        }
+
+        if (poderAcumulado < poderMaximo) {
+
+            if (mensajeKi) {
+                mensajeKi.textContent =
+                    poderAcumulado >= 5000
+                    ? "🔥 ¡Tu energía está aumentando! ¡Sigue adelante!"
+                    : "⚡ ¡Excelente! ¡Estás liberando tu poder Saiyajin!";
+            }
+
+        } else {
+
+            if (mensajeKi) {
+                mensajeKi.textContent =
+                    "🐉 ¡PODER MÁXIMO ALCANZADO! ¡MISIÓN CUMPLIDA!";
+            }
+
+            botonKi.textContent = "★ ¡PODER MÁXIMO!";
+            botonKi.disabled = true;
+            botonKi.classList.add("ki-completado");
+
+        }
+
+    });
+
+}
 
 
     /* ======================================
