@@ -1,491 +1,240 @@
-/* =====================================================
-   BABY-01 | LOLA Y SERGIO
-   FUNCIONES PRINCIPALES
-===================================================== */
+/* ==========================================
+   BABY-01 | FUNCIONES GENERALES
+========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    cargarDatos();
+    const $ = (id) => document.getElementById(id);
 
-    configurarSobre();
 
-    configurarMenu();
+    /* ======================================
+       APERTURA DE LA INVITACIÓN
+    ====================================== */
 
-    configurarMusica();
+    const sobre = $("sobreInicial");
+    const invitacion = $("invitacion");
+    const botonAbrir = $("botonAbrir");
 
-    configurarVideo();
+    if (botonAbrir) {
 
-    configurarAlbum();
+        botonAbrir.addEventListener("click", () => {
 
-    configurarFormulario();
-
-    iniciarCuentaRegresiva();
-
-    configurarAnimaciones();
-
-});
-
-
-/* =====================================================
-   UTILIDAD: EVITAR ERRORES POR ELEMENTOS INEXISTENTES
-===================================================== */
-
-function establecerTexto(id, texto) {
-
-    const elemento = document.getElementById(id);
-
-    if (elemento) {
-        elemento.textContent = texto;
-    }
-
-}
-
-
-/* =====================================================
-   CARGAR INFORMACIÓN
-===================================================== */
-
-function cargarDatos() {
-
-    if (typeof DATOS_BODA === "undefined") {
-        console.error("No se encontró el archivo datos.js");
-        return;
-    }
-
-    const nombres = DATOS_BODA.nombres;
-
-    const nombreCompleto =
-        `${nombres.primero} & ${nombres.segundo}`;
-
-    establecerTexto("nombrePortada1", nombres.primero);
-
-    establecerTexto("nombrePortada2", nombres.segundo);
-
-    establecerTexto("nombresFinales", nombreCompleto);
-
-    establecerTexto("textoHistoria", DATOS_BODA.historia);
-
-    establecerTexto("firmaHistoria", nombreCompleto);
-
-
-    /* FECHA DEL EVENTO */
-
-    const fecha = new Date(DATOS_BODA.fecha);
-
-    if (isNaN(fecha.getTime())) {
-        console.error("La fecha del evento no es válida.");
-        return;
-    }
-
-    const fechaTexto = fecha.toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    });
-
-    const fechaPortada = fecha.toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    }).toUpperCase().replace(/ DE /g, " · ");
-
-    establecerTexto("fechaPortada", fechaPortada);
-
-    establecerTexto(
-        "diaEvento",
-        fecha.getDate().toString().padStart(2, "0")
-    );
-
-    establecerTexto(
-        "mesEvento",
-        fecha.toLocaleDateString("es-ES", {
-            month: "long"
-        }).toUpperCase()
-    );
-
-    establecerTexto("anioEvento", fecha.getFullYear());
-
-    establecerTexto(
-        "fechaFinal",
-        `${fecha.getDate()} · ${fecha.getMonth() + 1} · ${fecha.getFullYear()}`
-    );
-
-
-    /* CARGAR SECCIONES */
-
-    cargarUbicaciones();
-
-    cargarItinerario();
-
-    cargarRegalos();
-
-}
-
-
-/* =====================================================
-   UBICACIÓN
-===================================================== */
-
-function cargarUbicaciones() {
-
-    if (!DATOS_BODA.ceremonia) return;
-
-    const ceremonia = DATOS_BODA.ceremonia;
-
-    establecerTexto(
-        "nombreCeremonia",
-        ceremonia.nombre
-    );
-
-    establecerTexto(
-        "direccionCeremonia",
-        ceremonia.direccion
-    );
-
-    configurarEnlaceMapa(
-        "mapaCeremonia",
-        ceremonia.mapa
-    );
-
-}
-
-
-function configurarEnlaceMapa(id, enlace) {
-
-    const elemento = document.getElementById(id);
-
-    if (!elemento) return;
-
-    elemento.href = enlace || "https://www.google.com/maps";
-
-    elemento.target = "_blank";
-
-    elemento.rel = "noopener noreferrer";
-
-}
-
-
-/* =====================================================
-   ITINERARIO
-===================================================== */
-
-function cargarItinerario() {
-
-    const contenedor = document.getElementById("listaItinerario");
-
-    if (!contenedor || !DATOS_BODA.itinerario) return;
-
-    contenedor.innerHTML = "";
-
-    DATOS_BODA.itinerario.forEach(evento => {
-
-        const elemento = document.createElement("div");
-
-        elemento.className = "evento-itinerario revelar";
-
-        elemento.innerHTML = `
-            <div class="evento-hora">
-                ${evento.hora}
-            </div>
-
-            <div class="evento-punto"></div>
-
-            <div class="evento-descripcion">
-                <h3>${evento.titulo}</h3>
-                <p>${evento.descripcion}</p>
-            </div>
-        `;
-
-        contenedor.appendChild(elemento);
-
-    });
-
-}
-
-
-/* =====================================================
-   REGALOS
-===================================================== */
-
-function cargarRegalos() {
-
-    const contenedor = document.getElementById("listaRegalos");
-
-    if (!contenedor || !DATOS_BODA.regalos) return;
-
-    contenedor.innerHTML = "";
-
-    DATOS_BODA.regalos.forEach(regalo => {
-
-        const elemento = document.createElement("article");
-
-        elemento.className = "regalo-item";
-
-        elemento.innerHTML = `
-            <h3>${regalo.titulo}</h3>
-
-            <p>${regalo.descripcion}</p>
-
-            ${
-                regalo.enlace
-                    ? `
-                        <a
-                            href="${regalo.enlace}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Ver información ↗
-                        </a>
-                    `
-                    : ""
-            }
-        `;
-
-        contenedor.appendChild(elemento);
-
-    });
-
-}
-
-
-/* =====================================================
-   APERTURA DE LA INVITACIÓN
-===================================================== */
-
-function configurarSobre() {
-
-    const boton = document.getElementById("botonAbrir");
-
-    const sobre = document.getElementById("sobreInicial");
-
-    const invitacion = document.getElementById("invitacion");
-
-    if (!boton || !sobre || !invitacion) {
-
-        console.error(
-            "No se encontraron los elementos necesarios para abrir la invitación."
-        );
-
-        return;
-
-    }
-
-
-    /* MANTENER LA INVITACIÓN OCULTA AL INICIO */
-
-    invitacion.classList.add("oculto");
-
-    document.body.style.overflow = "hidden";
-
-
-    /* EVENTO DEL BOTÓN */
-
-    boton.addEventListener("click", function (evento) {
-
-        evento.preventDefault();
-
-        if (boton.dataset.abriendo === "true") return;
-
-        boton.dataset.abriendo = "true";
-
-        boton.style.pointerEvents = "none";
-
-
-        /* INICIAR ANIMACIÓN DE CIERRE */
-
-        sobre.classList.add("cerrado");
-
-
-        /*
-           ESPERAR A QUE TERMINE LA ANIMACIÓN
-           ANTES DE MOSTRAR LA INVITACIÓN
-        */
-
-        setTimeout(() => {
-
-            sobre.style.display = "none";
-
-            invitacion.classList.remove("oculto");
-
-            document.body.style.overflow = "auto";
-
-
-            /* INICIAR ANIMACIONES DEL CONTENIDO */
-
-            configurarAnimaciones();
-
-
-            /* COMENZAR DESDE EL PRINCIPIO */
-
-            window.scrollTo({
-                top: 0,
-                behavior: "instant"
-            });
-
-        }, 900);
-
-    });
-
-}
-
-
-/* =====================================================
-   MENÚ LATERAL
-===================================================== */
-
-function configurarMenu() {
-
-    const menu = document.getElementById("menuLateral");
-
-    const fondo = document.getElementById("fondoMenu");
-
-    const botonMenu = document.getElementById("botonMenu");
-
-    const botonCerrar = document.getElementById("cerrarMenu");
-
-
-    if (!menu || !fondo || !botonMenu || !botonCerrar) {
-        return;
-    }
-
-
-    botonMenu.addEventListener("click", abrirMenu);
-
-    botonCerrar.addEventListener("click", cerrarMenu);
-
-    fondo.addEventListener("click", cerrarMenu);
-
-
-    document.querySelectorAll(".menu-lateral a").forEach(enlace => {
-
-        enlace.addEventListener("click", cerrarMenu);
-
-    });
-
-
-    function abrirMenu() {
-
-        menu.classList.add("abierto");
-
-        fondo.classList.add("visible");
-
-    }
-
-
-    function cerrarMenu() {
-
-        menu.classList.remove("abierto");
-
-        fondo.classList.remove("visible");
-
-    }
-
-}
-
-
-/* =====================================================
-   MÚSICA
-===================================================== */
-
-function configurarMusica() {
-
-    const musica = document.getElementById("musica");
-
-    const boton = document.getElementById("botonMusica");
-
-    if (!musica || !boton) return;
-
-    let reproduciendo = false;
-
-
-    boton.addEventListener("click", async () => {
-
-        if (!reproduciendo) {
-
-            try {
-
-                await musica.play();
-
-                reproduciendo = true;
-
-                boton.textContent = "♫";
-
-                boton.classList.add("activo");
-
-            } catch (error) {
-
-                console.error("Error al reproducir música:", error);
-
-                alert(
-                    "No se pudo reproducir la música. Comprueba que exista el archivo recursos/musica.mp3."
-                );
-
+            if (sobre) {
+                sobre.classList.add("sobre-abierto");
             }
 
-        } else {
+            setTimeout(() => {
 
-            musica.pause();
+                if (sobre) {
+                    sobre.style.display = "none";
+                }
 
-            reproduciendo = false;
+                if (invitacion) {
+                    invitacion.classList.remove("oculto");
+                    invitacion.classList.add("visible");
+                }
 
-            boton.textContent = "♪";
+                document.body.classList.add("invitacion-activa");
 
-            boton.classList.remove("activo");
+                iniciarContador();
+
+            }, 700);
+
+        });
+
+    }
+
+
+    /* ======================================
+       DATOS GENERALES
+    ====================================== */
+
+    function cargarDatos() {
+
+        const nombres = DATOS_BODA.nombres;
+
+        const nombreCompleto =
+            `${nombres.primero} y ${nombres.segundo}`;
+
+        if ($("nombrePortada1")) {
+            $("nombrePortada1").textContent = nombres.primero;
+        }
+
+        if ($("nombrePortada2")) {
+            $("nombrePortada2").textContent = "PEQUEÑA SAIYAJIN";
+        }
+
+        if ($("firmaHistoria")) {
+            $("firmaHistoria").textContent =
+                `Con mucho cariño, ${nombreCompleto}`;
+        }
+
+        if ($("textoHistoria")) {
+            $("textoHistoria").textContent = DATOS_BODA.historia;
+        }
+
+        if ($("nombresFinales")) {
+            $("nombresFinales").textContent = nombreCompleto;
+        }
+
+        if ($("nombreCeremonia")) {
+            $("nombreCeremonia").textContent =
+                DATOS_BODA.ceremonia.nombre;
+        }
+
+        if ($("direccionCeremonia")) {
+            $("direccionCeremonia").textContent =
+                DATOS_BODA.ceremonia.direccion;
+        }
+
+        if ($("mapaCeremonia")) {
+
+            if (DATOS_BODA.ceremonia.mapa) {
+                $("mapaCeremonia").href =
+                    DATOS_BODA.ceremonia.mapa;
+            } else {
+                $("mapaCeremonia").style.display = "none";
+            }
 
         }
 
-    });
+        if ($("nombreRecepcion")) {
+            $("nombreRecepcion").textContent =
+                DATOS_BODA.recepcion.nombre;
+        }
+
+        if ($("direccionRecepcion")) {
+            $("direccionRecepcion").textContent =
+                DATOS_BODA.recepcion.direccion;
+        }
+
+        if ($("mapaRecepcion")) {
+
+            if (DATOS_BODA.recepcion.mapa) {
+                $("mapaRecepcion").href =
+                    DATOS_BODA.recepcion.mapa;
+            } else {
+                $("mapaRecepcion").style.display = "none";
+            }
+
+        }
+
+        if ($("vestimentaTitulo")) {
+            $("vestimentaTitulo").textContent =
+                DATOS_BODA.vestimenta.titulo;
+        }
+
+        if ($("vestimentaTexto")) {
+            $("vestimentaTexto").textContent =
+                DATOS_BODA.vestimenta.descripcion;
+        }
+
+        if ($("textoRegalos")) {
+            $("textoRegalos").textContent =
+                "Tu cariño y compañía son nuestro mayor regalo. Si deseas tener un detalle con nuestra pequeña, cualquier gesto será recibido con muchísimo amor.";
+        }
+
+        cargarFecha();
+        cargarItinerario();
+        cargarRegalos();
+
+    }
 
 
-    musica.addEventListener("ended", () => {
+    /* ======================================
+       FECHA DEL EVENTO
+    ====================================== */
 
-        reproduciendo = false;
+    function cargarFecha() {
 
-        boton.textContent = "♪";
+        const fecha = new Date(DATOS_BODA.fecha);
 
-        boton.classList.remove("activo");
+        const opciones = {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        };
 
-    });
+        const fechaTexto = fecha.toLocaleDateString(
+            "es-BO",
+            opciones
+        );
 
-}
+        if ($("fechaPortada")) {
+            $("fechaPortada").textContent =
+                fechaTexto.toUpperCase();
+        }
+
+        if ($("diaEvento")) {
+            $("diaEvento").textContent =
+                fecha.getDate().toString().padStart(2, "0");
+        }
+
+        if ($("mesEvento")) {
+            $("mesEvento").textContent =
+                fecha.toLocaleDateString("es-BO", {
+                    month: "long"
+                }).toUpperCase();
+        }
+
+        if ($("anioEvento")) {
+            $("anioEvento").textContent =
+                fecha.getFullYear();
+        }
+
+        if ($("fechaFinal")) {
+            $("fechaFinal").textContent =
+                fechaTexto.toUpperCase();
+        }
+
+        if ($("paseFecha")) {
+            $("paseFecha").textContent = fechaTexto;
+        }
+
+        if ($("paseNombres")) {
+            $("paseNombres").textContent =
+                `Baby Shower de ${DATOS_BODA.nombres.primero} y ${DATOS_BODA.nombres.segundo}`;
+        }
+
+    }
 
 
-/* =====================================================
-   CUENTA REGRESIVA
-===================================================== */
+    /* ======================================
+       CONTADOR REGRESIVO
+    ====================================== */
 
-function iniciarCuentaRegresiva() {
+    let intervaloContador = null;
 
-    const contador = document.getElementById("contador");
+    function iniciarContador() {
 
-    const fechaObjetivo = new Date(DATOS_BODA.fecha).getTime();
+        if (intervaloContador) {
+            clearInterval(intervaloContador);
+        }
 
-    if (isNaN(fechaObjetivo)) return;
+        actualizarContador();
 
+        intervaloContador = setInterval(
+            actualizarContador,
+            1000
+        );
 
-    function actualizar() {
+    }
 
-        const ahora = Date.now();
+    function actualizarContador() {
 
-        const diferencia = fechaObjetivo - ahora;
+        const fechaEvento = new Date(DATOS_BODA.fecha).getTime();
+        const ahora = new Date().getTime();
 
+        const diferencia = fechaEvento - ahora;
 
         if (diferencia <= 0) {
 
-            if (contador) {
-
-                contador.innerHTML = `
-                    <h3>¡Hoy comienza nuestra aventura!</h3>
-                `;
-
-            }
-
-            clearInterval(intervalo);
+            ["dias", "horas", "minutos", "segundos"].forEach(id => {
+                if ($(id)) $(id).textContent = "00";
+            });
 
             return;
-
         }
-
 
         const dias = Math.floor(
             diferencia / (1000 * 60 * 60 * 24)
@@ -503,161 +252,251 @@ function iniciarCuentaRegresiva() {
             (diferencia / 1000) % 60
         );
 
+        if ($("dias")) $("dias").textContent =
+            String(dias).padStart(2, "0");
 
-        establecerTexto(
-            "dias",
-            dias.toString().padStart(2, "0")
-        );
+        if ($("horas")) $("horas").textContent =
+            String(horas).padStart(2, "0");
 
-        establecerTexto(
-            "horas",
-            horas.toString().padStart(2, "0")
-        );
+        if ($("minutos")) $("minutos").textContent =
+            String(minutos).padStart(2, "0");
 
-        establecerTexto(
-            "minutos",
-            minutos.toString().padStart(2, "0")
-        );
-
-        establecerTexto(
-            "segundos",
-            segundos.toString().padStart(2, "0")
-        );
+        if ($("segundos")) $("segundos").textContent =
+            String(segundos).padStart(2, "0");
 
     }
 
 
-    actualizar();
+    /* ======================================
+       ITINERARIO
+    ====================================== */
 
-    const intervalo = setInterval(actualizar, 1000);
+    function cargarItinerario() {
 
-}
+        const contenedor = $("listaItinerario");
 
+        if (!contenedor) return;
 
-/* =====================================================
-   VIDEO
-===================================================== */
+        contenedor.innerHTML = "";
 
-function configurarVideo() {
+        DATOS_BODA.itinerario.forEach((item, indice) => {
 
-    const contenedor = document.getElementById("videoContenedor");
+            const tarjeta = document.createElement("article");
 
-    if (!contenedor) return;
+            tarjeta.className = "itinerario-item";
 
-    if (!DATOS_BODA.videoUrl) return;
+            tarjeta.innerHTML = `
+                <div class="itinerario-hora">
+                    ${item.hora}
+                </div>
 
+                <div class="itinerario-contenido">
+                    <span class="itinerario-numero">
+                        ${String(indice + 1).padStart(2, "0")}
+                    </span>
 
-    contenedor.innerHTML = `
-        <iframe
-            src="${DATOS_BODA.videoUrl}"
-            title="Un mensaje especial"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    `;
+                    <h3>${item.titulo}</h3>
 
-}
+                    <p>${item.descripcion}</p>
+                </div>
 
+                <div class="itinerario-estrella">
+                    ★
+                </div>
+            `;
 
-/* =====================================================
-   ÁLBUM COMPARTIDO
-===================================================== */
+            contenedor.appendChild(tarjeta);
 
-function configurarAlbum() {
-
-    const seccion = document.getElementById("albumSeccion");
-
-    if (!seccion) return;
-
-
-    /*
-       NO OCULTAMOS LA SECCIÓN PORQUE EL ÁLBUM
-       SE UTILIZARÁ PARA QUE LOS INVITADOS
-       COMPARTAN SUS FOTOGRAFÍAS.
-    */
-
-    seccion.classList.remove("oculto");
-
-
-    const enlace = document.getElementById("enlaceAlbum");
-
-    if (enlace && DATOS_BODA.albumUrl) {
-
-        enlace.href = DATOS_BODA.albumUrl;
-
-        enlace.target = "_blank";
-
-        enlace.rel = "noopener noreferrer";
+        });
 
     }
 
-}
+
+    /* ======================================
+       REGALOS
+    ====================================== */
+
+    function cargarRegalos() {
+
+        const contenedor = $("listaRegalos");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = "";
+
+        DATOS_BODA.regalos.forEach(regalo => {
+
+            const tarjeta = document.createElement("article");
+
+            tarjeta.className = "regalo-tarjeta";
+
+            tarjeta.innerHTML = `
+                <div class="regalo-icono">★</div>
+
+                <h3>${regalo.titulo}</h3>
+
+                <p>${regalo.descripcion}</p>
+
+                ${
+                    regalo.enlace
+                    ? `<a href="${regalo.enlace}" target="_blank" rel="noopener noreferrer">Ver detalle</a>`
+                    : ""
+                }
+            `;
+
+            contenedor.appendChild(tarjeta);
+
+        });
+
+    }
 
 
-/* =====================================================
-   CONFIRMACIÓN DE ASISTENCIA
-===================================================== */
+    /* ======================================
+       MENÚ LATERAL
+    ====================================== */
 
-function configurarFormulario() {
+    const botonMenu = $("botonMenu");
+    const cerrarMenu = $("cerrarMenu");
+    const menuLateral = $("menuLateral");
+    const fondoMenu = $("fondoMenu");
 
-    const formulario = document.getElementById("formularioRSVP");
+    function abrirMenu() {
 
-    if (!formulario) return;
+        if (menuLateral) {
+            menuLateral.classList.add("menu-activo");
+        }
+
+        if (fondoMenu) {
+            fondoMenu.classList.add("fondo-menu-activo");
+        }
+
+    }
+
+    function cerrarMenuFuncion() {
+
+        if (menuLateral) {
+            menuLateral.classList.remove("menu-activo");
+        }
+
+        if (fondoMenu) {
+            fondoMenu.classList.remove("fondo-menu-activo");
+        }
+
+    }
+
+    if (botonMenu) {
+        botonMenu.addEventListener("click", abrirMenu);
+    }
+
+    if (cerrarMenu) {
+        cerrarMenu.addEventListener("click", cerrarMenuFuncion);
+    }
+
+    if (fondoMenu) {
+        fondoMenu.addEventListener("click", cerrarMenuFuncion);
+    }
+
+    document.querySelectorAll(".menu-lateral a").forEach(enlace => {
+
+        enlace.addEventListener("click", cerrarMenuFuncion);
+
+    });
 
 
-    formulario.addEventListener("submit", async evento => {
+    /* ======================================
+       MÚSICA
+    ====================================== */
 
-        evento.preventDefault();
+    const musica = $("musica");
+    const botonMusica = $("botonMusica");
 
+    if (botonMusica && musica) {
 
-        const boton = formulario.querySelector("button");
+        botonMusica.addEventListener("click", async () => {
 
-        const mensaje = document.getElementById("mensajeRSVP");
+            try {
 
+                if (musica.paused) {
 
-        const datos = {
+                    await musica.play();
 
-            nombre: document.getElementById("nombreInvitado")?.value.trim() || "",
+                    botonMusica.classList.add("musica-activa");
 
-            asistencia: document.getElementById("asistencia")?.value || "",
+                } else {
 
-            acompanantes: document.getElementById("cantidadAcompanantes")?.value || "",
+                    musica.pause();
 
-            mensaje: document.getElementById("mensajeInvitado")?.value.trim() || "",
+                    botonMusica.classList.remove("musica-activa");
 
-            codigo: DATOS_BODA.codigoInvitacion,
+                }
 
-            fechaRegistro: new Date().toISOString()
+            } catch (error) {
 
-        };
-
-
-        if (!datos.nombre || !datos.asistencia) {
-
-            if (mensaje) {
-
-                mensaje.textContent =
-                    "Completa los campos obligatorios.";
+                console.error("No se pudo reproducir la música:", error);
 
             }
 
-            return;
+        });
 
-        }
-
-
-        if (boton) {
-
-            boton.disabled = true;
-
-            boton.textContent = "Enviando confirmación...";
-
-        }
+    }
 
 
-        try {
+    /* ======================================
+       CONFIRMACIÓN DE ASISTENCIA
+    ====================================== */
 
-            if (DATOS_BODA.rsvpEndpoint) {
+    const formulario = $("formularioRSVP");
+
+    if (formulario) {
+
+        formulario.addEventListener("submit", async (evento) => {
+
+            evento.preventDefault();
+
+            const boton = formulario.querySelector(
+                'button[type="submit"]'
+            );
+
+            const nombre = $("nombreInvitado").value.trim();
+            const asistencia = $("asistencia").value;
+            const acompanantes = $("cantidadAcompanantes").value;
+            const mensaje = $("mensajeInvitado").value.trim();
+
+            if (!nombre || !asistencia) {
+
+                mostrarMensajeRSVP(
+                    "Por favor, completa los campos obligatorios.",
+                    false
+                );
+
+                return;
+
+            }
+
+            const datos = {
+
+                nombre: nombre,
+
+                asistencia: asistencia,
+
+                acompanantes: acompanantes,
+
+                mensaje: mensaje,
+
+                codigoInvitacion: DATOS_BODA.codigoInvitacion,
+
+                fechaEvento: DATOS_BODA.fecha,
+
+                fechaRegistro: new Date().toISOString()
+
+            };
+
+            if (boton) {
+                boton.disabled = true;
+                boton.textContent = "Enviando confirmación...";
+            }
+
+            try {
 
                 await fetch(DATOS_BODA.rsvpEndpoint, {
 
@@ -673,136 +512,266 @@ function configurarFormulario() {
 
                 });
 
-
-                if (mensaje) {
-
-                    mensaje.textContent =
-                        "¡Gracias! Tu respuesta ha sido enviada.";
-
-                }
-
-            } else {
-
-                const respuestas = JSON.parse(
-
-                    localStorage.getItem("respuestasBoda") || "[]"
-
+                mostrarMensajeRSVP(
+                    "¡Gracias por confirmar! Tu respuesta ha sido registrada. 💗",
+                    true
                 );
 
+                formulario.reset();
 
-                respuestas.push(datos);
+            } catch (error) {
 
+                console.error("Error al enviar RSVP:", error);
 
-                localStorage.setItem(
-
-                    "respuestasBoda",
-
-                    JSON.stringify(respuestas)
-
+                mostrarMensajeRSVP(
+                    "No pudimos enviar tu respuesta. Por favor, intenta nuevamente.",
+                    false
                 );
 
+            } finally {
 
-                if (mensaje) {
-
-                    mensaje.textContent =
-                        "¡Gracias! Tu respuesta quedó registrada en este dispositivo.";
-
+                if (boton) {
+                    boton.disabled = false;
+                    boton.innerHTML =
+                        'Confirmar asistencia <span>★</span>';
                 }
 
             }
-
-
-            formulario.reset();
-
-
-        } catch (error) {
-
-            console.error("Error al enviar la confirmación:", error);
-
-            if (mensaje) {
-
-                mensaje.textContent =
-                    "No pudimos enviar tu respuesta. Inténtalo nuevamente.";
-
-            }
-
-        }
-
-
-        if (boton) {
-
-            boton.disabled = false;
-
-            boton.innerHTML =
-                'Confirmar asistencia <span>♥</span>';
-
-        }
-
-    });
-
-}
-
-
-/* =====================================================
-   ANIMACIONES DE APARICIÓN
-===================================================== */
-
-function configurarAnimaciones() {
-
-    const elementos = document.querySelectorAll(
-        ".seccion, .evento-itinerario, .ubicacion-tarjeta, .regalo-item"
-    );
-
-
-    elementos.forEach(elemento => {
-
-        elemento.classList.add("revelar");
-
-    });
-
-
-    if (!("IntersectionObserver" in window)) {
-
-        elementos.forEach(elemento => {
-
-            elemento.classList.add("visible");
 
         });
-
-        return;
 
     }
 
 
-    const observador = new IntersectionObserver(
+    function mostrarMensajeRSVP(texto, correcto) {
 
-        (entradas, observer) => {
+        const mensaje = $("mensajeRSVP");
 
-            entradas.forEach(entrada => {
+        if (!mensaje) return;
 
-                if (entrada.isIntersecting) {
+        mensaje.textContent = texto;
 
-                    entrada.target.classList.add("visible");
+        mensaje.classList.remove(
+            "mensaje-exito",
+            "mensaje-error"
+        );
 
-                    observer.unobserve(entrada.target);
+        mensaje.classList.add(
+            correcto ? "mensaje-exito" : "mensaje-error"
+        );
 
-                }
+    }
+
+
+    /* ======================================
+       ÁLBUM: VISTA PREVIA DE FOTOGRAFÍAS
+    ====================================== */
+
+    const selectorFotos = $("seleccionarFotos");
+    const vistaPrevia = $("vistaPreviaFotos");
+    const botonEnviarFotos = $("botonEnviarFotos");
+    const mensajeFotos = $("mensajeFotos");
+
+    let fotografiasSeleccionadas = [];
+
+    if (selectorFotos) {
+
+        selectorFotos.addEventListener("change", () => {
+
+            fotografiasSeleccionadas = Array.from(
+                selectorFotos.files || []
+            );
+
+            if (vistaPrevia) {
+                vistaPrevia.innerHTML = "";
+            }
+
+            fotografiasSeleccionadas.forEach(archivo => {
+
+                if (!archivo.type.startsWith("image/")) return;
+
+                const lector = new FileReader();
+
+                lector.onload = (evento) => {
+
+                    const imagen = document.createElement("img");
+
+                    imagen.src = evento.target.result;
+
+                    imagen.alt = "Fotografía seleccionada";
+
+                    if (vistaPrevia) {
+                        vistaPrevia.appendChild(imagen);
+                    }
+
+                };
+
+                lector.readAsDataURL(archivo);
 
             });
 
-        },
+            if (botonEnviarFotos) {
+                botonEnviarFotos.disabled =
+                    fotografiasSeleccionadas.length === 0;
+            }
 
-        {
-            threshold: 0.12
-        }
+            if (mensajeFotos) {
+                mensajeFotos.textContent =
+                    fotografiasSeleccionadas.length
+                    ? `${fotografiasSeleccionadas.length} fotografía(s) seleccionada(s).`
+                    : "";
+            }
 
-    );
+        });
+
+    }
+
+    if (botonEnviarFotos) {
+
+        botonEnviarFotos.addEventListener("click", () => {
+
+            if (!fotografiasSeleccionadas.length) return;
+
+            if (DATOS_BODA.albumUrl) {
+
+                window.open(
+                    DATOS_BODA.albumUrl,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+                if (mensajeFotos) {
+                    mensajeFotos.textContent =
+                        "Se abrió el álbum compartido. Allí podrás completar la carga de tus fotografías.";
+                }
+
+            } else {
+
+                if (mensajeFotos) {
+                    mensajeFotos.textContent =
+                        "Las fotografías están seleccionadas. El enlace de subida del álbum todavía no está disponible.";
+                }
+
+            }
+
+        });
+
+    }
 
 
-    elementos.forEach(elemento => {
+    /* ======================================
+       VISOR DE FOTOGRAFÍAS
+    ====================================== */
 
-        observador.observe(elemento);
+    const visor = $("visorFotos");
+    const imagenAmpliada = $("imagenAmpliada");
+    const cerrarVisor = $("cerrarVisor");
+
+    document.querySelectorAll(".foto-galeria").forEach(foto => {
+
+        foto.addEventListener("click", () => {
+
+            const ruta = foto.dataset.imagen;
+
+            if (imagenAmpliada) {
+                imagenAmpliada.src = ruta;
+            }
+
+            if (visor) {
+                visor.classList.add("visor-activo");
+            }
+
+        });
 
     });
 
-}
+    if (cerrarVisor) {
+
+        cerrarVisor.addEventListener("click", () => {
+
+            if (visor) {
+                visor.classList.remove("visor-activo");
+            }
+
+        });
+
+    }
+
+    if (visor) {
+
+        visor.addEventListener("click", evento => {
+
+            if (evento.target === visor) {
+                visor.classList.remove("visor-activo");
+            }
+
+        });
+
+    }
+
+
+    /* ======================================
+       VIDEO
+    ====================================== */
+
+    if (DATOS_BODA.videoUrl && $("videoContenedor")) {
+
+        $("videoContenedor").innerHTML = `
+            <video controls playsinline preload="metadata">
+                <source src="${DATOS_BODA.videoUrl}" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+            </video>
+        `;
+
+    }
+
+
+    /* ======================================
+       PALETA DE COLORES
+    ====================================== */
+
+    if ($("paletaColores")) {
+
+        $("paletaColores").innerHTML = "";
+
+        DATOS_BODA.vestimenta.colores.forEach(color => {
+
+            const muestra = document.createElement("span");
+
+            muestra.style.backgroundColor = color;
+
+            $("paletaColores").appendChild(muestra);
+
+        });
+
+    }
+
+
+    /* ======================================
+       CÓDIGO QR
+    ====================================== */
+
+    if ($("codigoQR") && typeof QRCode !== "undefined") {
+
+        $("codigoQR").innerHTML = "";
+
+        new QRCode($("codigoQR"), {
+
+            text: DATOS_BODA.codigoInvitacion,
+
+            width: 120,
+
+            height: 120
+
+        });
+
+    }
+
+
+    /* ======================================
+       INICIALIZACIÓN
+    ====================================== */
+
+    cargarDatos();
+
+});
