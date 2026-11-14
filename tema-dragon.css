@@ -1706,3 +1706,25 @@ a:hover {
     font-weight: 400;
 }
 
+
+/* ENTRENAMIENTO SAIYAJIN */
+
+#barraEnergia {
+    width: 0%;
+    transition: width 0.45s ease;
+}
+
+.barra-poder {
+    overflow: hidden;
+}
+
+.boton-ki:disabled {
+    cursor: default;
+    opacity: 0.85;
+    transform: none;
+}
+
+.boton-ki.ki-completado {
+    background: linear-gradient(135deg, #f5bd4b, #e77a35);
+    color: #fff;
+}
