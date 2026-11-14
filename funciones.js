@@ -775,3 +775,86 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarDatos();
 
 });
+
+/* ==========================================
+   JUEGO DE LAS SIETE ESFERAS DEL DRAGÓN
+   CORRECCIÓN DE INTERACTIVIDAD
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const esferas = document.querySelectorAll(
+        "#aventuraSaiyajin .esfera-dragon"
+    );
+
+    const contador = document.getElementById("contadorEsferas");
+    const mensaje = document.getElementById("mensajeRadar");
+    const indicadores = document.querySelectorAll(
+        "#aventuraSaiyajin .esfera-mini"
+    );
+    const modal = document.getElementById("modalShenlong");
+    const botonCerrar = document.getElementById("cerrarShenlong");
+
+    let encontradas = new Set();
+
+    if (!esferas.length) {
+        console.error("No se encontraron las esferas del Dragón.");
+        return;
+    }
+
+    esferas.forEach(function (esfera) {
+
+        esfera.addEventListener("click", function (evento) {
+
+            evento.preventDefault();
+
+            const numero = esfera.dataset.esfera;
+
+            if (encontradas.has(numero)) {
+                mensaje.textContent = "✨ ¡Ya encontraste esta esfera! Busca otra.";
+                return;
+            }
+
+            encontradas.add(numero);
+
+            esfera.classList.add("encontrada");
+            esfera.disabled = true;
+            esfera.setAttribute("aria-label", "Esfera " + numero + " encontrada");
+
+            if (contador) {
+                contador.textContent = encontradas.size + " / 7";
+            }
+
+            if (indicadores[numero - 1]) {
+                indicadores[numero - 1].classList.add("encontrada");
+            }
+
+            if (encontradas.size < 7) {
+                mensaje.textContent =
+                    "🌟 ¡Esfera encontrada! Ya tienes " +
+                    encontradas.size +
+                    " de 7. ¡Sigue buscando!";
+            } else {
+                mensaje.textContent =
+                    "🐉 ¡MISIÓN CUMPLIDA! Has encontrado las siete esferas.";
+
+                if (modal) {
+                    modal.classList.add("activo");
+                    modal.style.display = "flex";
+                }
+            }
+
+        });
+
+    });
+
+    if (botonCerrar) {
+        botonCerrar.addEventListener("click", function () {
+            if (modal) {
+                modal.classList.remove("activo");
+                modal.style.display = "none";
+            }
+        });
+    }
+
+});
