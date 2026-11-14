@@ -472,64 +472,84 @@
 
 
         <!-- CONFIRMACIÓN RSVP -->
-        <section class="seccion confirmacion" id="confirmacion">
+       
 
-            <div class="confirmacion-decoracion">✦</div>
+<!-- CONFIRMACIÓN RSVP -->
+<section class="seccion confirmacion" id="confirmacion">
 
-            <span class="etiqueta-seccion">¡QUEREMOS CELEBRAR CONTIGO!</span>
+    <div class="confirmacion-decoracion">✦</div>
 
-            <h2 class="titulo-caligrafico">¿Nos acompañas?</h2>
+    <span class="etiqueta-seccion">¡QUEREMOS CELEBRAR CONTIGO!</span>
 
-            <p class="texto-intro">
-                Tu presencia hará que este día sea todavía
-                más especial. Ayúdanos confirmando tu asistencia.
-            </p>
+    <h2 class="titulo-caligrafico">¿Nos acompañas?</h2>
 
-            <form id="formularioRSVP">
+    <p class="texto-intro">
+        Tu presencia hará que este día sea todavía
+        más especial. Ayúdanos confirmando tu asistencia.
+    </p>
 
-                <label for="nombreInvitado">Nombre completo</label>
-                <input
-                    type="text"
-                    id="nombreInvitado"
-                    required
-                    placeholder="Escribe tu nombre"
-                >
+    <div id="datosInvitacionGLAM">
+        <p id="mensajeRSVP" class="mensaje-rsvp" aria-live="polite">
+            Identificando tu invitación...
+        </p>
+    </div>
 
-                <label for="asistencia">¿Podrás acompañarnos?</label>
+    <form id="formularioRSVP" style="display:none;">
 
-                <select id="asistencia" required>
-                    <option value="">Selecciona una opción</option>
-                    <option value="Sí asistiré">¡Sí, ahí estaré!</option>
-                    <option value="No podré asistir">Lo siento, no podré asistir</option>
-                </select>
+        <label for="nombreInvitado">Nombre del invitado</label>
+        <input
+            type="text"
+            id="nombreInvitado"
+            readonly
+            required
+        >
 
-                <label for="cantidadAcompanantes">Número de acompañantes</label>
+        <p id="pasesAsignadosTexto"></p>
 
-                <select id="cantidadAcompanantes">
-                    <option value="0">Solo yo</option>
-                    <option value="1">1 acompañante</option>
-                    <option value="2">2 acompañantes</option>
-                    <option value="3">3 acompañantes</option>
-                </select>
+        <label for="asistencia">¿Podrás acompañarnos?</label>
 
-                <label for="mensajeInvitado">
-                    Un mensaje para nuestra pequeña (opcional)
-                </label>
+        <select id="asistencia" required>
+            <option value="">Selecciona una opción</option>
+            <option value="SI">¡Sí, ahí estaré!</option>
+            <option value="NO">Lo siento, no podré asistir</option>
+        </select>
 
-                <textarea
-                    id="mensajeInvitado"
-                    rows="3"
-                    placeholder="Déjale unas palabras de cariño..."
-                ></textarea>
+        <div id="datosAsistencia">
 
-                <button type="submit" class="boton-principal">
-                    Confirmar asistencia
-                    <span>★</span>
-                </button>
+            <label for="cantidadPases">¿Cuántas personas asistirán?</label>
 
-                <p id="mensajeRSVP" class="mensaje-rsvp"></p>
-            </form>
-        </section>
+            <select id="cantidadPases" required>
+                <option value="">Selecciona la cantidad</option>
+            </select>
+
+            <label for="acompanantes">Nombres de tus acompañantes</label>
+
+            <textarea
+                id="acompanantes"
+                rows="3"
+                placeholder="Escribe los nombres de tus acompañantes..."
+            ></textarea>
+
+        </div>
+
+        <label for="mensajeInvitado">
+            Un mensaje para nuestra pequeña (opcional)
+        </label>
+
+        <textarea
+            id="mensajeInvitado"
+            rows="3"
+            placeholder="Déjale unas palabras de cariño..."
+        ></textarea>
+
+        <button type="submit" class="boton-principal">
+            Confirmar asistencia
+            <span>★</span>
+        </button>
+
+    </form>
+
+</section>
 
 
         <!-- ÁLBUM COMPARTIDO -->
