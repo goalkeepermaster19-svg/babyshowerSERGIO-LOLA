@@ -817,3 +817,597 @@ a:hover {
 .etiqueta-seccion {
     color: #d47b56;
 }
+/* ==========================================
+   BABY SAIYAJIN
+   ESTILO DRAGON BALL Z FEMENINO
+========================================== */
+
+.aventura-saiyajin {
+    position: relative;
+    overflow: hidden;
+    padding: 65px 20px;
+    background:
+        radial-gradient(circle at 10% 10%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 90% 25%, #ffffff 0 3px, transparent 4px),
+        radial-gradient(circle at 15% 85%, #ffd8e4 0 4px, transparent 5px),
+        linear-gradient(145deg, #fff7e9, #ffe0e8, #fff0d5);
+    text-align: center;
+    color: #783e32;
+}
+
+.aventura-saiyajin::before,
+.aventura-saiyajin::after {
+    content: "✦";
+    position: absolute;
+    color: #f2a23b;
+    font-size: 90px;
+    opacity: .15;
+}
+
+.aventura-saiyajin::before {
+    top: 40px;
+    left: 5%;
+}
+
+.aventura-saiyajin::after {
+    bottom: 40px;
+    right: 5%;
+}
+
+.dragon-estrellas {
+    color: #e9a32d;
+    font-size: 25px;
+    letter-spacing: 12px;
+    margin-bottom: 20px;
+}
+
+.aventura-encabezado {
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.aventura-icono {
+    display: block;
+    font-size: 65px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 5px 8px #f3b66c);
+}
+
+.aventura-etiqueta,
+.entrenamiento-etiqueta {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background: #f28c28;
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.aventura-encabezado h2 {
+    margin: 15px 0;
+    color: #df713c;
+    font-size: clamp(27px, 5vw, 43px);
+    font-weight: 1000;
+    letter-spacing: 2px;
+    text-shadow: 2px 3px 0 #ffd8a0;
+}
+
+.aventura-encabezado p {
+    color: #925b4d;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* RADAR */
+
+.radar-contenedor {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto 35px;
+    padding: 35px 25px;
+    border-radius: 28px;
+    border: 3px solid #f4bd62;
+    background: linear-gradient(145deg, #fffdf6, #ffeaf0);
+    box-shadow: 0 15px 35px rgba(177, 100, 61, .13);
+}
+
+.radar-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+}
+
+.radar-titulo span {
+    color: #e9a12d;
+    font-size: 25px;
+}
+
+.radar-titulo h3 {
+    margin: 0;
+    color: #df713c;
+    font-size: clamp(20px, 4vw, 29px);
+    font-weight: 1000;
+    letter-spacing: 2px;
+}
+
+.radar-subtitulo {
+    color: #a55d50;
+    font-weight: 700;
+    margin: 12px 0 25px;
+}
+
+/* RADAR CIRCULAR */
+
+.radar-visual {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    border: 5px solid #f5bd4e;
+    background: radial-gradient(circle, #fff4b9, #ffb85e 75%, #ed813d);
+    box-shadow: 0 0 25px rgba(241, 163, 61, .35);
+    overflow: hidden;
+}
+
+.radar-anillo {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.65);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radar-anillo-1 {
+    width: 60px;
+    height: 60px;
+}
+
+.radar-anillo-2 {
+    width: 120px;
+    height: 120px;
+}
+
+.radar-anillo-3 {
+    width: 180px;
+    height: 180px;
+}
+
+.radar-centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 55px;
+    filter: drop-shadow(0 4px 5px rgba(128, 64, 20, .3));
+}
+
+.radar-destello {
+    position: absolute;
+    top: 23%;
+    right: 24%;
+    color: white;
+    font-size: 23px;
+    animation: radarDestello 1.5s infinite alternate;
+}
+
+@keyframes radarDestello {
+    from { opacity: .4; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+/* ESFERAS */
+
+.esferas-juego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.esfera-dragon {
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    border: 2px solid #e88c22;
+    background: radial-gradient(circle at 30% 25%, #fff5a9, #ffb638 60%, #e66b12);
+    color: #bd3c23;
+    font-size: 11px;
+    font-weight: 900;
+    box-shadow: 0 5px 9px rgba(173, 93, 25, .2);
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.esfera-dragon:hover {
+    transform: translateY(-6px) scale(1.12);
+    box-shadow: 0 8px 15px rgba(235, 130, 35, .4);
+}
+
+.esfera-dragon.encontrada {
+    background: linear-gradient(135deg, #f7a0bb, #ffe2a1);
+    border-color: #d86b8d;
+    color: white;
+    transform: scale(1.08);
+}
+
+/* PROGRESO */
+
+.progreso-esferas {
+    max-width: 400px;
+    margin: 30px auto 15px;
+    padding: 18px;
+    border-radius: 18px;
+    background: #fff5e7;
+}
+
+.progreso-texto {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #a65e45;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.progreso-texto strong {
+    color: #df713c;
+    font-size: 17px;
+}
+
+.progreso-mini {
+    display: flex;
+    justify-content: space-between;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.esfera-mini {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background: #f7d8c3;
+    border: 2px solid #e7b68d;
+    transition: .3s;
+}
+
+.esfera-mini.encontrada {
+    background: radial-gradient(circle at 30% 25%, #fff5a9, #ffae35);
+    border-color: #e18b25;
+    box-shadow: 0 0 10px #ffc85e;
+}
+
+.mensaje-radar {
+    margin: 20px 0 0;
+    color: #bd705d;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ENTRENAMIENTO */
+
+.entrenamiento-saiyajin {
+    position: relative;
+    overflow: hidden;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 45px 25px;
+    border-radius: 30px;
+    border: 4px solid #ffd66d;
+    background:
+        radial-gradient(circle at top right, rgba(255, 196, 215, .55), transparent 45%),
+        linear-gradient(140deg, #f28c28, #e46a48, #d95d73);
+    color: white;
+    box-shadow: 0 15px 35px rgba(180, 82, 55, .2);
+}
+
+.entrenamiento-destello {
+    font-size: 50px;
+    margin-bottom: 10px;
+    animation: energiaSaiyajin 1.5s infinite alternate;
+}
+
+@keyframes energiaSaiyajin {
+    from { transform: scale(1); filter: drop-shadow(0 0 3px #fff); }
+    to { transform: scale(1.18); filter: drop-shadow(0 0 15px #ffe98b); }
+}
+
+.entrenamiento-etiqueta {
+    background: #ffe4a0;
+    color: #9b4b36;
+}
+
+.entrenamiento-saiyajin h2 {
+    margin: 20px 0;
+    color: #fff7d6;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.1;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    text-shadow: 3px 4px 0 rgba(135, 57, 44, .35);
+}
+
+.entrenamiento-saiyajin > p {
+    max-width: 440px;
+    margin: 0 auto 25px;
+    color: #fff8ec;
+    line-height: 1.8;
+}
+
+.nivel-poder-superior {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 25px auto 15px;
+}
+
+.nivel-poder-superior span {
+    color: #ffe8a9;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.nivel-poder-superior strong {
+    color: #fff7c8;
+    font-size: 48px;
+    font-weight: 1000;
+    text-shadow: 0 3px 10px rgba(122, 54, 31, .3);
+}
+
+/* BARRA DE ENERGÍA */
+
+.barra-poder {
+    width: 100%;
+    max-width: 430px;
+    height: 17px;
+    margin: 0 auto 25px;
+    padding: 3px;
+    border-radius: 30px;
+    background: rgba(105, 47, 44, .4);
+    border: 2px solid rgba(255,255,255,.7);
+    overflow: hidden;
+}
+
+#barraEnergia {
+    width: 0%;
+    height: 100%;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #fff3a0, #ffe05b, #fff);
+    box-shadow: 0 0 12px #fff3a0;
+    transition: width .4s ease;
+}
+
+/* BOTÓN KI */
+
+.boton-ki {
+    padding: 16px 35px;
+    border: 3px solid #fff1ba;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ffe49a, #ffb5ca);
+    color: #914630;
+    font-size: 16px;
+    font-weight: 1000;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 7px 0 #a94e43;
+    transition: .2s;
+}
+
+.boton-ki:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 11px 0 #a94e43;
+}
+
+.boton-ki:active {
+    transform: translateY(4px);
+    box-shadow: 0 3px 0 #a94e43;
+}
+
+.mensaje-ki {
+    margin-top: 25px !important;
+    color: #fff3d5 !important;
+    font-weight: 800;
+}
+
+.energia-decorativa {
+    margin-top: 25px;
+    color: #ffe9a3;
+    font-size: 23px;
+    letter-spacing: 12px;
+}
+
+/* PIE DE SECCIÓN */
+
+.aventura-pie {
+    margin-top: 45px;
+    color: #d77952;
+}
+
+.aventura-pie span {
+    font-size: 25px;
+}
+
+.aventura-pie p {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+/* MODAL SHENLONG */
+
+.modal-shenlong {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(76, 35, 42, .88);
+    backdrop-filter: blur(8px);
+}
+
+.modal-shenlong.activo {
+    display: flex;
+}
+
+.shenlong-contenido {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 28px;
+    border: 4px solid #ffd447;
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at top, #f8b4c7, transparent 65%),
+        linear-gradient(145deg, #e78355, #b94b55);
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 45px rgba(255, 207, 107, .35);
+    animation: aparicionShenlong .6s ease;
+}
+
+@keyframes aparicionShenlong {
+    from { opacity: 0; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.shenlong-decoracion {
+    color: #ffe28b;
+    font-size: 23px;
+    letter-spacing: 8px;
+}
+
+.shenlong-icono {
+    display: block;
+    margin: 15px 0;
+    font-size: 75px;
+    filter: drop-shadow(0 5px 10px rgba(90, 30, 20, .3));
+}
+
+.shenlong-etiqueta {
+    color: #fff0bd;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.shenlong-contenido h2 {
+    margin: 18px 0;
+    color: #fff1a7;
+    font-size: clamp(25px, 5vw, 34px);
+    font-weight: 1000;
+    text-shadow: 2px 3px 0 rgba(114, 48, 40, .35);
+}
+
+.shenlong-linea {
+    width: 90px;
+    height: 4px;
+    margin: 20px auto;
+    border-radius: 10px;
+    background: #ffd447;
+}
+
+.shenlong-contenido p {
+    color: #fff9ee;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.shenlong-deseo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .17);
+    border: 1px solid rgba(255, 230, 174, .6);
+}
+
+.shenlong-deseo span {
+    color: #ffe28b;
+    font-size: 22px;
+}
+
+.shenlong-deseo strong {
+    color: #fff5d2;
+    font-size: 15px;
+    line-height: 1.7;
+    letter-spacing: 1px;
+}
+
+.shenlong-contenido h3 {
+    color: #ffe28b;
+    font-size: 25px;
+    letter-spacing: 4px;
+}
+
+.shenlong-contenido button {
+    margin-top: 15px;
+    padding: 14px 22px;
+    border: 0;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ffe49a, #ffb5ca);
+    color: #914630;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    .aventura-saiyajin {
+        padding: 45px 13px;
+    }
+
+    .radar-contenedor {
+        padding: 28px 15px;
+    }
+
+    .radar-visual {
+        width: 175px;
+        height: 175px;
+    }
+
+    .radar-anillo-3 {
+        width: 150px;
+        height: 150px;
+    }
+
+    .esferas-juego {
+        gap: 8px;
+    }
+
+    .esfera-dragon {
+        width: 42px;
+        height: 42px;
+        font-size: 9px;
+    }
+
+    .progreso-texto {
+        font-size: 10px;
+    }
+
+    .esfera-mini {
+        width: 19px;
+        height: 19px;
+    }
+
+    .entrenamiento-saiyajin {
+        padding: 35px 18px;
+    }
+
+    .shenlong-contenido {
+        padding: 30px 20px;
+    }
+}
