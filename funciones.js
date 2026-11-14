@@ -573,7 +573,6 @@
             "¡Gracias! Tu respuesta fue enviada. 💗";
         }
 
-        // Actualiza los datos locales para reflejar la última respuesta.
         invitadoGLAM.estadoRSVP =
           respuesta === "SI" ? "CONFIRMADO" : "NO ASISTIRÁ";
 
@@ -773,14 +772,12 @@
         formulario.style.removeProperty("display");
       }
 
-      // Actualizar visibilidad de los campos según la respuesta.
       $("asistencia")?.dispatchEvent(
         new Event("change", { bubbles: true })
       );
 
       cargarGaleriaPublicaGLAM();
 
-      // Actualización periódica de la galería cada 30 segundos.
       if (!intervaloGaleria) {
         intervaloGaleria = window.setInterval(
           cargarGaleriaPublicaGLAM,
@@ -811,7 +808,7 @@
   }
 
   /* =========================================================
-     ÁLBUM: SELECCIÓN Y VISTA PREVIA
+     ÁLBUM: SELECCIÓN, VISTA PREVIA Y ENVÍO A GLAM
      ========================================================= */
 
   function configurarAlbum() {
@@ -823,6 +820,13 @@
     if (!input || !preview || !boton) return;
 
     input.addEventListener("change", () => {
+      // Liberar las URL temporales de las vistas previas anteriores.
+      preview.querySelectorAll("img").forEach(imagen => {
+        if (imagen.src.startsWith("blob:")) {
+          URL.revokeObjectURL(imagen.src);
+        }
+      });
+
       archivosSeleccionados = Array
         .from(input.files || [])
         .filter(f => f.type.startsWith("image/"))
@@ -864,10 +868,15 @@
         return;
       }
 
-      if (!datos.rsvpEndpoint) {
+      // IMPORTANTE:
+      // Se utiliza el mismo endpoint de GLAM que para el RSVP.
+      // No se necesita albumUploadEndpoint.
+      const endpoint = datos.rsvpEndpoint;
+
+      if (!endpoint) {
         if (mensaje) {
           mensaje.textContent =
-            "No está configurado el servicio de fotografías de GLAM.";
+            "No se encuentra configurado el endpoint de GLAM. Revisa rsvpEndpoint en datos.js.";
         }
         return;
       }
@@ -894,7 +903,8 @@
           const payload = {
             tipo: "subir_foto",
             token: tokenGLAM,
-            nombreArchivo: seleccion[i].name,
+            nombreArchivo:
+              seleccion[i].name.replace(/\.[^.]+$/, "") + ".jpg",
             tipoMime: "image/jpeg",
             base64: base64
           };
@@ -904,7 +914,7 @@
               `Enviando fotografía ${i + 1} de ${seleccion.length}...`;
           }
 
-          await fetch(datos.rsvpEndpoint, {
+          await fetch(endpoint, {
             method: "POST",
             mode: "no-cors",
             headers: {
@@ -918,23 +928,29 @@
 
         if (mensaje) {
           mensaje.textContent =
-            `Se enviaron las solicitudes de carga de ${enviadas} fotografía(s). Las imágenes aparecerán en la galería cuando sean aprobadas.`;
+            `Se enviaron ${enviadas} solicitud(es) a GLAM. Las fotografías aparecerán en la galería después de su aprobación.`;
         }
+
+        // Liberar las URL temporales de la vista previa.
+        preview.querySelectorAll("img").forEach(imagen => {
+          if (imagen.src.startsWith("blob:")) {
+            URL.revokeObjectURL(imagen.src);
+          }
+        });
 
         input.value = "";
         archivosSeleccionados = [];
         preview.replaceChildren();
 
-        // La galería solo muestra fotografías aprobadas por GLAM.
         cargarGaleriaPublicaGLAM();
 
       } catch (error) {
-        console.error("Error al preparar fotografías:", error);
+        console.error("Error al enviar fotografías a GLAM:", error);
 
         if (mensaje) {
           mensaje.textContent =
             error.message ||
-            "No se pudieron preparar las fotografías.";
+            "No se pudieron enviar las fotografías. Inténtalo nuevamente.";
         }
 
       } finally {
@@ -942,6 +958,10 @@
       }
     });
   }
+
+  /* =========================================================
+     COMPRESIÓN DE FOTOGRAFÍAS
+     ========================================================= */
 
   function comprimirImagen(archivo) {
     return new Promise((resolve, reject) => {
@@ -972,9 +992,7 @@
           const contexto = canvas.getContext("2d");
 
           if (!contexto) {
-            reject(
-              new Error("No se pudo procesar la fotografía.")
-            );
+            reject(new Error("No se pudo procesar la fotografía."));
             return;
           }
 
@@ -986,21 +1004,18 @@
             canvas.height
           );
 
-          canvas.toBlob(
-            blob => {
+          // Reducir la calidad progresivamente si el archivo pesa demasiado.
+          const convertir = calidad => {
+            canvas.toBlob(blob => {
               if (!blob) {
-                reject(
-                  new Error("No se pudo comprimir la fotografía.")
-                );
+                reject(new Error("No se pudo comprimir la fotografía."));
                 return;
               }
 
               const lectorBase64 = new FileReader();
 
               lectorBase64.onerror = () => {
-                reject(
-                  new Error("No se pudo convertir la fotografía.")
-                );
+                reject(new Error("No se pudo convertir la fotografía."));
               };
 
               lectorBase64.onload = () => {
@@ -1008,20 +1023,37 @@
                 const separador = resultado.indexOf(",");
 
                 if (separador === -1) {
+                  reject(new Error("No se pudo preparar la fotografía."));
+                  return;
+                }
+
+                const base64 = resultado.substring(separador + 1);
+
+                if (
+                  base64.length > 6 * 1024 * 1024 &&
+                  calidad > 0.35
+                ) {
+                  convertir(Math.max(0.35, calidad - 0.10));
+                  return;
+                }
+
+                if (base64.length > 7 * 1024 * 1024) {
                   reject(
-                    new Error("No se pudo preparar la fotografía.")
+                    new Error(
+                      "La fotografía sigue siendo demasiado pesada. Selecciona otra imagen."
+                    )
                   );
                   return;
                 }
 
-                resolve(resultado.substring(separador + 1));
+                resolve(base64);
               };
 
               lectorBase64.readAsDataURL(blob);
-            },
-            "image/jpeg",
-            0.75
-          );
+            }, "image/jpeg", calidad);
+          };
+
+          convertir(0.75);
         };
 
         imagen.src = lector.result;
@@ -1081,8 +1113,6 @@
         !respuesta.correcto ||
         !Array.isArray(respuesta.fotografias)
       ) {
-        // No borrar las imágenes que ya se encuentran visibles
-        // si una actualización temporal falla.
         if (fotosPublicas.length === 0) {
           contenedor.textContent =
             "¡Pronto aparecerán aquí nuestros recuerdos!";
