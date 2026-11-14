@@ -1760,3 +1760,84 @@ a:hover {
     align-items: center;
     margin: 18px auto 0;
 }
+
+/* ==========================================
+   GLAM - RSVP PERSONALIZADO
+========================================== */
+
+#nombreInvitado[readonly] {
+    background: rgba(255, 245, 230, 0.8);
+    cursor: default;
+}
+
+#pasesAsignadosTexto {
+    text-align: center;
+    color: #a65a27;
+    font-weight: 600;
+    margin: 8px 0 18px;
+}
+
+#datosAsistencia {
+    display: block;
+}
+
+#galeriaPublicaGLAM {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.foto-publica-glam {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.foto-publica-glam:hover {
+    transform: scale(1.04);
+}
+
+.navegacion-vintage {
+    position: absolute;
+    inset: 50% 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.navegacion-vintage button {
+    pointer-events: auto;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #a65a27;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.contador-vintage {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 7px 15px;
+    border-radius: 20px;
+}
+
+.mensaje-exito {
+    color: #397a45;
+}
+
+.mensaje-error {
+    color: #b33c32;
+}
