@@ -1,3 +1,4 @@
+
 /* =========================================================
    BABY SHOWER · DRAGON BALL Z
    Motor funcional compatible con GLAM / BODA
@@ -24,6 +25,8 @@
   let fotosPublicas = [];
   let indiceFoto = 0;
   let intervaloCuenta = null;
+  let intervaloGaleria = null;
+  let cargandoGaleria = false;
 
   document.addEventListener("DOMContentLoaded", iniciar);
 
@@ -349,6 +352,9 @@
           pie.textContent = "¡Hoy comienza nuestra aventura!";
         }
 
+        clearInterval(intervaloCuenta);
+        intervaloCuenta = null;
+
         return;
       }
 
@@ -439,26 +445,66 @@
 
     if (!form) return;
 
+    const asistencia = $("asistencia");
+    const selector = $("cantidadPases");
+    const acompanantes = $("acompanantes");
+    const datosAsistencia = $("datosAsistencia");
+
+    // El formulario permanece oculto hasta validar al invitado.
+    form.style.display = "none";
+
+    function actualizarCamposAsistencia() {
+      const respuesta = normalizarAsistencia(
+        asistencia?.value || ""
+      );
+
+      const asistira = respuesta === "SI";
+
+      if (datosAsistencia) {
+        datosAsistencia.hidden = !asistira;
+      }
+
+      if (selector) {
+        selector.disabled = !asistira;
+        selector.required = asistira;
+      }
+
+      if (acompanantes) {
+        acompanantes.disabled = !asistira;
+      }
+    }
+
+    asistencia?.addEventListener(
+      "change",
+      actualizarCamposAsistencia
+    );
+
+    actualizarCamposAsistencia();
+
     form.addEventListener("submit", async evento => {
       evento.preventDefault();
 
       const mensaje = $("mensajeRSVP");
       const boton = form.querySelector('button[type="submit"]');
+
       const nombre = $("nombreInvitado")?.value.trim() || "";
+
       const respuesta = normalizarAsistencia(
-        $("asistencia")?.value || ""
+        asistencia?.value || ""
       );
 
-      const selector = $("cantidadAcompanantes");
-
       if (!tokenGLAM || !invitadoGLAM) {
-        mensaje.textContent =
-          "Abre el enlace personal de tu invitación para confirmar tu asistencia.";
+        if (mensaje) {
+          mensaje.textContent =
+            "Abre el enlace personal de tu invitación para confirmar tu asistencia.";
+        }
         return;
       }
 
       if (!nombre || !respuesta) {
-        mensaje.textContent = "Completa los campos obligatorios.";
+        if (mensaje) {
+          mensaje.textContent = "Completa los campos obligatorios.";
+        }
         return;
       }
 
@@ -467,27 +513,40 @@
       );
 
       let cantidadPases = 0;
+      let nombresAcompanantes = "";
 
       if (respuesta === "SI") {
-        const extras = Number(selector?.value || 0);
-        cantidadPases = 1 + extras;
+        cantidadPases = Number(selector?.value || 0);
 
         if (
           !Number.isInteger(cantidadPases) ||
+          cantidadPases < 1 ||
           cantidadPases > pasesAsignados
         ) {
-          mensaje.textContent =
-            `Esta invitación tiene ${pasesAsignados} pase(s) en total.`;
+          if (mensaje) {
+            mensaje.textContent =
+              `Esta invitación tiene ${pasesAsignados} pase(s) en total.`;
+          }
+          return;
+        }
+
+        nombresAcompanantes = acompanantes?.value.trim() || "";
+
+        if (cantidadPases > 1 && !nombresAcompanantes) {
+          if (mensaje) {
+            mensaje.textContent =
+              "Por favor, escribe los nombres de tus acompañantes.";
+          }
           return;
         }
       }
 
-      const payload = new URLSearchParams({
+      const payload = {
         token: tokenGLAM,
         asistencia: respuesta,
-        cantidadPases: String(cantidadPases),
-        acompanantes: ""
-      });
+        cantidadPases: cantidadPases,
+        acompanantes: nombresAcompanantes
+      };
 
       if (boton) {
         boton.disabled = true;
@@ -495,32 +554,40 @@
         boton.textContent = "Enviando confirmación...";
       }
 
-      mensaje.textContent = "Enviando tu respuesta...";
+      if (mensaje) {
+        mensaje.textContent = "Enviando tu respuesta...";
+      }
 
       try {
         await fetch(datos.rsvpEndpoint, {
           method: "POST",
           mode: "no-cors",
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            "Content-Type": "text/plain;charset=utf-8"
           },
-          body: payload.toString()
+          body: JSON.stringify(payload)
         });
 
-        mensaje.textContent =
-          "¡Gracias! Tu respuesta fue enviada. 💗";
-
-        if (invitadoGLAM) {
-          invitadoGLAM.estadoRSVP =
-            respuesta === "SI" ? "CONFIRMADO" : "NO ASISTIRÁ";
-
-          invitadoGLAM.pasesConfirmados = cantidadPases;
+        if (mensaje) {
+          mensaje.textContent =
+            "¡Gracias! Tu respuesta fue enviada. 💗";
         }
+
+        // Actualiza los datos locales para reflejar la última respuesta.
+        invitadoGLAM.estadoRSVP =
+          respuesta === "SI" ? "CONFIRMADO" : "NO ASISTIRÁ";
+
+        invitadoGLAM.pasesConfirmados = cantidadPases;
+        invitadoGLAM.acompanantes = nombresAcompanantes;
+
       } catch (error) {
         console.error("Error al enviar RSVP GLAM:", error);
 
-        mensaje.textContent =
-          "No se pudo enviar tu respuesta. Inténtalo nuevamente.";
+        if (mensaje) {
+          mensaje.textContent =
+            "No se pudo enviar tu respuesta. Inténtalo nuevamente.";
+        }
+
       } finally {
         if (boton) {
           boton.disabled = false;
@@ -528,17 +595,6 @@
             boton.dataset.textoOriginal ||
             'Confirmar asistencia <span>★</span>';
         }
-      }
-    });
-
-    $("asistencia")?.addEventListener("change", () => {
-      const selector = $("cantidadAcompanantes");
-      const asistencia = normalizarAsistencia(
-        $("asistencia").value
-      );
-
-      if (selector) {
-        selector.disabled = asistencia === "NO";
       }
     });
   }
@@ -618,34 +674,40 @@
         campoNombre.readOnly = true;
       }
 
-      const selector = $("cantidadAcompanantes");
+      const selector = $("cantidadPases");
 
       const pases = Math.max(
         0,
         Number(invitadoGLAM.pasesAsignados || 0)
       );
 
+      texto(
+        "pasesAsignadosTexto",
+        `Tienes ${pases} pase(s) asignado(s) para esta celebración.`
+      );
+
       if (selector) {
         selector.replaceChildren();
 
-        for (
-          let extra = 0;
-          extra <= Math.max(0, pases - 1);
-          extra++
-        ) {
+        const opcionInicial = document.createElement("option");
+        opcionInicial.value = "";
+        opcionInicial.textContent = "Selecciona la cantidad";
+
+        selector.appendChild(opcionInicial);
+
+        for (let cantidad = 1; cantidad <= pases; cantidad++) {
           const opcion = document.createElement("option");
 
-          opcion.value = String(extra);
-
+          opcion.value = String(cantidad);
           opcion.textContent =
-            extra === 0
+            cantidad === 1
               ? "Solo yo"
-              : `${extra} acompañante${extra > 1 ? "s" : ""}`;
+              : `${cantidad} personas`;
 
           selector.appendChild(opcion);
         }
 
-        selector.disabled = pases <= 1;
+        selector.disabled = pases <= 0;
       }
 
       if (pases < 1) {
@@ -662,32 +724,69 @@
         return;
       }
 
-      if (
-        invitadoGLAM.estadoRSVP === "CONFIRMADO" ||
-        invitadoGLAM.estadoRSVP === "NO ASISTIRÁ"
-      ) {
+      const estado = String(
+        invitadoGLAM.estadoRSVP || ""
+      ).toUpperCase();
+
+      const asistencia = $("asistencia");
+      const acompanantes = $("acompanantes");
+
+      if (estado === "CONFIRMADO") {
+        if (asistencia) asistencia.value = "SI";
+
+        if (selector && Number(invitadoGLAM.pasesConfirmados) > 0) {
+          selector.value = String(
+            Math.min(
+              pases,
+              Number(invitadoGLAM.pasesConfirmados)
+            )
+          );
+        }
+
+        if (acompanantes) {
+          acompanantes.value = invitadoGLAM.acompanantes || "";
+        }
+
         if (mensaje) {
           mensaje.textContent =
-            "Ya existe una respuesta para esta invitación. Puedes actualizarla si lo necesitas.";
+            "Ya registraste tu asistencia. Si necesitas cambiar tu respuesta, puedes actualizarla aquí.";
+        }
+
+      } else if (estado === "NO ASISTIRÁ") {
+        if (asistencia) asistencia.value = "NO";
+
+        if (mensaje) {
+          mensaje.textContent =
+            "Registraste que no podrás asistir. Si cambiaste de opinión, puedes actualizar tu respuesta aquí.";
+        }
+
+      } else {
+        if (mensaje) {
+          mensaje.textContent =
+            "¡Tu invitación ha sido identificada! Confirma tu asistencia.";
         }
       }
 
-      if (
-        selector &&
-        invitadoGLAM.pasesConfirmados > 0
-      ) {
-        selector.value = String(
-          Math.min(
-            pases - 1,
-            Math.max(
-              0,
-              Number(invitadoGLAM.pasesConfirmados) - 1
-            )
-          )
-        );
+      // Mostrar el formulario después de validar el token y los pases.
+      if (formulario) {
+        formulario.hidden = false;
+        formulario.style.removeProperty("display");
       }
 
+      // Actualizar visibilidad de los campos según la respuesta.
+      $("asistencia")?.dispatchEvent(
+        new Event("change", { bubbles: true })
+      );
+
       cargarGaleriaPublicaGLAM();
+
+      // Actualización periódica de la galería cada 30 segundos.
+      if (!intervaloGaleria) {
+        intervaloGaleria = window.setInterval(
+          cargarGaleriaPublicaGLAM,
+          30000
+        );
+      }
     };
 
     const script = document.createElement("script");
@@ -757,14 +856,23 @@
     boton.addEventListener("click", async () => {
       if (!archivosSeleccionados.length) return;
 
-      if (!datos.albumUploadEndpoint) {
+      if (!tokenGLAM || !invitadoGLAM) {
         if (mensaje) {
           mensaje.textContent =
-            "La vista previa funciona, pero GLAM todavía no tiene configurado el servicio de publicación de fotografías para este evento.";
+            "Necesitas abrir tu invitación personal para compartir fotografías.";
         }
-
         return;
       }
+
+      if (!datos.rsvpEndpoint) {
+        if (mensaje) {
+          mensaje.textContent =
+            "No está configurado el servicio de fotografías de GLAM.";
+        }
+        return;
+      }
+
+      const seleccion = [...archivosSeleccionados];
 
       boton.disabled = true;
 
@@ -772,64 +880,61 @@
         mensaje.textContent = "Preparando fotografías...";
       }
 
+      let enviadas = 0;
+
       try {
-        for (
-          let i = 0;
-          i < archivosSeleccionados.length;
-          i++
-        ) {
-          const comprimida = await comprimirImagen(
-            archivosSeleccionados[i]
-          );
-
-          const formData = new FormData();
-
-          formData.append(
-            "foto",
-            comprimida,
-            `foto-${Date.now()}-${i}.jpg`
-          );
-
-          formData.append("token", tokenGLAM);
-
-          formData.append(
-            "codigoEvento",
-            datos.codigoInvitacion || ""
-          );
-
-          const respuesta = await fetch(
-            datos.albumUploadEndpoint,
-            {
-              method: "POST",
-              body: formData
-            }
-          );
-
-          if (!respuesta.ok) {
-            throw new Error(
-              `No se pudo subir la fotografía ${i + 1}.`
-            );
+        for (let i = 0; i < seleccion.length; i++) {
+          if (mensaje) {
+            mensaje.textContent =
+              `Preparando fotografía ${i + 1} de ${seleccion.length}...`;
           }
+
+          const base64 = await comprimirImagen(seleccion[i]);
+
+          const payload = {
+            tipo: "subir_foto",
+            token: tokenGLAM,
+            nombreArchivo: seleccion[i].name,
+            tipoMime: "image/jpeg",
+            base64: base64
+          };
+
+          if (mensaje) {
+            mensaje.textContent =
+              `Enviando fotografía ${i + 1} de ${seleccion.length}...`;
+          }
+
+          await fetch(datos.rsvpEndpoint, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          enviadas++;
         }
 
         if (mensaje) {
           mensaje.textContent =
-            "¡Fotografías enviadas! Gracias por compartir estos recuerdos.";
+            `Se enviaron las solicitudes de carga de ${enviadas} fotografía(s). Las imágenes aparecerán en la galería cuando sean aprobadas.`;
         }
 
         input.value = "";
         archivosSeleccionados = [];
         preview.replaceChildren();
 
+        // La galería solo muestra fotografías aprobadas por GLAM.
         cargarGaleriaPublicaGLAM();
 
       } catch (error) {
-        console.error("Error al cargar fotografías:", error);
+        console.error("Error al preparar fotografías:", error);
 
         if (mensaje) {
           mensaje.textContent =
             error.message ||
-            "No se pudieron subir las fotografías.";
+            "No se pudieron preparar las fotografías.";
         }
 
       } finally {
@@ -866,6 +971,13 @@
 
           const contexto = canvas.getContext("2d");
 
+          if (!contexto) {
+            reject(
+              new Error("No se pudo procesar la fotografía.")
+            );
+            return;
+          }
+
           contexto.drawImage(
             imagen,
             0,
@@ -876,16 +988,39 @@
 
           canvas.toBlob(
             blob => {
-              if (blob) {
-                resolve(blob);
-              } else {
+              if (!blob) {
                 reject(
                   new Error("No se pudo comprimir la fotografía.")
                 );
+                return;
               }
+
+              const lectorBase64 = new FileReader();
+
+              lectorBase64.onerror = () => {
+                reject(
+                  new Error("No se pudo convertir la fotografía.")
+                );
+              };
+
+              lectorBase64.onload = () => {
+                const resultado = String(lectorBase64.result || "");
+                const separador = resultado.indexOf(",");
+
+                if (separador === -1) {
+                  reject(
+                    new Error("No se pudo preparar la fotografía.")
+                  );
+                  return;
+                }
+
+                resolve(resultado.substring(separador + 1));
+              };
+
+              lectorBase64.readAsDataURL(blob);
             },
             "image/jpeg",
-            0.78
+            0.75
           );
         };
 
@@ -906,30 +1041,64 @@
     if (
       !contenedor ||
       !datos.rsvpEndpoint ||
-      !tokenGLAM
+      !tokenGLAM ||
+      cargandoGaleria
     ) {
       return;
     }
 
-    window.glamGaleriaCallback = respuesta => {
+    cargandoGaleria = true;
+
+    const nombreCallback =
+      `glamGaleriaCallback_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+
+    const script = document.createElement("script");
+
+    const separador = datos.rsvpEndpoint.includes("?")
+      ? "&"
+      : "?";
+
+    let finalizado = false;
+
+    function limpiarSolicitud() {
+      if (finalizado) return;
+
+      finalizado = true;
+      cargandoGaleria = false;
+
+      script.remove();
+
+      try {
+        delete window[nombreCallback];
+      } catch (error) {
+        window[nombreCallback] = undefined;
+      }
+    }
+
+    window[nombreCallback] = respuesta => {
       if (
         !respuesta ||
         !respuesta.correcto ||
         !Array.isArray(respuesta.fotografias)
       ) {
-        contenedor.textContent =
-          "¡Pronto aparecerán aquí nuestros recuerdos!";
+        // No borrar las imágenes que ya se encuentran visibles
+        // si una actualización temporal falla.
+        if (fotosPublicas.length === 0) {
+          contenedor.textContent =
+            "¡Pronto aparecerán aquí nuestros recuerdos!";
+        }
 
+        limpiarSolicitud();
         return;
       }
 
       fotosPublicas = respuesta.fotografias
         .map(f => {
-          if (f.url) return f.url;
-
           if (f.base64) {
             return `data:${f.tipoMime || "image/jpeg"};base64,${f.base64}`;
           }
+
+          if (f.url) return f.url;
 
           return "";
         })
@@ -941,6 +1110,7 @@
         contenedor.textContent =
           "¡Pronto aparecerán aquí nuestros recuerdos!";
 
+        limpiarSolicitud();
         return;
       }
 
@@ -963,22 +1133,22 @@
       });
 
       contenedor.appendChild(rejilla);
+
+      limpiarSolicitud();
     };
-
-    const separador = datos.rsvpEndpoint.includes("?")
-      ? "&"
-      : "?";
-
-    const script = document.createElement("script");
 
     script.src =
       `${datos.rsvpEndpoint}${separador}` +
       `galeria=1&token=${encodeURIComponent(tokenGLAM)}` +
-      `&callback=glamGaleriaCallback`;
+      `&callback=${nombreCallback}`;
 
     script.onerror = () => {
-      contenedor.textContent =
-        "No se pudo cargar el álbum compartido.";
+      if (fotosPublicas.length === 0) {
+        contenedor.textContent =
+          "No se pudo cargar el álbum compartido.";
+      }
+
+      limpiarSolicitud();
     };
 
     document.head.appendChild(script);
