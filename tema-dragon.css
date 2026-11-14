@@ -1675,3 +1675,34 @@ a:hover {
         font-size: 25px;
     }
 }
+
+
+/* HISTORIA: SECCIÓN DIFERENCIADA DEL MENSAJE */
+
+.historia-frase-final {
+    margin: 22px auto;
+    padding: 15px 12px;
+    max-width: 450px;
+    color: #a85b32;
+    background: rgba(255, 224, 184, 0.35);
+    border-top: 1px solid rgba(201, 132, 65, 0.35);
+    border-bottom: 1px solid rgba(201, 132, 65, 0.35);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.historia-texto .firma-historia {
+    margin-top: 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+    color: #a85b32;
+}
+
+.historia-texto .firma-historia strong {
+    display: block;
+    font-size: 32px;
+    font-weight: 400;
+}
+
