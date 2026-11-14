@@ -12,6 +12,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="estilos.css">
@@ -35,7 +36,7 @@
                 <span>★</span>
             </div>
 
-            <button class="boton-abrir" id="botonAbrir">
+            <button class="boton-abrir" id="botonAbrir" type="button">
                 Descubrir invitación
                 <span>↗</span>
             </button>
@@ -47,14 +48,14 @@
 
     <!-- CONTROLES FLOTANTES -->
     <div class="controles-flotantes" id="controlesFlotantes">
-        <button class="control-flotante" id="botonMusica" aria-label="Reproducir música">♫</button>
-        <button class="control-flotante" id="botonMenu" aria-label="Abrir menú">☰</button>
+        <button class="control-flotante" id="botonMusica" type="button" aria-label="Reproducir música">♫</button>
+        <button class="control-flotante" id="botonMenu" type="button" aria-label="Abrir menú">☰</button>
     </div>
 
 
     <!-- MENÚ LATERAL -->
     <nav class="menu-lateral" id="menuLateral">
-        <button class="cerrar-menu" id="cerrarMenu">×</button>
+        <button class="cerrar-menu" id="cerrarMenu" type="button" aria-label="Cerrar menú">×</button>
 
         <span class="menu-etiqueta">EL UNIVERSO DE NUESTRA PEQUEÑA</span>
 
@@ -109,53 +110,52 @@
 
 
         <!-- PRESENTACIÓN -->
-       
-<!-- PRESENTACIÓN -->
-<section class="seccion presentacion" id="presentacion">
+        <section class="seccion presentacion" id="presentacion">
 
-    <div class="decoracion-esquina decoracion-izquierda">✧</div>
-    <div class="decoracion-esquina decoracion-derecha">✧</div>
+            <div class="decoracion-esquina decoracion-izquierda">✧</div>
+            <div class="decoracion-esquina decoracion-derecha">✧</div>
 
-    <span class="etiqueta-seccion">DOS CORAZONES, UNA NUEVA AVENTURA</span>
+            <span class="etiqueta-seccion">DOS CORAZONES, UNA NUEVA AVENTURA</span>
 
-    <h2 class="titulo-caligrafico">¡Lola & Sergio!</h2>
+            <h2 class="titulo-caligrafico">¡Lola & Sergio!</h2>
 
-    <div class="separador-floral">✦ ★ ✦</div>
+            <div class="separador-floral">✦ ★ ✦</div>
 
-    <div class="presentacion-padres">
-        <div class="padres-emblema">
-            <span>♥</span>
-            <small>FUTUROS PAPÁS</small>
-        </div>
+            <div class="presentacion-padres">
+                <div class="padres-emblema">
+                    <span>♥</span>
+                    <small>FUTUROS PAPÁS</small>
+                </div>
 
-        <p class="texto-presentacion">
-            Nuestra historia está a punto de vivir su aventura más
-            extraordinaria. Estamos esperando con muchísima ilusión
-            a nuestra pequeña guerrera, quien ya se ha convertido
-            en nuestra mayor alegría y en el sueño más bonito
-            que estamos por cumplir.
-        </p>
+                <p class="texto-presentacion">
+                    Nuestra historia está a punto de vivir su aventura más
+                    extraordinaria. Estamos esperando con muchísima ilusión
+                    a nuestra pequeña guerrera, quien ya se ha convertido
+                    en nuestra mayor alegría y en el sueño más bonito
+                    que estamos por cumplir.
+                </p>
 
-        <p class="presentacion-invitacion">
-            Queremos compartir contigo esta etapa tan especial
-            y celebrar juntos la llegada de nuestra pequeña Saiyajin.
-        </p>
+                <p class="presentacion-invitacion">
+                    Queremos compartir contigo esta etapa tan especial
+                    y celebrar juntos la llegada de nuestra pequeña Saiyajin.
+                </p>
 
-        <div class="presentacion-firma">
-            Con cariño,
-            <strong>Lola & Sergio</strong>
-        </div>
-    </div>
+                <div class="presentacion-firma">
+                    Con cariño,
+                    <strong>Lola & Sergio</strong>
+                </div>
+            </div>
 
-    <div class="fecha-detalle">
-        <span class="fecha-dia" id="diaEvento">28</span>
-        <div>
-            <span id="mesEvento">NOVIEMBRE</span>
-            <span id="anioEvento">2026</span>
-        </div>
-    </div>
+            <div class="fecha-detalle">
+                <span class="fecha-dia" id="diaEvento">28</span>
+                <div>
+                    <span id="mesEvento">NOVIEMBRE</span>
+                    <span id="anioEvento">2026</span>
+                </div>
+            </div>
 
-</section>
+        </section>
+
 
         <!-- CUENTA REGRESIVA -->
         <section class="cuenta-regresiva">
@@ -232,29 +232,29 @@
                 </div>
 
                 <div class="esferas-juego">
-                    <button type="button" class="esfera-dragon" data-esfera="1">★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="2">★★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="3">★★★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="4">★★★★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="5">★★★★★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="6">★★★★★★</button>
-                    <button type="button" class="esfera-dragon" data-esfera="7">★★★★★★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="1" aria-label="Esfera de una estrella">★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="2" aria-label="Esfera de dos estrellas">★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="3" aria-label="Esfera de tres estrellas">★★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="4" aria-label="Esfera de cuatro estrellas">★★★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="5" aria-label="Esfera de cinco estrellas">★★★★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="6" aria-label="Esfera de seis estrellas">★★★★★★</button>
+                    <button type="button" class="esfera-dragon" data-esfera="7" aria-label="Esfera de siete estrellas">★★★★★★★</button>
                 </div>
 
                 <div class="progreso-esferas">
                     <div class="progreso-texto">
                         <span>ESFERAS ENCONTRADAS</span>
-                        <strong id="contadorEsferas">0 / 7</strong>
+                        <strong id="contadorEsferas">0/7</strong>
                     </div>
 
                     <div class="progreso-mini">
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
-                        <span class="esfera-mini"></span>
+                        <span class="esfera-mini" data-esfera="1"></span>
+                        <span class="esfera-mini" data-esfera="2"></span>
+                        <span class="esfera-mini" data-esfera="3"></span>
+                        <span class="esfera-mini" data-esfera="4"></span>
+                        <span class="esfera-mini" data-esfera="5"></span>
+                        <span class="esfera-mini" data-esfera="6"></span>
+                        <span class="esfera-mini" data-esfera="7"></span>
                     </div>
                 </div>
 
@@ -343,84 +343,82 @@
         </div>
 
 
-             
+        <!-- HISTORIA DE NUESTRA PEQUEÑA -->
+        <section class="seccion historia" id="historia">
 
-<!-- HISTORIA DE NUESTRA PEQUEÑA -->
-<section class="seccion historia" id="historia">
+            <div class="historia-imagen">
+                <img src="recursos/historia.jpg" alt="Nuestra pequeña Saiyajin">
+                <span class="marco-foto"></span>
+            </div>
 
-    <div class="historia-imagen">
-        <img src="recursos/historia.jpg" alt="Nuestra pequeña Saiyajin">
-        <span class="marco-foto"></span>
-    </div>
+            <div class="historia-texto">
 
-    <div class="historia-texto">
+                <span class="etiqueta-seccion">EL COMIENZO DE UNA GRAN LEYENDA</span>
 
-        <span class="etiqueta-seccion">EL COMIENZO DE UNA GRAN LEYENDA</span>
+                <h2 class="titulo-caligrafico">Nuestra pequeña Saiyajin</h2>
 
-        <h2 class="titulo-caligrafico">Nuestra pequeña Saiyajin</h2>
+                <div class="separador-floral">✦ ★ ✦</div>
 
-        <div class="separador-floral">✦ ★ ✦</div>
+                <p id="textoHistoria">
+                    Aún no has llegado a nuestros brazos, pequeña,
+                    pero ya has llenado nuestros corazones de ilusión.
+                    Te esperamos para comenzar contigo la aventura
+                    más hermosa de nuestras vidas.
+                </p>
 
-        <p id="textoHistoria">
-            Aún no has llegado a nuestros brazos, pequeña,
-            pero ya has llenado nuestros corazones de ilusión.
-            Te esperamos para comenzar contigo la aventura
-            más hermosa de nuestras vidas.
-        </p>
+                <div class="historia-frase-final">
+                    ✨ Nuestro universo será más bonito contigo. ✨
+                </div>
 
-        <div class="historia-frase-final">
-            ✨ Nuestro universo será más bonito contigo. ✨
-        </div>
+                <p class="firma-historia" id="firmaHistoria">
+                    Con todo nuestro amor,
+                    <strong>Lola y Sergio</strong>
+                </p>
 
-        <p class="firma-historia" id="firmaHistoria">
-            Con todo nuestro amor,
-            <strong>Lola y Sergio</strong>
-        </p>
-
-    </div>
-</section>
+            </div>
+        </section>
 
 
-     
-<!-- ITINERARIO -->
-<section class="seccion itinerario itinerario-dragon" id="itinerario">
+        <!-- ITINERARIO -->
+        <section class="seccion itinerario itinerario-dragon" id="itinerario">
 
-    <div class="itinerario-decoracion-superior">
-        ✦　★　🐉　★　✦
-    </div>
+            <div class="itinerario-decoracion-superior">
+                ✦　★　🐉　★　✦
+            </div>
 
-    <span class="etiqueta-seccion">ARCHIVO ESPECIAL · MISIÓN BABY SAIYAJIN</span>
+            <span class="etiqueta-seccion">ARCHIVO ESPECIAL · MISIÓN BABY SAIYAJIN</span>
 
-    <h2 class="titulo-caligrafico">¡Una aventura para recordar!</h2>
+            <h2 class="titulo-caligrafico">¡Una aventura para recordar!</h2>
 
-    <p class="texto-intro">
-        Todo gran encuentro merece una celebración extraordinaria.
-        Hemos preparado una tarde llena de sorpresas, sonrisas,
-        juegos y momentos especiales para compartir contigo.
-    </p>
-
-    <div class="itinerario-mensaje">
-        <span class="itinerario-mensaje-icono">⚡</span>
-        <div>
-            <strong>¡ATENCIÓN, GUERRERO Z!</strong>
-            <p>
-                Esta es tu guía para disfrutar cada momento
-                de nuestra gran celebración.
+            <p class="texto-intro">
+                Todo gran encuentro merece una celebración extraordinaria.
+                Hemos preparado una tarde llena de sorpresas, sonrisas,
+                juegos y momentos especiales para compartir contigo.
             </p>
-        </div>
-    </div>
 
-    <div class="itinerario-lista" id="listaItinerario"></div>
+            <div class="itinerario-mensaje">
+                <span class="itinerario-mensaje-icono">⚡</span>
+                <div>
+                    <strong>¡ATENCIÓN, GUERRERO Z!</strong>
+                    <p>
+                        Esta es tu guía para disfrutar cada momento
+                        de nuestra gran celebración.
+                    </p>
+                </div>
+            </div>
 
-    <div class="itinerario-despedida">
-        <span>★</span>
-        <p>¡Que comience la celebración!</p>
-        <span>★</span>
-    </div>
+            <div class="itinerario-lista" id="listaItinerario"></div>
 
-</section>
+            <div class="itinerario-despedida">
+                <span>★</span>
+                <p>¡Que comience la celebración!</p>
+                <span>★</span>
+            </div>
 
-        <!-- UBICACIÓN: UNA SOLA FICHA -->
+        </section>
+
+
+        <!-- UBICACIÓN -->
         <section class="seccion ubicaciones" id="ubicaciones">
 
             <span class="etiqueta-seccion">¡NOS ENCONTRAMOS EN NUESTRO UNIVERSO!</span>
@@ -472,84 +470,83 @@
 
 
         <!-- CONFIRMACIÓN RSVP -->
-       
+        <section class="seccion confirmacion" id="confirmacion">
 
-<!-- CONFIRMACIÓN RSVP -->
-<section class="seccion confirmacion" id="confirmacion">
+            <div class="confirmacion-decoracion">✦</div>
 
-    <div class="confirmacion-decoracion">✦</div>
+            <span class="etiqueta-seccion">¡QUEREMOS CELEBRAR CONTIGO!</span>
 
-    <span class="etiqueta-seccion">¡QUEREMOS CELEBRAR CONTIGO!</span>
+            <h2 class="titulo-caligrafico">¿Nos acompañas?</h2>
 
-    <h2 class="titulo-caligrafico">¿Nos acompañas?</h2>
+            <p class="texto-intro">
+                Tu presencia hará que este día sea todavía
+                más especial. Ayúdanos confirmando tu asistencia.
+            </p>
 
-    <p class="texto-intro">
-        Tu presencia hará que este día sea todavía
-        más especial. Ayúdanos confirmando tu asistencia.
-    </p>
+            <div id="datosInvitacionGLAM">
+                <p id="mensajeRSVP" class="mensaje-rsvp" aria-live="polite">
+                    Identificando tu invitación...
+                </p>
+            </div>
 
-    <div id="datosInvitacionGLAM">
-        <p id="mensajeRSVP" class="mensaje-rsvp" aria-live="polite">
-            Identificando tu invitación...
-        </p>
-    </div>
+            <form id="formularioRSVP" style="display:none;">
 
-    <form id="formularioRSVP" style="display:none;">
+                <label for="nombreInvitado">Nombre del invitado</label>
 
-        <label for="nombreInvitado">Nombre del invitado</label>
-        <input
-            type="text"
-            id="nombreInvitado"
-            readonly
-            required
-        >
+                <input
+                    type="text"
+                    id="nombreInvitado"
+                    readonly
+                    required
+                >
 
-        <p id="pasesAsignadosTexto"></p>
+                <p id="pasesAsignadosTexto"></p>
 
-        <label for="asistencia">¿Podrás acompañarnos?</label>
+                <label for="asistencia">¿Podrás acompañarnos?</label>
 
-        <select id="asistencia" required>
-            <option value="">Selecciona una opción</option>
-            <option value="SI">¡Sí, ahí estaré!</option>
-            <option value="NO">Lo siento, no podré asistir</option>
-        </select>
+                <select id="asistencia" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="SI">¡Sí, ahí estaré!</option>
+                    <option value="NO">Lo siento, no podré asistir</option>
+                </select>
 
-        <div id="datosAsistencia">
+                <div id="datosAsistencia" hidden>
 
-            <label for="cantidadPases">¿Cuántas personas asistirán?</label>
+                    <label for="cantidadPases">¿Cuántas personas asistirán?</label>
 
-            <select id="cantidadPases" required>
-                <option value="">Selecciona la cantidad</option>
-            </select>
+                    <select id="cantidadPases" required disabled>
+                        <option value="">Selecciona la cantidad</option>
+                    </select>
 
-            <label for="acompanantes">Nombres de tus acompañantes</label>
+                    <label for="acompanantes">Nombres de tus acompañantes</label>
 
-            <textarea
-                id="acompanantes"
-                rows="3"
-                placeholder="Escribe los nombres de tus acompañantes..."
-            ></textarea>
+                    <textarea
+                        id="acompanantes"
+                        rows="3"
+                        placeholder="Escribe los nombres de tus acompañantes..."
+                        disabled
+                    ></textarea>
 
-        </div>
+                </div>
 
-        <label for="mensajeInvitado">
-            Un mensaje para nuestra pequeña (opcional)
-        </label>
+                <label for="mensajeInvitado">
+                    Un mensaje para nuestra pequeña (opcional)
+                </label>
 
-        <textarea
-            id="mensajeInvitado"
-            rows="3"
-            placeholder="Déjale unas palabras de cariño..."
-        ></textarea>
+                <textarea
+                    id="mensajeInvitado"
+                    rows="3"
+                    placeholder="Déjale unas palabras de cariño..."
+                ></textarea>
 
-        <button type="submit" class="boton-principal">
-            Confirmar asistencia
-            <span>★</span>
-        </button>
+                <button type="submit" class="boton-principal">
+                    Confirmar asistencia
+                    <span>★</span>
+                </button>
 
-    </form>
+            </form>
 
-</section>
+        </section>
 
 
         <!-- ÁLBUM COMPARTIDO -->
@@ -643,8 +640,8 @@
 
 
     <!-- ELEMENTOS OCULTOS DE COMPATIBILIDAD -->
-    <!-- Se conservan para evitar errores si funciones.js todavía los utiliza. -->
     <div hidden>
+
         <span id="nombreRecepcion"></span>
         <span id="direccionRecepcion"></span>
         <a id="mapaRecepcion" href="#"></a>
@@ -658,6 +655,7 @@
         <div id="codigoQR"></div>
 
         <div id="videoContenedor"></div>
+
     </div>
 
 
@@ -677,6 +675,7 @@
             src=""
             alt="Fotografía ampliada"
         >
+
     </div>
 
 
