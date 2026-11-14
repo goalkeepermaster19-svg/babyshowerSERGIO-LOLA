@@ -28,7 +28,7 @@ Tu presencia será parte de esta aventura. ¡Prepara tu energía! ¡La misión B
     nombre: "Salón Infantil RIO",
     direccion: "Salón Infantil RIO",
     mapa: "https://www.google.com/maps/place/Salón+Infantil+RIO/data=!4m2!3m1!1s0x0:0x474cba6e3462ef0a?sa=X&ved=1t:2428&ictx=111"
-},
+
     },
 
     recepcion: {
