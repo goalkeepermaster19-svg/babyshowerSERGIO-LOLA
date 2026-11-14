@@ -668,3 +668,152 @@ a:hover {
         padding: 65px 18px;
     }
 }
+/* ==========================================
+   DRAGON BALL Z - PRINCESA SAIYAJIN
+   NUEVA PALETA FEMENINA
+========================================== */
+
+:root {
+    --dragon-orange: #F28C28;
+    --dragon-pink: #F28BAA;
+    --dragon-pink-light: #FCE0E8;
+    --dragon-gold: #FFD447;
+    --dragon-cream: #FFF6E9;
+    --dragon-red: #D94B45;
+    --dragon-text: #783E32;
+}
+
+/* FONDO GENERAL */
+
+.aventura-saiyajin {
+    background:
+        radial-gradient(circle at 10% 15%, #fff 0 3px, transparent 4px),
+        radial-gradient(circle at 90% 30%, #fff 0 3px, transparent 4px),
+        linear-gradient(145deg, #fff3e4, #ffe0e8);
+    color: var(--dragon-text);
+}
+
+/* RADAR */
+
+.radar-contenedor {
+    background: linear-gradient(145deg, #fffaf0, #ffe9ed);
+    border-color: var(--dragon-pink);
+}
+
+.radar-visual {
+    background:
+        radial-gradient(circle, #ffe8a6, #f5a45c 70%, #e97838);
+    border-color: var(--dragon-gold);
+}
+
+.radar-contenedor h3 {
+    color: #d66a37;
+}
+
+/* ESFERAS */
+
+.esfera-dragon {
+    background:
+        radial-gradient(circle at 30% 25%, #fff8bd, #ffb33d 55%, #e96b17);
+    border-color: #e58a22;
+}
+
+.esfera-mini.encontrada {
+    background: radial-gradient(circle at 30% 25%, #fff6b0, #ffad36 65%, #e46a00);
+}
+
+/* ENTRENAMIENTO */
+
+.entrenamiento-saiyajin {
+    background:
+        radial-gradient(circle at top right, #ffb5c8, transparent 50%),
+        linear-gradient(145deg, #f28c28, #d95c3c);
+    border: 3px solid #ffd447;
+    color: white;
+}
+
+.entrenamiento-saiyajin h2 {
+    color: #fff4bf;
+}
+
+.nivel-poder-superior strong {
+    color: #fff3a3;
+}
+
+.barra-poder {
+    background: #9d493b;
+    border-color: #ffe3b0;
+}
+
+#barraEnergia {
+    background: linear-gradient(
+        90deg,
+        #ff7da7,
+        #ffd447,
+        #fff
+    );
+}
+
+.boton-ki {
+    background: linear-gradient(
+        135deg,
+        #ffb5ca,
+        #ffe18a
+    );
+    color: #793b32;
+    box-shadow: 0 6px 0 #b95d3e;
+}
+
+#mensajeKi {
+    color: #fff4df;
+}
+
+/* SHENLONG */
+
+.modal-shenlong {
+    background: rgba(91, 37, 31, .91);
+}
+
+.shenlong-contenido {
+    background:
+        radial-gradient(circle at top, #f8b4c7, transparent 60%),
+        linear-gradient(145deg, #b94b39, #79352f);
+    border-color: #ffd447;
+}
+
+.shenlong-contenido h2,
+.shenlong-contenido strong,
+.shenlong-contenido > span {
+    color: #ffe58b;
+}
+
+.shenlong-contenido button {
+    background: linear-gradient(135deg, #ffd447, #ff9e55);
+    color: #763b2d;
+}
+
+/* BOTONES PRINCIPALES */
+
+.boton-principal {
+    background: linear-gradient(
+        135deg,
+        #f28c28,
+        #ed8ba9
+    );
+    border-color: #ffd447;
+    color: white;
+}
+
+/* DETALLES DECORATIVOS */
+
+.separador-floral {
+    color: #e78c46;
+}
+
+.titulo-caligrafico {
+    color: #bd624e;
+}
+
+.etiqueta-seccion {
+    color: #d47b56;
+}
