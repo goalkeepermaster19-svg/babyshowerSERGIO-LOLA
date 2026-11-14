@@ -54,3 +54,86 @@
 .boton-abrir:hover {
     background: #103b70 !important;
 }
+
+/* ==========================================
+   ÁLBUM COMPARTIDO - BABY-01
+========================================== */
+
+.album-dragon {
+    background:
+        radial-gradient(circle at 15% 15%, rgba(248,211,78,.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(22,141,208,.14), transparent 30%),
+        #fff5e5;
+}
+
+.album-dragon .carga-fotografias {
+    max-width: 680px;
+    margin: 35px auto;
+    padding: 28px;
+    background: rgba(255,255,255,.9);
+    border: 2px solid #f8d34e;
+    border-radius: 22px;
+    box-shadow: 0 12px 35px rgba(40,65,100,.10);
+}
+
+.album-dragon .vista-previa-fotos,
+.album-dragon #galeriaPublicaGLAM {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.album-dragon .vista-previa-fotos img,
+.album-dragon #galeriaPublicaGLAM img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 3px solid #f8d34e;
+}
+
+.album-dragon .boton-principal {
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #168dd0, #1263a0);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.album-dragon .boton-principal:hover {
+    transform: translateY(-2px);
+}
+
+.album-dragon .boton-principal:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.album-dragon .mensaje-fotos {
+    min-height: 24px;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #1263a0;
+}
+
+.album-dragon .galeria-publica-glam {
+    max-width: 1000px;
+    margin: 55px auto 0;
+}
+
+@media (max-width: 600px) {
+    .album-dragon .carga-fotografias {
+        padding: 18px;
+    }
+
+    .album-dragon .vista-previa-fotos,
+    .album-dragon #galeriaPublicaGLAM {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
