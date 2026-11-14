@@ -265,7 +265,146 @@
 
         </section>
 
+<!-- ======================================
+     AVENTURA DRAGON BALL Z
+======================================= -->
 
+<section class="seccion aventura-saiyajin" id="aventuraSaiyajin">
+
+    <span class="etiqueta-seccion">
+        ¡UNA MISIÓN PARA LOS GUERREROS Z!
+    </span>
+
+    <h2 class="titulo-caligrafico">
+        El desafío de las 7 esferas
+    </h2>
+
+    <p class="texto-intro">
+        El universo necesita tu ayuda. Encuentra las siete
+        esferas del dragón y desbloquea una sorpresa especial.
+    </p>
+
+    <div class="radar-contenedor">
+
+        <div class="radar-visual">
+            <span class="radar-centro">🐉</span>
+            <span class="radar-punto punto-1"></span>
+            <span class="radar-punto punto-2"></span>
+            <span class="radar-punto punto-3"></span>
+        </div>
+
+        <h3>RADAR DEL DRAGÓN</h3>
+
+        <p id="mensajeRadar">
+            ¡Busca las siete esferas!
+        </p>
+
+        <div class="esferas-progreso" id="esferasProgreso">
+
+            <span class="esfera-mini">1</span>
+            <span class="esfera-mini">2</span>
+            <span class="esfera-mini">3</span>
+            <span class="esfera-mini">4</span>
+            <span class="esfera-mini">5</span>
+            <span class="esfera-mini">6</span>
+            <span class="esfera-mini">7</span>
+
+        </div>
+
+        <p class="contador-esferas">
+            Esferas encontradas:
+            <strong id="contadorEsferas">0 / 7</strong>
+        </p>
+
+        <div class="esferas-juego" id="esferasJuego">
+
+            <button class="esfera-dragon" data-esfera="1" aria-label="Buscar esfera 1">★</button>
+            <button class="esfera-dragon" data-esfera="2" aria-label="Buscar esfera 2">★★</button>
+            <button class="esfera-dragon" data-esfera="3" aria-label="Buscar esfera 3">★★★</button>
+            <button class="esfera-dragon" data-esfera="4" aria-label="Buscar esfera 4">★★★★</button>
+            <button class="esfera-dragon" data-esfera="5" aria-label="Buscar esfera 5">★★★★★</button>
+            <button class="esfera-dragon" data-esfera="6" aria-label="Buscar esfera 6">★★★★★★</button>
+            <button class="esfera-dragon" data-esfera="7" aria-label="Buscar esfera 7">★★★★★★★</button>
+
+        </div>
+
+        <p class="instruccion-juego">
+            Toca cada esfera para recogerla.
+        </p>
+
+    </div>
+
+
+    <!-- ENTRENAMIENTO SAIYAJIN -->
+
+    <div class="entrenamiento-saiyajin">
+
+        <span class="etiqueta-seccion">
+            ¡SUPERA TUS LÍMITES!
+        </span>
+
+        <h2>Entrenamiento Saiyajin</h2>
+
+        <p>
+            Acumula energía para alcanzar los 9.000 puntos
+            de poder.
+        </p>
+
+        <div class="nivel-poder">
+
+            <div class="nivel-poder-superior">
+                <span>NIVEL DE PODER</span>
+                <strong id="nivelPoder">0</strong>
+            </div>
+
+            <div class="barra-poder">
+                <div id="barraEnergia"></div>
+            </div>
+
+        </div>
+
+        <button type="button" id="botonKi" class="boton-ki">
+            ⚡ ¡CARGAR KI!
+        </button>
+
+        <p id="mensajeKi">
+            ¡Vamos, guerrero! Puedes hacerlo.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- INVOCACIÓN DE SHENLONG -->
+
+<div class="modal-shenlong" id="modalShenlong">
+
+    <div class="shenlong-contenido">
+
+        <div class="shenlong-icono">🐉</div>
+
+        <span>LAS SIETE ESFERAS HAN SIDO REUNIDAS</span>
+
+        <h2>¡SHENLONG HA DESPERTADO!</h2>
+
+        <p>
+            Tu energía ha permitido invocar al dragón.
+            El universo tiene una misión muy especial:
+            celebrar la llegada de nuestra pequeña guerrera.
+        </p>
+
+        <strong>
+            ¡TU DESEO ES QUE ESTA PEQUEÑA LLEGUE RODEADA DE AMOR!
+        </strong>
+
+        <button type="button" id="cerrarShenlong">
+            ¡ASÍ SERÁ!
+        </button>
+
+    </div>
+
+</div>
         <!-- ======================================
              HISTORIA
         ======================================= -->
