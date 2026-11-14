@@ -63,15 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
             $("nombrePortada2").textContent = "PEQUEÑA SAIYAJIN";
         }
 
-        if ($("firmaHistoria")) {
-            $("firmaHistoria").textContent =
-                `Con mucho cariño, ${nombreCompleto}`;
-        }
-
-        if ($("textoHistoria")) {
-            $("textoHistoria").textContent = DATOS_BODA.historia;
-        }
-
         if ($("nombresFinales")) {
             $("nombresFinales").textContent = nombreCompleto;
         }
