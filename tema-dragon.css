@@ -1411,3 +1411,28 @@ a:hover {
         padding: 30px 20px;
     }
 }
+
+/* CORRECCIÓN DE CLICS EN LAS ESFERAS */
+
+.esferas-juego {
+    position: relative;
+    z-index: 10;
+}
+
+.esfera-dragon {
+    position: relative;
+    z-index: 11;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.esfera-dragon:disabled {
+    cursor: default !important;
+    opacity: 1;
+}
+
+.modal-shenlong {
+    z-index: 99999;
+}
