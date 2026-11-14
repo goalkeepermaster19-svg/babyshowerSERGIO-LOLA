@@ -95,6 +95,6 @@ Tu presencia será parte de esta aventura. ¡Prepara tu energía! ¡La misión B
 
     rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyCNw7z1eAWgfhUT-tpO7wNErQLXyZu9VvUVTBEWJLMwX2FuUYr3NbWaJUphT7yjkkXvg/exec",
 
-    codigoInvitacion: "BABY-01-LOLA-SERGIO"
+    codigoInvitacion: "BODA-2027-AV"
 
 };
